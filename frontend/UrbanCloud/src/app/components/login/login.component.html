@@ -1,0 +1,50 @@
+<div class="body">
+  <div class="login-wrapper">
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Logga in</mat-card-title>
+      </mat-card-header>
+      {{ message }}
+      <form
+        class="example-form"
+        [formGroup]="loginForm"
+        (ngSubmit)="loginSubmit()"
+      >
+        <mat-card-content>
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              id="email"
+              formControlName="email"
+              placeholder="Email"
+            />
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              id="password"
+              formControlName="password"
+              placeholder="Lösenord"
+            />
+          </mat-form-field>
+        </mat-card-content>
+        <div class="btns-wrapper">
+          <button mat-stroked-button class="btn-block">Logga in</button>
+          <span class="or-span">ELLER</span>
+          <button
+            mat-stroked-button
+            (click)="loginWorkAccountSubmit()"
+            class="btn-company-login"
+          >
+            Logga in via ditt arbete
+          </button>
+        </div>
+      </form>
+      <mat-card-footer class="footer">
+        <span class="footer">
+          Är du ett företag? <a href="#">Kom igång här</a>
+        </span>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+.body {
+    background-color: #f5f5f5;
+    margin: 0;
+    height: 100vh;
+    background-color: white;
+    overflow: hidden;
+  }
+  
+  .login-wrapper {
+    padding-top: 90px; 
+    background-color: #f5f5f5;
+    height: 100%;
+  }
+  
+  .box {
+    background-color: #f5f5f5;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 330px;
+  }
+  
+  .login-wrapper .example-form {
+    min-width: 200px;
+    max-width: 300px;
+  }
+  .login-wrapper .example-full-width,
+  .login-wrapper .btn-block {
+    width: 100%;
+    
+  }
+  .login-wrapper mat-card-header {
+    text-align: center;
+    width: 100%;
+    display: block;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .login-wrapper mat-card-header mat-card-title {
+    font-size: 30px;
+    margin: 0;
+  }
+  .login-wrapper .mat-card {
+    padding: 40px 70px 50px;
+  }
+
+  .btns-wrapper {
+      text-align: center;
+  }
+
+  .or-span {
+      text-align: center;
+  }
+
+  .btn-company-login {
+      border-radius: 10px;
+      margin-top: 20px;
+      display: block;
+      background-color: #818185;
+      width: 100%;
+  }
+
+  .btn-block {
+    border-radius: 10px;
+    background-color: #818185;
+    margin-bottom: 30px;
+  }
+
+  .footer {
+      text-align: center;
+      margin-top: 15px;
+  }
