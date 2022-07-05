@@ -15,4 +15,10 @@ export class RouteService {
   openRegister() {
     this.router.navigate(['register']);
   }
+
+  openDashboard() {
+    // check if user is logged in
+    //if logged in navigate to dashboard otherwise frontpage
+    this.router.navigate(['frontpage']);
+  }
 }

@@ -1,0 +1,16 @@
+<p class="header">
+  <mat-toolbar>
+    <span class="home-link" (click)="navigateTo('home')">Urban Cloud</span>
+    <span class="example-spacer"></span>
+    <button
+      mat-button
+      class="createAccountBtn"
+      (click)="navigateTo('register')"
+    >
+      Skapa konto
+    </button>
+    <button mat-button class="loginBtn" (click)="navigateTo('login')">
+      Logga in
+    </button>
+  </mat-toolbar>
+</p>

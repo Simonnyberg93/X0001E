@@ -1,1 +1,121 @@
-<p>register works!</p>
+<div class="body">
+  <app-header></app-header>
+  <div class="content-wrapper">
+    <!-- Left side (not visible on mobile screens) -->
+    <div class="left-side">
+      <div class="title-wrapper">
+        <h1 class="title">
+          Välkommen till <br />
+          <br />
+          Urban Cloud!
+        </h1>
+      </div>
+      <div class="text-wrapper">
+        <p class="text">
+          Urban Cloud är ett kunskaps- och processstöd inom samhällsbyggnad som
+          anpassar sitt innehåll för att vara aktuellt för dig och ditt arbete.
+          Vi vill tillängliggöra information som är svår att hitta och göra det
+          enklare för dig att samla den information som du behöver för dina
+          projekt.
+        </p>
+      </div>
+    </div>
+    <!-- Right side  -->
+    <div class="right-side">
+      <div class="form-wrapper">
+        <h1>Skapa ett konto</h1>
+        <form
+          class="example-form"
+          [formGroup]="registerForm"
+          (ngSubmit)="registerSubmit()"
+        >
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              id="firstname"
+              formControlName="firstname"
+              placeholder="Förnamn"
+            />
+          </mat-form-field>
+          <div *ngIf="firstname?.touched && firstname?.invalid">
+            <small
+              *ngIf="firstname?.errors?.['required']"
+              class="error-message"
+            >
+              Förnamn måste anges</small
+            >
+          </div>
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              id="lastname"
+              formControlName="lastname"
+              placeholder="Efternamn"
+            />
+          </mat-form-field>
+          <div *ngIf="lastname?.touched && lastname?.invalid">
+            <small *ngIf="lastname?.errors?.['required']" class="error-message">
+              Efternamn måste anges</small
+            >
+          </div>
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              id="email"
+              formControlName="email"
+              placeholder="E-post"
+            />
+          </mat-form-field>
+          <div *ngIf="email?.touched && email?.invalid">
+            <small *ngIf="email?.errors?.['required']" class="error-message">
+              E-post är nödvändigt</small
+            >
+            <small *ngIf="email?.errors?.['email']" class="error-message"
+              >Fel e-post format</small
+            >
+          </div>
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              id="password"
+              formControlName="password"
+              placeholder="Lösenord"
+              type="password"
+            />
+          </mat-form-field>
+          <div *ngIf="password?.touched && password?.invalid">
+            <small *ngIf="password?.errors?.['required']" class="error-message">
+              Lösenord är nodvändigt</small
+            >
+            <small
+              *ngIf="password?.errors?.['minlength']"
+              class="error-message"
+            >
+              Lösenordet måste vara minst 8 tecken</small
+            >
+          </div>
+          <button mat-stroked-button class="btn-block">Fortsätt</button>
+        </form>
+        <div class="btns-wrapper">
+          <span class="or-span">ELLER</span>
+          <button
+            mat-stroked-button
+            (click)="loginWorkAccountSubmit()"
+            class="btn-company-login"
+          >
+            Logga in via ditt arbete
+          </button>
+          <span class="has-account">
+            <br />
+            Har du redan ett konto? <a routerLink="/login">Logga in</a>
+          </span>
+          <br />
+          <br />
+          <span class="company">
+            Är du ett företag? <a href="#">Kom igång här</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

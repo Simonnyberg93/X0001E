@@ -1,10 +1,10 @@
 <div class="body">
+  <app-header></app-header>
   <div class="login-wrapper">
     <mat-card class="box">
       <mat-card-header>
         <mat-card-title>Logga in</mat-card-title>
       </mat-card-header>
-      {{ message }}
       <form
         class="example-form"
         [formGroup]="loginForm"
@@ -19,27 +19,47 @@
               placeholder="Email"
             />
           </mat-form-field>
+          <div *ngIf="email?.touched && email?.invalid">
+            <small *ngIf="email?.errors?.['required']" class="error-message">
+              Email is required</small
+            >
+            <small *ngIf="email?.errors?.['email']" class="error-message"
+              >Invalid Email format</small
+            >
+          </div>
           <mat-form-field class="example-full-width">
             <input
               matInput
               id="password"
               formControlName="password"
               placeholder="Lösenord"
+              type="password"
             />
           </mat-form-field>
+          <div *ngIf="password?.touched && password?.invalid">
+            <small *ngIf="password?.errors?.['required']" class="error-message">
+              password is required</small
+            >
+            <small
+              *ngIf="password?.errors?.['minlength']"
+              class="error-message"
+            >
+              A minimum of 8 characters is required</small
+            >
+          </div>
         </mat-card-content>
-        <div class="btns-wrapper">
-          <button mat-stroked-button class="btn-block">Logga in</button>
-          <span class="or-span">ELLER</span>
-          <button
-            mat-stroked-button
-            (click)="loginWorkAccountSubmit()"
-            class="btn-company-login"
-          >
-            Logga in via ditt arbete
-          </button>
-        </div>
+        <button mat-stroked-button class="btn-block">Logga in</button>
       </form>
+      <div class="btns-wrapper">
+        <span class="or-span">ELLER</span>
+        <button
+          mat-stroked-button
+          (click)="loginWorkAccountSubmit()"
+          class="btn-company-login"
+        >
+          Logga in via ditt arbete
+        </button>
+      </div>
       <mat-card-footer class="footer">
         <span class="footer">
           Är du ett företag? <a href="#">Kom igång här</a>

@@ -8,22 +8,12 @@ import { RouteService } from 'src/app/services/route.service';
   styleUrls: ['./front-page.component.css'],
 })
 export class FrontPageComponent implements OnInit {
-  constructor(private routerService: RouteService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
   onSubmit(f: NgForm) {
     console.log(`TODO: value entered: ${f.value.searchInput}`);
     f.reset();
-  }
-
-  navigateTo(navigateTo: string): void {
-    console.log(`Frontpage: ${navigateTo}`);
-    if (navigateTo === 'login') {
-      this.routerService.openLogin();
-      return;
-    }
-    // else navigate to register
-    this.routerService.openRegister();
   }
 }

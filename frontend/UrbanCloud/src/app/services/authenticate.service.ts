@@ -1,58 +1,55 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, map, Observable } from 'rxjs';
+import { environment } from '../environment/environment';
+import { UserProfile } from '../models/UserProfile';
+import { RouteService } from './route.service';
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticateService {
-  constructor() {} // private httpcli: HttpClient, private router: RouteService
+  private userSubject: BehaviorSubject<UserProfile>;
+  public user: Observable<UserProfile>;
 
-  // private updateMenu = new Subject<void>();
+  constructor(private httpcli: HttpClient, private routeService: RouteService) {
+    let currentUser = localStorage.getItem('currentUser');
+    if (currentUser !== null) {
+      this.userSubject = new BehaviorSubject<UserProfile>(
+        JSON.parse(currentUser)
+      );
+      this.user = this.userSubject.asObservable();
+    } else {
+      this.userSubject = new BehaviorSubject<UserProfile>(new UserProfile());
+      this.user = this.userSubject.asObservable();
+    }
+  }
 
-  // get updatemenu() {
-  //   return this.updateMenu;
-  // }
+  login(username: string, password: string) {
+    return this.httpcli
+      .post<any>(`${environment.backendUserApiUrl}login`, {
+        username,
+        password,
+      })
+      .pipe(
+        map(({ token }) => {
+          let user: UserProfile = {
+            email: username,
+            token: token,
+          };
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.userSubject.next(user);
+          return user;
+        })
+      );
+  }
 
-  // generateTokenFromServer(Userobj: UserProfile): Observable<any> {
-  //   console.log('i gen token from serv: ' + Userobj);
-  //   return this.httpcli.post<UserProfile>(
-  //     'http://localhost:8992/user/login',
-  //     Userobj
-  //   );
-  // }
+  logout() {
+    localStorage.removeItem('currentUser');
+    this.userSubject.next(new UserProfile());
+  }
 
-  // createUser(Userobj: UserProfile): Observable<any> {
-  //   return this.httpcli.post<UserProfile>(
-  //     'http://localhost:8992/user/register',
-  //     Userobj
-  //   );
-  // }
-
-  // setBearerToken(token: any) {
-  //   sessionStorage.setItem('token', token);
-  //   console.log('loggin out');
-  // }
-
-  // //might not be needed
-  // getBearerToken() {
-  //   return sessionStorage.getItem('token');
-  // }
-
-  // isAuthenticated() {
-  //   return this.httpcli.post(
-  //     'http://localhost:8992/user/login',
-  //     {},
-  //     {
-  //       headers: new HttpHeaders().set(
-  //         'Authorization',
-  //         `Bearer ${this.getBearerToken()}`
-  //       ), //true
-  //     }
-  //   );
-  // }
-
-  /*logout() {
-    sessionStorage.clear();
-    
-    window.location.reload();
-  this.router.openHome();
-  }*/
+  public get userValue(): UserProfile {
+    return this.userSubject.value;
+  }
 }

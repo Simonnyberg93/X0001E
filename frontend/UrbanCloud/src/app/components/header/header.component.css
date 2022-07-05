@@ -1,0 +1,15 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+.loginBtn {
+  background-color: rgb(210, 210, 210);
+  margin-left: 5px;
+}
+
+.header {
+  margin: 0;
+}
+
+.home-link {
+  cursor: pointer;
+}
