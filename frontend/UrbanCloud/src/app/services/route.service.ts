@@ -17,8 +17,10 @@ export class RouteService {
   }
 
   openDashboard() {
-    // check if user is logged in
-    //if logged in navigate to dashboard otherwise frontpage
-    this.router.navigate(['frontpage']);
+    this.router.navigate(['dashboard']);
+  }
+
+  openTopics() {
+    this.router.navigate(['topics']);
   }
 }

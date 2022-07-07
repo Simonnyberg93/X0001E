@@ -6,10 +6,11 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Topic } from 'src/app/models/Topic';
+import { UserDTO } from 'src/app/models/UserDTO';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { RouteService } from 'src/app/services/route.service';
-import { first } from 'rxjs/operators';
-
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthenticateService,
-    private routerService: RouteService
+    private routerService: RouteService,
+    private userService: UserService
   ) {
     this.loginForm = this.fb.group({
       email: new FormControl('', [Validators.email, Validators.required]),
@@ -50,7 +52,19 @@ export class LoginComponent implements OnInit {
       next: (res: any) => {
         sessionStorage.setItem('token', res.token);
         sessionStorage.setItem('loggedin', 'true');
-        this.routerService.openDashboard();
+        this.userService.fetchUsersTopicsOfInterestFromDb(res.email).subscribe({
+          next: (value: any) => {
+            let topics: Array<Topic> = <Array<Topic>>value;
+            if (topics.length < 1) {
+              this.routerService.openTopics();
+            } else {
+              this.routerService.openDashboard();
+            }
+          },
+          error: (err: any) => {
+            console.error(err);
+          },
+        });
       },
       error: (error: any) => {
         console.error(error);

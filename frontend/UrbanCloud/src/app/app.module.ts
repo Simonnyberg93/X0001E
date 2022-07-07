@@ -24,6 +24,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from './components/header/header.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { TopicsOfInterestComponent } from './components/topics-of-interest/topics-of-interest.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { HeaderComponent } from './components/header/header.component';
     LoginComponent,
     RegisterComponent,
     HeaderComponent,
+    DashboardComponent,
+    TopicsOfInterestComponent,
   ],
   imports: [
     BrowserModule,
