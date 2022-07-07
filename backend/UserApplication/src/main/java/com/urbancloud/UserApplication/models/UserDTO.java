@@ -1,9 +1,10 @@
 package com.urbancloud.UserApplication.models;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,8 +27,8 @@ public class UserDTO {
 	private String password;
 	private String role;
 	
-	@OneToMany(targetEntity=Topic.class, mappedBy="topicName", fetch=FetchType.EAGER)
-	private List<Topic> topicsOfInterests = new ArrayList<Topic>();
+	@OneToMany(targetEntity=Topic.class, mappedBy="user", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<Topic> topicsOfInterests;
 	
 	public UserDTO() { 
 		super();
@@ -65,20 +66,29 @@ public class UserDTO {
 		this.role = role;
 	}
 
-	public List<Topic> getTopicsOfInterests() {
+	public Set<Topic> getTopicsOfInterests() {
 		return topicsOfInterests;
 	}
 	
 	public void addTopicsOfInterests(Topic t) {
 		if (this.getTopicsOfInterests() == null) {
-			List<Topic> topics = Arrays.asList(t);
+			Set<Topic> topics = new HashSet<Topic>();
+			topics.add(t);
 			this.setTopicsOfInterests(topics);
 		} else {
 			this.topicsOfInterests.add(t);
 		}
 	}
 
-	public void setTopicsOfInterests(List<Topic> topicsOfInterests) {
+	public void setTopicsOfInterests(Set<Topic> topicsOfInterests) {
 		this.topicsOfInterests = topicsOfInterests;
 	}
+
+	@Override
+	public String toString() {
+		return "UserDTO [userId=" + userId + ", email=" + email + ", password=" + password + ", role=" + role
+				+ ", topicsOfInterests=" + topicsOfInterests + "]";
+	}
+	
+	
 }

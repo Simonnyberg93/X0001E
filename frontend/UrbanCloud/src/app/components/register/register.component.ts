@@ -5,6 +5,10 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { UserDTO } from 'src/app/models/UserDTO';
+import { UserProfile } from 'src/app/models/UserProfile';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
+import { RouteService } from 'src/app/services/route.service';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +18,10 @@ import {
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
-  constructor() {
+  constructor(
+    private authenticateService: AuthenticateService,
+    private routeService: RouteService
+  ) {
     this.registerForm = new FormGroup({
       firstname: new FormControl('', [Validators.required]),
       lastname: new FormControl('', [Validators.required]),
@@ -44,7 +51,26 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('password');
   }
 
-  registerSubmit() {}
+  registerSubmit() {
+    this.authenticateService
+      .registerUser(
+        new UserDTO(
+          this.firstname?.value,
+          this.lastname?.value,
+          this.email?.value,
+          this.password?.value
+        )
+      )
+      .subscribe(
+        (res) => {
+          console.log(`Register successfull, ${res}`);
+          this.routeService.openLogin();
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+  }
 
   loginWorkAccountSubmit() {}
 }

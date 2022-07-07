@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from '../environment/environment';
+import { UserDTO } from '../models/UserDTO';
 import { UserProfile } from '../models/UserProfile';
 import { RouteService } from './route.service';
 
@@ -25,27 +26,39 @@ export class AuthenticateService {
     }
   }
 
-  login(username: string, password: string) {
-    return this.httpcli
-      .post<any>(`${environment.backendUserApiUrl}login`, {
-        username,
-        password,
-      })
-      .pipe(
-        map(({ token }) => {
-          let user: UserProfile = {
-            email: username,
-            token: token,
-          };
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          this.userSubject.next(user);
-          return user;
-        })
-      );
+  registerUser(user: UserDTO): Observable<any> {
+    return this.httpcli.post<UserDTO>(
+      `${environment.backendUserApiUrl}/register`,
+      user
+    );
+  }
+
+  login(username: string, password: string): Observable<any> {
+    return this.httpcli.post<UserProfile>(
+      `${environment.backendUserApiUrl}/login`,
+      {
+        email: username,
+        password: password,
+      }
+    );
+    // .pipe(
+    //   map(({ token }) => {
+    //     let user: UserProfile = {
+    //       email: username,
+    //       token: token,
+    //     };
+    //     console.log('hello world' + user.email + ' ' + user.token);
+    //     localStorage.setItem('currentUser', JSON.stringify(user));
+    //     sessionStorage.setItem('loggedin', 'true');
+    //     this.userSubject.next(user);
+    //     return user;
+    //   })
+    // );
   }
 
   logout() {
     localStorage.removeItem('currentUser');
+    sessionStorage.setItem('loggedin', 'false');
     this.userSubject.next(new UserProfile());
   }
 

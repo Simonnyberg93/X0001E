@@ -3,7 +3,7 @@ package com.urbancloud.UserApplication.controllers;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +25,6 @@ import com.urbancloud.UserApplication.exceptions.UserNotFoundException;
 import com.urbancloud.UserApplication.models.Topic;
 import com.urbancloud.UserApplication.models.UserDTO;
 import com.urbancloud.UserApplication.models.UserLoginData;
-import com.urbancloud.UserApplication.services.TopicService;
 import com.urbancloud.UserApplication.services.UserService;
 
 
@@ -36,9 +35,6 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
-	
-	@Autowired
-	TopicService topicService;
 	
 	/**
 	 * 
@@ -52,7 +48,7 @@ public class UserController {
 		return new ResponseEntity<UserDTO>(newuser, HttpStatus.OK);
 	}
 	
-	@PostMapping("/{email}/addtopic/{topicname}")
+	@PostMapping("/addtopic/{email}/{topicname}")
 	public ResponseEntity<?> addTopicOfInterest(@PathVariable("email") String email, @PathVariable("topicname") String topicName) throws UserNotFoundException, TopicNotFoundException {
 		this.userService.updateTopicList(email, topicName);
 		return new ResponseEntity<String>("Success", HttpStatus.OK);
@@ -63,9 +59,9 @@ public class UserController {
 		boolean validUser = userService.userLogin(user);
 		if (validUser) {
 			String tokenresult = generateToken(user);
-			HashMap tokenMap = new HashMap();
+			HashMap<String, String> tokenMap = new HashMap<String, String>();
 			tokenMap.put("token", tokenresult);
-			return new ResponseEntity<HashMap>(tokenMap, HttpStatus.OK);
+			return new ResponseEntity<HashMap<String, String>>(tokenMap, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<String>("Invalid Username / Password", HttpStatus.NOT_FOUND);
 		}
@@ -74,8 +70,8 @@ public class UserController {
 	
 	@GetMapping("/topics/{email}")
 	public ResponseEntity<?> fetchTopicsOfInterest(@PathVariable("email") String email) throws UserNotFoundException {
-		List<Topic> topics = this.userService.fetchUserTopics(email);
-		return new ResponseEntity<List<Topic>>(topics, HttpStatus.OK);
+		Set<Topic> topics = this.userService.fetchUserTopics(email);
+		return new ResponseEntity<Set<Topic>>(topics, HttpStatus.OK);
 	}
 	
 	@GetMapping("/role/{email}")
@@ -86,7 +82,7 @@ public class UserController {
 	
 	// To get a token for authentication, by logging in with email and password
 	private String generateToken(UserLoginData user) {
-		long expiry = 10_000_000_00;
+		long expiry = 10_000_000;
 		return Jwts.builder().setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + expiry))
 				.setSubject(user.getEmail())

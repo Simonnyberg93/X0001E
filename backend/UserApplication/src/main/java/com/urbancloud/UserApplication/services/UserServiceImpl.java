@@ -1,13 +1,12 @@
 package com.urbancloud.UserApplication.services;
 
-import java.util.Arrays;
-import java.util.List;
+
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.urbancloud.UserApplication.exceptions.TopicNotFoundException;
 import com.urbancloud.UserApplication.exceptions.UserAlreadyExistsException;
 import com.urbancloud.UserApplication.exceptions.UserNotFoundException;
 import com.urbancloud.UserApplication.models.Topic;
@@ -45,13 +44,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<Topic> fetchUserTopics(String userEmail) throws UserNotFoundException {
+	public Set<Topic> fetchUserTopics(String userEmail) throws UserNotFoundException {
 		Optional<UserDTO> optuser = this.userRepo.findByEmail(userEmail);
 		if (optuser.isEmpty()) {
 			throw new UserNotFoundException();
 		}
-		System.out.println("Topics: " + optuser.get().getTopicsOfInterests());
-		return optuser.get().getTopicsOfInterests();
+		Set<Topic> topics = this.topicRepo.findByUser(optuser.get());
+		return topics;
 	}
 
 	@Override
@@ -64,20 +63,20 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void updateTopicList(String email, String topicName) throws UserNotFoundException, TopicNotFoundException {
+	public void updateTopicList(String email, String topicName) throws UserNotFoundException {
 		Optional<UserDTO> optuser = this.userRepo.findByEmail(email);
-		Optional<Topic> opttopic = this.topicRepo.findByTopicName(topicName);
 		if (optuser.isEmpty()) {
 			throw new UserNotFoundException();
 		}
-		if( opttopic.isEmpty()) {
-			throw new TopicNotFoundException();
-		}
 		UserDTO userObj = optuser.get();
-		Topic topicObj = opttopic.get();
-		userObj.addTopicsOfInterests(topicObj);
-		System.out.println("Helloworld : " + userObj.getTopicsOfInterests());
-		this.userRepo.save(userObj);
+		// check if topic is already set
+		for (Topic t : userObj.getTopicsOfInterests()) {
+			if (t.getTopicName().equalsIgnoreCase(topicName)) {
+				// topic is already set, do nothing
+				return;
+			}
+		}
+		this.topicRepo.save(new Topic(topicName, userObj));
 	}
 
 

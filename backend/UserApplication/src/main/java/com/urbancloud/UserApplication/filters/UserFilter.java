@@ -41,11 +41,9 @@ public class UserFilter extends GenericFilter{
 				String myToken = headerInfo.substring(7);
 				try {
 					JwtParser jwtparser = Jwts.parser().setSigningKey("urbancloud");
-					Jwt jwtobj = jwtparser.parse(myToken);
+					Jwt<?, ?> jwtobj = jwtparser.parse(myToken);
 					Claims claimobj = (Claims) jwtobj.getBody();
-
 					System.out.println("logged in user is " + claimobj.getSubject());
-
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
 					throw new ServletException("invalid token");

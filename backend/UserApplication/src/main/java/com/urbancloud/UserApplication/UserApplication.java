@@ -15,12 +15,12 @@ public class UserApplication {
 	}
 
 	@Bean
-	public FilterRegistrationBean getFilter() {
-		FilterRegistrationBean filterBean = new FilterRegistrationBean();
+	public FilterRegistrationBean<UserFilter> getFilter() {
+		FilterRegistrationBean<UserFilter> filterBean = new FilterRegistrationBean<UserFilter>();
 		filterBean.setFilter(new UserFilter());
 		filterBean.addUrlPatterns("/api/v1/user/topics/*");
 		filterBean.addUrlPatterns("/api/v1/user/role/*");
-		filterBean.addUrlPatterns("/api/v1/user/*/addtopic/*");
+		filterBean.addUrlPatterns("/api/v1/user/addtopic/*");
 		return filterBean;
 	}
 }

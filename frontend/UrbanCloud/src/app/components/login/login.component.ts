@@ -46,17 +46,16 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    this.authService
-      .login(this.email?.value, this.password?.value)
-      .pipe(first())
-      .subscribe({
-        next: () => {
-          this.routerService.openDashboard();
-        },
-        error: (error) => {
-          console.error(error);
-        },
-      });
+    this.authService.login(this.email?.value, this.password?.value).subscribe({
+      next: (res: any) => {
+        sessionStorage.setItem('token', res.token);
+        sessionStorage.setItem('loggedin', 'true');
+        this.routerService.openDashboard();
+      },
+      error: (error: any) => {
+        console.error(error);
+      },
+    });
   }
 
   loginWorkAccountSubmit() {
