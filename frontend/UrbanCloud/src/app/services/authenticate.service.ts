@@ -63,7 +63,7 @@ export class AuthenticateService {
   // unused for now
   public getUserFromDatabase(email: string): Observable<Object> {
     return this.httpcli.get(
-      `${environment.backendUserApiUrl}/fetchuser/${email}`
+      `${environment.backendUserApiUrl}/getuser/${email}`
     );
   }
 

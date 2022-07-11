@@ -5,13 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 
 // Components
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './components/header/header.component';
 import { FrontPageComponent } from './components/front-page/front-page.component';
 import { ErrorpageComponent } from './components/errorpage/errorpage.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { TopicsOfInterestComponent } from './components/topics-of-interest/topics-of-interest.component';
 
 //Guards
 import { AuthIntercept } from './auth-intercept';
@@ -23,9 +28,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
-import { HeaderComponent } from './components/header/header.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { TopicsOfInterestComponent } from './components/topics-of-interest/topics-of-interest.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,12 @@ import { TopicsOfInterestComponent } from './components/topics-of-interest/topic
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    FormlyBootstrapModule,
+    FormlyModule.forRoot({
+      validationMessages: [
+        { name: 'required', message: 'This field is required' },
+      ],
+    }),
     ReactiveFormsModule,
     HttpClientModule,
     MatToolbarModule,
@@ -51,6 +61,8 @@ import { TopicsOfInterestComponent } from './components/topics-of-interest/topic
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
+    MatStepperModule,
+    MatButtonToggleModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthIntercept, multi: true },
