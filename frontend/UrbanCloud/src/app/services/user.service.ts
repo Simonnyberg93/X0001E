@@ -16,17 +16,30 @@ export class UserService {
     );
   }
 
-  updateUserInfo(roles: string[], info: string[], areas: string[]) {
-    this.updateUserRoles(roles);
-    this.updateUserAreasOfImportance(areas);
-    this.updateUserImportantInfo(info);
+  updateUserRoles(email: string, selectedRoles: string[]): Observable<any> {
+    return this.httpcli.post(
+      `${environment.backendUserApiUrl}/role/addrole/${email}`,
+      selectedRoles
+    );
   }
 
-  updateUserRoles(selectedRoles: string[]) {
-    throw new Error('Method not implemented.');
+  updateUserImportantInfo(
+    email: string,
+    selectedInfo: string[]
+  ): Observable<any> {
+    return this.httpcli.post(
+      `${environment.backendUserApiUrl}/topic/addtopic/${email}`,
+      selectedInfo
+    );
   }
 
-  updateUserImportantInfo(selectedInfo: string[]) {}
-
-  updateUserAreasOfImportance(selectedAreas: string[]) {}
+  updateUserAreasOfImportance(
+    email: string,
+    selectedAreas: string[]
+  ): Observable<any> {
+    return this.httpcli.post(
+      `${environment.backendUserApiUrl}/area/addarea/${email}`,
+      selectedAreas
+    );
+  }
 }

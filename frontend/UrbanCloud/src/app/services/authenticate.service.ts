@@ -57,7 +57,9 @@ export class AuthenticateService {
   logout() {
     localStorage.removeItem('currentUser');
     sessionStorage.setItem('loggedin', 'false');
+    sessionStorage.removeItem('token');
     this.userSubject.next(new UserProfile());
+    this.routeService.openLogin();
   }
 
   // unused for now

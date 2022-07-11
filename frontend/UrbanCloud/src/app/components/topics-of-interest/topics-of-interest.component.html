@@ -17,20 +17,50 @@
       <h1>
         Välj några nyckelord som beskriver din arbetsroll (Välj upp till 5)
       </h1>
+      <div class="add-new-word">
+        <input
+          matInput
+          required="true"
+          (keyup.enter)="addNewRole()"
+          class="new-role"
+          type="text"
+          [(ngModel)]="roleInput"
+        />
+      </div>
       <mat-button-toggle-group [(ngModel)]="selectedRoles" multiple>
         <mat-button-toggle *ngFor="let role of workRoles" value="{{ role }}">
           {{ role }}
         </mat-button-toggle>
       </mat-button-toggle-group>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperPrevious>Bakåt</button>
+        <button
+          *ngIf="selectedRoles.length < 6; else toManyRoles"
+          mat-button
+          matStepperNext
+        >
+          Fortsätt
+        </button>
+        <ng-template #toManyRoles>
+          <button mat-button disabled="true">Fortsätt</button>
+          <small class="error">Du kan välja som mest 5 st roller.</small>
+        </ng-template>
       </div>
     </mat-step>
 
     <mat-step>
       <ng-template matStepLabel>Områden</ng-template>
       <h1>Välj några områden som är viktiga för dig(Välj upp till 7)</h1>
+      <div class="add-new-word">
+        <input
+          matInput
+          required="true"
+          (keyup.enter)="addNewArea()"
+          class="new-area"
+          type="text"
+          [(ngModel)]="areaInput"
+        />
+      </div>
       <mat-button-toggle-group [(ngModel)]="selectedAreas" multiple>
         <mat-button-toggle
           *ngFor="let area of importantAreas"
@@ -40,8 +70,20 @@
         </mat-button-toggle>
       </mat-button-toggle-group>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperPrevious>Bakåt</button>
+        <button
+          mat-button
+          matStepperNext
+          *ngIf="selectedAreas.length < 7; else toManyAreas"
+        >
+          Fortsätt
+        </button>
+        <ng-template #toManyAreas>
+          <button mat-button disabled="true">Fortsätt</button>
+          <small class="error"
+            >Du kan välja som mest 7 st områden av intresse.</small
+          >
+        </ng-template>
       </div>
     </mat-step>
 
@@ -50,6 +92,16 @@
       <h1>
         Vilken typ av information är mest intressant för dig? (Välj upp till 7)
       </h1>
+      <div class="add-new-word">
+        <input
+          matInput
+          required="true"
+          (keyup.enter)="addNewArea()"
+          class="new-area"
+          type="text"
+          [(ngModel)]="areaInput"
+        />
+      </div>
       <mat-button-toggle-group [(ngModel)]="selectedInfo" multiple>
         <mat-button-toggle
           *ngFor="let info of importantInfo"
@@ -59,17 +111,20 @@
         </mat-button-toggle>
       </mat-button-toggle-group>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </mat-step>
-
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="onSubmit()">Reset</button>
+        <button mat-button matStepperPrevious>Bakåt</button>
+        <button
+          *ngIf="selectedInfo.length < 7; else toManyInfo"
+          mat-button
+          (click)="onSubmit()"
+        >
+          Klar
+        </button>
+        <ng-template #toManyInfo>
+          <button mat-button disabled="true">Klar</button>
+          <small class="error"
+            >Du kan välja som mest 7 st ämnen av intresse.</small
+          >
+        </ng-template>
       </div>
     </mat-step>
   </mat-stepper>

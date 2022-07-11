@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { RouteService } from 'src/app/services/route.service';
 
 @Component({
@@ -7,7 +8,16 @@ import { RouteService } from 'src/app/services/route.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private routerService: RouteService) {}
+  isLoggedIn: boolean = false;
+
+  constructor(
+    private routerService: RouteService,
+    private authService: AuthenticateService
+  ) {
+    if (sessionStorage.getItem('loggedin') === 'true') {
+      this.isLoggedIn = true;
+    }
+  }
 
   ngOnInit(): void {}
 
@@ -15,7 +25,14 @@ export class HeaderComponent implements OnInit {
     if (navigateTo === 'login') {
       this.routerService.openLogin();
     } else if (navigateTo === 'home') {
-      this.routerService.openDashboard();
+      if (this.isLoggedIn === false) {
+        this.routerService.openHome();
+      } else {
+        this.routerService.openDashboard();
+      }
+    } else if (navigateTo === 'logout') {
+      this.authService.logout();
+      this.isLoggedIn = false;
     } else {
       this.routerService.openRegister();
     }

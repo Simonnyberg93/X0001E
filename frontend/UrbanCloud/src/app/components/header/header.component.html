@@ -3,14 +3,39 @@
     <span class="home-link" (click)="navigateTo('home')">Urban Cloud</span>
     <span class="example-spacer"></span>
     <button
+      *ngIf="!isLoggedIn; else loggedIn"
       mat-button
-      class="createAccountBtn"
+      class="btn createAccountBtn"
       (click)="navigateTo('register')"
     >
       Skapa konto
     </button>
-    <button mat-button class="loginBtn" (click)="navigateTo('login')">
+    <ng-template #loggedIn>
+      <button
+        mat-button
+        class="btn createAccountBtn"
+        (click)="navigateTo('home')"
+      >
+        Dashboard
+      </button>
+    </ng-template>
+    <button
+      mat-button
+      *ngIf="!isLoggedIn; else showLogout"
+      class="btn loginBtn"
+      (click)="navigateTo('login')"
+    >
       Logga in
     </button>
+    <ng-template #showLogout>
+      <button
+        #showLogout
+        mat-button
+        class="btn logoutBtn"
+        (click)="navigateTo('logout')"
+      >
+        Logga ut
+      </button>
+    </ng-template>
   </mat-toolbar>
 </p>

@@ -8,6 +8,10 @@ import { Location } from '@angular/common';
 export class RouteService {
   constructor(private router: Router, private location: Location) {}
 
+  openHome() {
+    this.router.navigate(['frontpage']);
+  }
+
   openLogin() {
     this.router.navigate(['login']);
   }
