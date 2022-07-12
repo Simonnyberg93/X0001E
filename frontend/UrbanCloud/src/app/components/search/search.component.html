@@ -2,20 +2,60 @@
   <div class="searchbar-wrapper">
     <app-searchbar (searchResultEvent)="updateData($event)"></app-searchbar>
   </div>
-  <div *ngIf="searchResult.length < 1; else showResult" class="data-wrapper">
-    <div class="work-role">
-      <h3>Information kopplat till din yrkesroll</h3>
-    </div>
-
-    <div class="interesting-areas">
-      <h3>Intressanta områden att utforska</h3>
-    </div>
-
-    <div class="topics-of-interest">
-      <h3>Information kopplat till dina angivna intressen.</h3>
-    </div>
+  <div *ngIf="data.length < 1; else showResult" class="data-wrapper">
+    <h1>Skriv in det du letar efter i sökrutan ovan.</h1>
   </div>
+
   <ng-template #showResult class="search-result-wrapper">
-    <app-searchresult [data]="searchResult"></app-searchresult>
+    <!-- <ul>
+      <li *ngFor="let obj of data">
+        <h1>{{ obj.title }}</h1>
+        <h2>{{ obj.source }}</h2>
+        <span>{{ obj.text }}</span>
+      </li>
+    </ul> -->
+    <div class="body">
+      <div class="topresults">
+        <h3>Topresultat</h3>
+        <div
+          class="top-container"
+          fxLayout="row"
+          fxLayout.xs="column"
+          fxLayoutGap="20px"
+        >
+          <div fxFlex="50" class="child-1">
+            <mat-card>
+              <mat-card-title>{{ data[0].title }}</mat-card-title>
+              <mat-card-subtitle>{{ data[0].source }}</mat-card-subtitle>
+              <mat-card-content>
+                <span>{{ data[0].text }}</span>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div class="child-2" fxFlex="50">
+            <mat-card class="card2">
+              <mat-card-title>{{ data[1].title }}</mat-card-title>
+              <mat-card-subtitle>{{ data[1].source }}</mat-card-subtitle>
+              <mat-card-content>
+                <span>{{ data[1].text }}</span>
+              </mat-card-content>
+            </mat-card>
+            <mat-card>
+              <mat-card-title>{{ data[2].title }}</mat-card-title>
+              <mat-card-subtitle>{{ data[2].source }}</mat-card-subtitle>
+              <mat-card-content>
+                <span>{{ data[2].text }}</span>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+      <div class="actors">
+        <h3>Aktörer</h3>
+      </div>
+      <div class="areas">
+        <h3>Områden</h3>
+      </div>
+    </div>
   </ng-template>
 </div>

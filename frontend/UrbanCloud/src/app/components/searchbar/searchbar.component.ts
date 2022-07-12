@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, NgForm } from '@angular/forms';
+import { UntypedFormControl, NgForm } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 import { startWith, map } from 'rxjs/operators';
 import { Output, EventEmitter } from '@angular/core';
@@ -13,7 +13,7 @@ import ConstantValues from 'src/app/utils/constants';
 export class SearchbarComponent implements OnInit {
   @Output() searchResultEvent = new EventEmitter<any>();
 
-  control = new FormControl('value');
+  control = new UntypedFormControl('value');
   words: string[] = ConstantValues.searchWords; // retrieve from backend
   filteredSearchwords: Observable<string[]>;
 

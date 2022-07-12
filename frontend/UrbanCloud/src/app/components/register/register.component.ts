@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
-  FormControl,
-  FormGroup,
+  UntypedFormControl,
+  UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 import { UserDTO } from 'src/app/models/UserDTO';
@@ -16,17 +16,17 @@ import { RouteService } from 'src/app/services/route.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  registerForm: FormGroup;
+  registerForm: UntypedFormGroup;
 
   constructor(
     private authenticateService: AuthenticateService,
     private routeService: RouteService
   ) {
-    this.registerForm = new FormGroup({
-      firstname: new FormControl('', [Validators.required]),
-      lastname: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.email, Validators.required]),
-      password: new FormControl('', [
+    this.registerForm = new UntypedFormGroup({
+      firstname: new UntypedFormControl('', [Validators.required]),
+      lastname: new UntypedFormControl('', [Validators.required]),
+      email: new UntypedFormControl('', [Validators.email, Validators.required]),
+      password: new UntypedFormControl('', [
         Validators.minLength(8),
         Validators.required,
       ]),

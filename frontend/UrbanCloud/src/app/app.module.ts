@@ -1,5 +1,6 @@
 // Angular
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -41,7 +42,6 @@ import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { UnderconstructionComponent } from './components/underconstruction/underconstruction.component';
 import { StartComponent } from './components/start/start.component';
-import { SearchresultComponent } from './components/searchresult/searchresult.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +57,6 @@ import { SearchresultComponent } from './components/searchresult/searchresult.co
     SearchbarComponent,
     UnderconstructionComponent,
     StartComponent,
-    SearchresultComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,6 +71,7 @@ import { SearchresultComponent } from './components/searchresult/searchresult.co
     }),
     ReactiveFormsModule,
     HttpClientModule,
+    FlexLayoutModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,

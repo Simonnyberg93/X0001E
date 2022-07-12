@@ -6,6 +6,7 @@ import { FrontPageComponent } from './components/front-page/front-page.component
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SearchComponent } from './components/search/search.component';
+import { StartComponent } from './components/start/start.component';
 import { TopicsOfInterestComponent } from './components/topics-of-interest/topics-of-interest.component';
 import { UnderconstructionComponent } from './components/underconstruction/underconstruction.component';
 import { AuthenticationGuard } from './guards/authentication.guard';
@@ -35,7 +36,7 @@ const routes: Routes = [
       },
       {
         path: 'start',
-        component: UnderconstructionComponent,
+        component: StartComponent,
       },
       {
         path: 'maptool',
@@ -55,7 +56,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'search', // perhaps change this to start when it is finished
+        redirectTo: 'start', // perhaps change this to start when it is finished
         pathMatch: 'full',
       },
     ],

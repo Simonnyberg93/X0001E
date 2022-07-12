@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent implements OnInit {
-  searchResult: any[] = [];
+  data: any[] = [];
 
   constructor() {}
 
@@ -14,6 +14,6 @@ export class SearchComponent implements OnInit {
 
   updateData(newItem: any[]) {
     console.log(`SearchComponent recieved: ${newItem}`);
-    this.searchResult = newItem;
+    this.data = newItem;
   }
 }
