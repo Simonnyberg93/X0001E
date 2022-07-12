@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { UserDTO } from 'src/app/models/UserDTO';
 import { UserProfile } from 'src/app/models/UserProfile';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
+import { DataService } from 'src/app/services/data.service';
 import { RouteService } from 'src/app/services/route.service';
 import { UserService } from 'src/app/services/user.service';
-import ConstantValues from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-topics-of-interest',
@@ -20,9 +20,9 @@ export class TopicsOfInterestComponent implements OnInit {
   selectedAreas: string[] = [];
   selectedInfo: string[] = [];
 
-  public workRoles: string[] = ConstantValues.workRoles;
-  public importantInfo: string[] = ConstantValues.importantInfo;
-  public importantAreas: string[] = ConstantValues.importantAreas;
+  public workRoles: string[] = [];
+  public importantInfo: string[] = [];
+  public importantAreas: string[] = [];
 
   userProfile: UserProfile;
   user: UserDTO = new UserDTO('', '', '', '');
@@ -30,12 +30,28 @@ export class TopicsOfInterestComponent implements OnInit {
   constructor(
     private routeService: RouteService,
     private userService: UserService,
-    private authService: AuthenticateService
+    private authService: AuthenticateService,
+    private dataService: DataService
   ) {
     this.userProfile = this.authService.userValue;
     this.authService.getUserFromDatabase(this.userProfile.email).subscribe({
       next: (user: any) => {
         this.user = <UserDTO>user;
+        if (this.user) {
+          if (this.user.areasOfInterest) {
+            this.selectedAreas = this.user.areasOfInterest.map(
+              (area) => area.areaName
+            );
+          }
+          if (this.user.topicsOfInterest) {
+            this.selectedInfo = this.user.topicsOfInterest.map(
+              (topic) => topic.topicName
+            );
+          }
+          if (this.user.roles) {
+            this.selectedRoles = this.user.roles.map((role) => role.roleName);
+          }
+        }
       },
       error: (error: any) => {
         console.error(error);
@@ -43,7 +59,33 @@ export class TopicsOfInterestComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // fetch data from backend
+    this.dataService.fetchAreasOfInterest().subscribe({
+      next: (value: string[]) => {
+        this.importantAreas = value;
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
+    this.dataService.fetchTopicsOfInterest().subscribe({
+      next: (value: string[]) => {
+        this.importantInfo = value;
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
+    this.dataService.fetchWorkRoles().subscribe({
+      next: (value: string[]) => {
+        this.workRoles = value;
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
+  }
 
   onSubmit() {
     // update user

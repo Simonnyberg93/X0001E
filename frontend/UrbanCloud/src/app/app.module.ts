@@ -42,6 +42,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { UnderconstructionComponent } from './components/underconstruction/underconstruction.component';
 import { StartComponent } from './components/start/start.component';
+import { DataCardComponent } from './components/data-card/data-card.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { StartComponent } from './components/start/start.component';
     SearchbarComponent,
     UnderconstructionComponent,
     StartComponent,
+    DataCardComponent,
   ],
   imports: [
     BrowserModule,

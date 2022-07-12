@@ -16,4 +16,12 @@ export class SearchComponent implements OnInit {
     console.log(`SearchComponent recieved: ${newItem}`);
     this.data = newItem;
   }
+
+  cutText(text: string, wantedLen: number): string {
+    if (text.length > wantedLen) {
+      return text.substring(0, wantedLen) + ' ... ';
+    } else {
+      return text;
+    }
+  }
 }

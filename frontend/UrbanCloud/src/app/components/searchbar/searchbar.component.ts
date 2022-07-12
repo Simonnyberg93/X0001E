@@ -3,7 +3,7 @@ import { UntypedFormControl, NgForm } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 import { startWith, map } from 'rxjs/operators';
 import { Output, EventEmitter } from '@angular/core';
-import ConstantValues from 'src/app/utils/constants';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-searchbar',
@@ -13,11 +13,19 @@ import ConstantValues from 'src/app/utils/constants';
 export class SearchbarComponent implements OnInit {
   @Output() searchResultEvent = new EventEmitter<any>();
 
-  control = new UntypedFormControl('value');
-  words: string[] = ConstantValues.searchWords; // retrieve from backend
+  control = new UntypedFormControl('');
+  words: string[] = []; // retrieve from backend
   filteredSearchwords: Observable<string[]>;
 
-  constructor() {
+  constructor(private dataService: DataService) {
+    this.dataService.fetchMostSearchedWords().subscribe({
+      next: (value: string[]) => {
+        this.words = value;
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
     this.filteredSearchwords = this.control.valueChanges.pipe(
       startWith(''),
       map((value) => this._filter(value || ''))
@@ -38,32 +46,14 @@ export class SearchbarComponent implements OnInit {
   }
 
   onSubmit(f: NgForm) {
-    console.log(`TODO: value entered: ${this.control.value}`);
-    // for now just send back dummy data to parent to see if it workes
-    this.searchResultEvent.emit([
-      {
-        title: 'Vatten och avlopp',
-        source: '',
-        text: 'Vatten och avlopp förkortat VA, är vattenförsörjning av dricksvatten och hanteringen av avloppsvatten. Både vattenförsörjning och avloppshantering använder sig av rörsystem och kräver reningsanläggningar. \n Dicksvatten för almänt bruk kommer från vattendrag eller brunnar för rening till ett ...',
-        contains: [
-          'Spillvattensystemet',
-          'Dagvatten',
-          'Drift, underhåll, förnyelse',
-        ],
+    this.dataService.fetchDataFromSearchString(this.control.value).subscribe({
+      next: (value: any[]) => {
+        this.searchResultEvent.emit(value);
       },
-      {
-        title: 'Vatten',
-        source: 'Boverket',
-        text: 'Vatten avser såväl öppet hav som kustvatten, sjöar som vattendrag. Användningen Vatten anges för vattenområden som är lämpliga för olika användningar men där det inte är nödvändigt eller',
-        contains: [],
+      error: (error) => {
+        console.error(error);
       },
-      {
-        title: 'Mark- och vattenanvändning',
-        source: 'Boverket',
-        text: 'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
-        contains: [],
-      },
-    ]);
+    });
     this.control.reset();
     f.reset();
   }

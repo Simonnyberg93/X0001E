@@ -1,0 +1,32 @@
+.maincard {
+    padding-top: 8%;
+    padding-bottom: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    border-radius: 10px;
+  }
+
+  .card {
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    border-radius: 10px;
+  }
+  
+  .t {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .button {
+    background-color: #818185;
+    color: white;
+    margin: 5px;
+  }
+
+  .smaller {
+    font-size: smaller;
+  }

@@ -6,7 +6,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { UserDTO } from 'src/app/models/UserDTO';
-import { UserProfile } from 'src/app/models/UserProfile';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { RouteService } from 'src/app/services/route.service';
 
@@ -25,7 +24,10 @@ export class RegisterComponent implements OnInit {
     this.registerForm = new UntypedFormGroup({
       firstname: new UntypedFormControl('', [Validators.required]),
       lastname: new UntypedFormControl('', [Validators.required]),
-      email: new UntypedFormControl('', [Validators.email, Validators.required]),
+      email: new UntypedFormControl('', [
+        Validators.email,
+        Validators.required,
+      ]),
       password: new UntypedFormControl('', [
         Validators.minLength(8),
         Validators.required,
@@ -81,5 +83,7 @@ export class RegisterComponent implements OnInit {
       );
   }
 
-  loginWorkAccountSubmit() {}
+  loginWorkAccountSubmit() {
+    console.log(`TODO: Login with workaccount`);
+  }
 }

@@ -1,0 +1,27 @@
+<div *ngIf="isMainCard; else elseBlock">
+  <div class="maincard">
+    <h1 class="t title">{{ data.title }}</h1>
+    <h3 class="t subtitle">{{ data.source }}</h3>
+    <div class="t text">
+      <span>{{ cutText(data.text, maxTextLength) }}</span>
+    </div>
+    <div *ngIf="data.includes.length > 1">
+      <br />
+      <h3 class="t">Innefattar</h3>
+      <div class="t">
+        <button class="button" mat-button *ngFor="let str of data.includes">
+          {{ str }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #elseBlock>
+  <div class="card">
+    <h2 class="t title">{{ data.title }}</h2>
+    <h4 class="t subtitle">{{ data.source }}</h4>
+    <div class="t text smaller">
+      <span>{{ cutText(data.text, maxTextLength) }}</span>
+    </div>
+  </div>
+</ng-template>

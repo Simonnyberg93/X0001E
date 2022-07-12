@@ -13,7 +13,7 @@
         />
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option
-            *ngFor="let value of filteredSearchwords | async"
+            *ngFor="let value of filteredSearchwords | async | slice: 0:5"
             [value]="value"
           >
             {{ value }}
