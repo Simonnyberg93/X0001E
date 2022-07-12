@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./searchresult.component.css'],
 })
 export class SearchresultComponent implements OnInit {
-  @Input() data: Object[] = [];
+  @Input() data: any[] = [];
 
   constructor() {}
 

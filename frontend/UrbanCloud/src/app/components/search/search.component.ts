@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search',
@@ -9,9 +6,14 @@ import { startWith, map } from 'rxjs/operators';
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent implements OnInit {
-  searchResult: Object[] = [];
+  searchResult: any[] = [];
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  updateData(newItem: any[]) {
+    console.log(`SearchComponent recieved: ${newItem}`);
+    this.searchResult = newItem;
+  }
 }

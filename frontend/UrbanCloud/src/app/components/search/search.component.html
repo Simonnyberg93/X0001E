@@ -1,6 +1,6 @@
 <div class="body">
   <div class="searchbar-wrapper">
-    <app-searchbar></app-searchbar>
+    <app-searchbar (searchResultEvent)="updateData($event)"></app-searchbar>
   </div>
   <div *ngIf="searchResult.length < 1; else showResult" class="data-wrapper">
     <div class="work-role">
