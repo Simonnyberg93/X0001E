@@ -55,11 +55,7 @@ export class LoginComponent implements OnInit {
         this.userService.fetchUsersTopicsOfInterestFromDb(res.email).subscribe({
           next: (value: any) => {
             let topics: Array<Topic> = <Array<Topic>>value;
-            if (topics.length < 1) {
-              this.routerService.openTopics();
-            } else {
-              this.routerService.openDashboard();
-            }
+            this.routerService.openDashboard();
           },
           error: (err: any) => {
             console.error(err);

@@ -13,4 +13,11 @@ export default class ConstantValues {
     'Juridik och lagar',
     'Tekniska Beskrivningar',
   ];
+  static searchWords: string[] = [
+    'Vatten',
+    'Vatten och avlopp',
+    'Dagvatten',
+    'Spillvatten',
+    'Lagen för dagvattenbrunnar',
+  ];
 }

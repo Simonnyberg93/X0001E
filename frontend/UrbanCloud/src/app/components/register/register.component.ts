@@ -64,7 +64,16 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         (res) => {
           console.log(`Register successfull, ${res}`);
-          this.routeService.openLogin();
+          this.authenticateService
+            .login(this.email?.value, this.password?.value)
+            .subscribe({
+              next: (value) => {
+                this.routeService.openTopics();
+              },
+              error: (error) => {
+                console.error(error);
+              },
+            });
         },
         (error) => {
           console.error(error);

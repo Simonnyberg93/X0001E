@@ -45,7 +45,6 @@ export class AuthenticateService {
             email: username,
             token: token,
           };
-          // console.log('hello world' + user.email + ' ' + user.token);
           localStorage.setItem('currentUser', JSON.stringify(user));
           sessionStorage.setItem('loggedin', 'true');
           this.userSubject.next(user);

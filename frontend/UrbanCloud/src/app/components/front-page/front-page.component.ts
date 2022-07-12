@@ -11,9 +11,4 @@ export class FrontPageComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-
-  onSubmit(f: NgForm) {
-    console.log(`TODO: value entered: ${f.value.searchInput}`);
-    f.reset();
-  }
 }

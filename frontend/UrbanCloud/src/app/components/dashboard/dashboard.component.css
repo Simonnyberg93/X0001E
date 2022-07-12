@@ -1,0 +1,22 @@
+.body {
+}
+
+.example-container {
+  height: 100vh;
+}
+
+.drawer {
+  background-color: #818185;
+}
+
+.first-list-item {
+  margin-top: 20px;
+}
+
+.nav-list {
+  margin-top: 20px;
+}
+
+h4 {
+  color: white;
+}

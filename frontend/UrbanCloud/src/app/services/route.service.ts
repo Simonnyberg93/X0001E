@@ -27,4 +27,32 @@ export class RouteService {
   openTopics() {
     this.router.navigate(['topics']);
   }
+
+  openSearch() {
+    this.router.navigate(['dashboard/search']);
+  }
+
+  openStart() {
+    this.router.navigate(['dashboard/start']);
+  }
+
+  openProfile() {
+    this.router.navigate(['dashboard/profile']);
+  }
+
+  openMapTool() {
+    this.router.navigate(['dashboard/maptool']);
+  }
+
+  openMyProject() {
+    this.router.navigate(['dashboard/myprojekt']);
+  }
+
+  openAddProject() {
+    this.router.navigate(['dashboard/addprojekt']);
+  }
+
+  openAbout() {
+    this.router.navigate(['dashboard/about']);
+  }
 }

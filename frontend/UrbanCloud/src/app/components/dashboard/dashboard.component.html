@@ -1,1 +1,110 @@
-<app-header></app-header>
+<div class="body">
+  <mat-drawer-container class="example-container mat-typography" autosize>
+    <mat-drawer
+      class="drawer"
+      #drawer
+      mode="side"
+      disableClose="true"
+      opened="true"
+    >
+      <button
+        mat-mini-fab
+        (click)="isExpanded = !isExpanded"
+        color="white"
+        style="margin: 10px"
+      >
+        <mat-icon aria-label="Menu">menu</mat-icon>
+      </button>
+
+      <mat-nav-list class="nav-list">
+        <mat-list-item class="first-list-item">
+          <mat-icon
+            (click)="routeToProfile()"
+            mat-list-icon
+            class="material-icons-outlined"
+            [ngStyle]="{ color: 'white' }"
+            >person</mat-icon
+          >
+          <h4 mat-line *ngIf="isExpanded">Profil</h4>
+        </mat-list-item>
+
+        <mat-list-item>
+          <mat-icon
+            (click)="routeToStart()"
+            mat-list-icon
+            class="material-icons-outlined"
+            [ngStyle]="{ color: 'white' }"
+            >home</mat-icon
+          >
+          <h4 mat-line *ngIf="isExpanded">Start</h4>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon
+            (click)="routeToSearch()"
+            mat-list-icon
+            class="material-icons-outlined"
+            [ngStyle]="{ color: 'white' }"
+            >search</mat-icon
+          >
+          <h4 mat-line *ngIf="isExpanded">Sök</h4>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon
+            (click)="routeToMapTool()"
+            mat-list-icon
+            class="material-icons-outlined"
+            [ngStyle]="{ color: 'white' }"
+            >map</mat-icon
+          >
+          <h4 mat-line *ngIf="isExpanded">Kartverktyget</h4>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon
+            (click)="routeToMyproject()"
+            mat-list-icon
+            class="material-icons-outlined"
+            [ngStyle]="{ color: 'white' }"
+            >folder</mat-icon
+          >
+          <h4 mat-line *ngIf="isExpanded">Mina projekt</h4>
+        </mat-list-item>
+
+        <mat-list-item>
+          <mat-icon
+            (click)="routeToAddproject()"
+            mat-list-icon
+            class="material-icons-outlined"
+            [ngStyle]="{ color: 'white' }"
+            >add_box</mat-icon
+          >
+          <h4 mat-line *ngIf="isExpanded">Nytt projekt</h4>
+        </mat-list-item>
+
+        <mat-list-item>
+          <mat-icon
+            (click)="routeToAbout()"
+            mat-list-icon
+            class="material-icons-outlined"
+            [ngStyle]="{ color: 'white' }"
+            >info</mat-icon
+          >
+          <h4 mat-line *ngIf="isExpanded">Om Urban Cloud</h4>
+        </mat-list-item>
+
+        <mat-list-item>
+          <mat-icon
+            class="logoutBtn"
+            (click)="logout()"
+            mat-list-icon
+            class="material-icons-outlined"
+            [ngStyle]="{ color: 'white' }"
+            >logout</mat-icon
+          >
+          <h4 mat-line *ngIf="isExpanded">Logga ut</h4>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-drawer>
+
+    <router-outlet></router-outlet>
+  </mat-drawer-container>
+</div>

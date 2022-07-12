@@ -17,6 +17,9 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TopicsOfInterestComponent } from './components/topics-of-interest/topics-of-interest.component';
+import { SearchbarComponent } from './components/searchbar/searchbar.component';
+
+import { SearchComponent } from './components/search/search.component';
 
 //Guards
 import { AuthIntercept } from './auth-intercept';
@@ -30,6 +33,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { UnderconstructionComponent } from './components/underconstruction/underconstruction.component';
+import { StartComponent } from './components/start/start.component';
+import { SearchresultComponent } from './components/searchresult/searchresult.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +53,11 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     HeaderComponent,
     DashboardComponent,
     TopicsOfInterestComponent,
+    SearchComponent,
+    SearchbarComponent,
+    UnderconstructionComponent,
+    StartComponent,
+    SearchresultComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +80,12 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatCardModule,
     MatStepperModule,
     MatButtonToggleModule,
+    MatAutocompleteModule,
+    MatSidenavModule,
+    MatMenuModule,
+    MatDividerModule,
+    MatListModule,
+    MatExpansionModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthIntercept, multi: true },

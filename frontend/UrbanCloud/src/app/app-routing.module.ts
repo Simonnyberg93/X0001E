@@ -5,7 +5,9 @@ import { ErrorpageComponent } from './components/errorpage/errorpage.component';
 import { FrontPageComponent } from './components/front-page/front-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { SearchComponent } from './components/search/search.component';
 import { TopicsOfInterestComponent } from './components/topics-of-interest/topics-of-interest.component';
+import { UnderconstructionComponent } from './components/underconstruction/underconstruction.component';
 import { AuthenticationGuard } from './guards/authentication.guard';
 
 const routes: Routes = [
@@ -22,7 +24,41 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [AuthenticationGuard],
-    children: [],
+    children: [
+      {
+        path: 'search',
+        component: SearchComponent,
+      },
+      {
+        path: 'profile',
+        component: UnderconstructionComponent,
+      },
+      {
+        path: 'start',
+        component: UnderconstructionComponent,
+      },
+      {
+        path: 'maptool',
+        component: UnderconstructionComponent,
+      },
+      {
+        path: 'myprojekt',
+        component: UnderconstructionComponent,
+      },
+      {
+        path: 'addprojekt',
+        component: UnderconstructionComponent,
+      },
+      {
+        path: 'about',
+        component: UnderconstructionComponent,
+      },
+      {
+        path: '',
+        redirectTo: 'search', // perhaps change this to start when it is finished
+        pathMatch: 'full',
+      },
+    ],
   },
   { path: '', redirectTo: 'frontpage', pathMatch: 'full' },
   { path: '**', redirectTo: 'errorpage', pathMatch: 'full' },
