@@ -47,6 +47,7 @@ export class AuthenticateService {
           };
           localStorage.setItem('currentUser', JSON.stringify(user));
           sessionStorage.setItem('loggedin', 'true');
+          sessionStorage.setItem('token', user.token);
           this.userSubject.next(user);
           return user;
         })

@@ -19,8 +19,10 @@ import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TopicsOfInterestComponent } from './components/topics-of-interest/topics-of-interest.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
-
 import { SearchComponent } from './components/search/search.component';
+import { UnderconstructionComponent } from './components/underconstruction/underconstruction.component';
+import { StartComponent } from './components/start/start.component';
+import { DataCardComponent } from './components/data-card/data-card.component';
 
 //Guards
 import { AuthIntercept } from './auth-intercept';
@@ -40,9 +42,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { UnderconstructionComponent } from './components/underconstruction/underconstruction.component';
-import { StartComponent } from './components/start/start.component';
-import { DataCardComponent } from './components/data-card/data-card.component';
 
 @NgModule({
   declarations: [
