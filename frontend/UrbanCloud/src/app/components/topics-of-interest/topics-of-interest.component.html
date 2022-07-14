@@ -1,6 +1,6 @@
 <div class="body">
-  <mat-stepper #stepper>
-    <mat-step>
+  <mat-stepper class="stepper" color="primary" #stepper>
+    <mat-step class="step">
       <ng-template matStepLabel>Välkommen</ng-template>
       <div class="first-page-wrapper">
         <h1>Välkommen {{ user.firstname }}</h1>
@@ -9,60 +9,75 @@
           Cloud behöver vi veta lite mer om dig och din arbetsroll.</span
         >
       </div>
-      <button mat-button matStepperNext>Kom igång</button>
+      <button mat-button matStepperNext class="button">Kom igång</button>
     </mat-step>
 
-    <mat-step>
+    <mat-step class="step">
       <ng-template matStepLabel>Arbetsroll</ng-template>
       <h1>
         Välj några nyckelord som beskriver din arbetsroll (Välj upp till 5)
       </h1>
-      <div class="add-new-word">
+      <div class="input add-new-word">
         <input
-          matInput
           required="true"
           (keyup.enter)="addNewRole()"
-          class="new-role"
+          class="inin input new-role"
           type="text"
+          placeholder="Lägg till eget nyckelord"
           [(ngModel)]="roleInput"
         />
       </div>
-      <mat-button-toggle-group [(ngModel)]="selectedRoles" multiple>
-        <mat-button-toggle *ngFor="let role of workRoles" value="{{ role }}">
+      <mat-button-toggle-group
+        class="button-toggle-group"
+        [(ngModel)]="selectedRoles"
+        multiple
+      >
+        <mat-button-toggle
+          class="toggle-button"
+          *ngFor="let role of workRoles"
+          value="{{ role }}"
+        >
           {{ role }}
         </mat-button-toggle>
       </mat-button-toggle-group>
       <div>
-        <button mat-button matStepperPrevious>Bakåt</button>
+        <button mat-button matStepperPrevious class="button">Bakåt</button>
         <button
           *ngIf="selectedRoles.length < 6; else toManyRoles"
           mat-button
           matStepperNext
+          class="button"
         >
           Fortsätt
         </button>
         <ng-template #toManyRoles>
-          <button mat-button disabled="true">Fortsätt</button>
+          <button mat-button disabled="true" class="button">Fortsätt</button>
           <small class="error">Du kan välja som mest 5 st roller.</small>
         </ng-template>
       </div>
     </mat-step>
 
-    <mat-step>
+    <mat-step class="step">
       <ng-template matStepLabel>Områden</ng-template>
       <h1>Välj några områden som är viktiga för dig(Välj upp till 7)</h1>
-      <div class="add-new-word">
+      <div class="input add-new-word">
         <input
           matInput
           required="true"
           (keyup.enter)="addNewArea()"
-          class="new-area"
+          class="input new-area"
           type="text"
+          placeholder="Lägg till eget nyckelord"
           [(ngModel)]="areaInput"
         />
       </div>
-      <mat-button-toggle-group [(ngModel)]="selectedAreas" multiple>
+      <mat-button-toggle-group
+        class="button-toggle-group"
+        [(ngModel)]="selectedAreas"
+        multiple
+      >
         <mat-button-toggle
+          class="toggle-button"
           *ngFor="let area of importantAreas"
           value="{{ area }}"
         >
@@ -70,8 +85,9 @@
         </mat-button-toggle>
       </mat-button-toggle-group>
       <div>
-        <button mat-button matStepperPrevious>Bakåt</button>
+        <button class="button" mat-button matStepperPrevious>Bakåt</button>
         <button
+          class="button"
           mat-button
           matStepperNext
           *ngIf="selectedAreas.length < 7; else toManyAreas"
@@ -79,7 +95,7 @@
           Fortsätt
         </button>
         <ng-template #toManyAreas>
-          <button mat-button disabled="true">Fortsätt</button>
+          <button class="button" mat-button disabled="true">Fortsätt</button>
           <small class="error"
             >Du kan välja som mest 7 st områden av intresse.</small
           >
@@ -87,23 +103,29 @@
       </div>
     </mat-step>
 
-    <mat-step>
+    <mat-step class="step">
       <ng-template matStepLabel>Information</ng-template>
       <h1>
         Vilken typ av information är mest intressant för dig? (Välj upp till 7)
       </h1>
-      <div class="add-new-word">
+      <div class="input add-new-word">
         <input
           matInput
           required="true"
           (keyup.enter)="addNewArea()"
-          class="new-area"
+          class="input new-area"
           type="text"
+          placeholder="Lägg till eget nyckelord"
           [(ngModel)]="areaInput"
         />
       </div>
-      <mat-button-toggle-group [(ngModel)]="selectedInfo" multiple>
+      <mat-button-toggle-group
+        class="button-toggle-group"
+        [(ngModel)]="selectedInfo"
+        multiple
+      >
         <mat-button-toggle
+          class="toggle-button"
           *ngFor="let info of importantInfo"
           value="{{ info }}"
         >
@@ -111,8 +133,9 @@
         </mat-button-toggle>
       </mat-button-toggle-group>
       <div>
-        <button mat-button matStepperPrevious>Bakåt</button>
+        <button class="button" mat-button matStepperPrevious>Bakåt</button>
         <button
+          class="button"
           *ngIf="selectedInfo.length < 7; else toManyInfo"
           mat-button
           (click)="onSubmit()"
@@ -120,7 +143,7 @@
           Klar
         </button>
         <ng-template #toManyInfo>
-          <button mat-button disabled="true">Klar</button>
+          <button class="button" mat-button disabled="true">Klar</button>
           <small class="error"
             >Du kan välja som mest 7 st ämnen av intresse.</small
           >
