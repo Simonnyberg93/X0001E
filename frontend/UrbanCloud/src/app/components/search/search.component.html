@@ -10,28 +10,59 @@
     <div class="body">
       <div class="section topresults">
         <h3>Topresultat</h3>
+        <app-card-layout
+          [data]="data.slice(0, 3)"
+          [isTopThree]="true"
+        ></app-card-layout>
+        <div *ngIf="topResultsToggle && data.length > 3">
+          <app-card-layout [data]="data.slice(3, -1)"></app-card-layout>
+        </div>
         <div
-          class="top-container"
-          fxLayout="row"
-          fxLayoutAlign="space-around stretch"
-          fxLayout.xs="column"
-          fxLayoutGap="20px"
+          *ngIf="!topResultsToggle && data.length > 3"
+          class="show-more-wrapper"
         >
-          <div fxFlex="50" class="child child-1">
-            <app-data-card [data]="data[0]" [isMainCard]="true"></app-data-card>
-          </div>
-          <div class="child child-2" fxFlex="50">
-            <app-data-card [data]="data[1]"></app-data-card>
-            <br />
-            <app-data-card [data]="data[2]"></app-data-card>
-          </div>
+          <button
+            class="button"
+            mat-button
+            (click)="topResultsToggle = !topResultsToggle"
+          >
+            Visa fler
+          </button>
+        </div>
+        <div
+          *ngIf="topResultsToggle && data.length > 3"
+          class="show-less-wrapper"
+        >
+          <button
+            class="button"
+            mat-button
+            (click)="topResultsToggle = !topResultsToggle"
+          >
+            Visa färre
+          </button>
         </div>
       </div>
       <div class="section actors">
         <h3>Aktörer</h3>
+        <div
+          class="top-container"
+          fxLayout="row wrap"
+          fxLayoutAlign="start start"
+          fxLayout.xs="column"
+          fxLayoutGap="20px"
+        >
+          <div
+            *ngFor="let acter of acters.slice(0, 4)"
+            fxFlex="20%"
+            class="child child-1"
+          >
+            <app-acter-card [acter]="acter"></app-acter-card>
+          </div>
+        </div>
       </div>
       <div class="section areas">
         <h3>Områden</h3>
+        <app-card-layout [data]="acters"></app-card-layout>
       </div>
     </div>
   </ng-template>

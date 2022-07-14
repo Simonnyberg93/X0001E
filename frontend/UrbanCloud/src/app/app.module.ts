@@ -42,6 +42,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { CardLayoutComponent } from './components/card-layout/card-layout.component';
+import { ActerCardComponent } from './components/acter-card/acter-card.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     UnderconstructionComponent,
     StartComponent,
     DataCardComponent,
+    CardLayoutComponent,
+    ActerCardComponent,
   ],
   imports: [
     BrowserModule,

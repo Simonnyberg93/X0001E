@@ -47,5 +47,53 @@ export default class ConstantValues {
       text: 'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
       includes: [],
     },
+    {
+      title: 'Privat brunn',
+      source: 'Luleå Komun',
+      text: 'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
+      includes: [],
+    },
+    {
+      title: 'Källvatten',
+      source: 'Norbotten landsting',
+      text: 'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
+      includes: [],
+    },
+    {
+      title: 'Källvatten',
+      source: 'Norbotten landsting',
+      text: 'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
+      includes: [],
+    },
+    {
+      title: 'Källvatten',
+      source: 'Norbotten landsting',
+      text: 'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
+      includes: [],
+    },
+    {
+      title: 'Källvatten',
+      source: 'Norbotten landsting',
+      text: 'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
+      includes: [],
+    },
+    {
+      title: 'Källvatten',
+      source: 'Norbotten landsting',
+      text: 'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
+      includes: [],
+    },
+    {
+      title: 'Källvatten',
+      source: 'Norbotten landsting',
+      text: 'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
+      includes: [],
+    },
+    {
+      title: 'Källvatten',
+      source: 'Norbotten landsting',
+      text: 'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
+      includes: [],
+    },
   ];
 }

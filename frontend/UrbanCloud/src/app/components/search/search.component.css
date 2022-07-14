@@ -21,8 +21,27 @@
   padding-left: 50px;
 }
 
-  
 .child-1 {
   background-color: white;
   border-radius: 10px;
+}
+
+.child {
+  padding: 10px;
+}
+
+.show-more-wrapper {
+  margin-left: 50%;
+  margin-right: 50%;
+}
+
+.show-less-wrapper {
+  margin-left: 50%;
+  margin-right: 50%;
+}
+
+.button {
+  color: white;
+  background-color: #818181;
+  margin-top: 20px;
 }
