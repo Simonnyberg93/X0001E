@@ -2,14 +2,21 @@
   <div class="data-wrapper">
     <div class="work-role">
       <h3>Information kopplat till din yrkesroll</h3>
+      <app-top-search-results [data]="roleRelatedInfo"></app-top-search-results>
     </div>
 
     <div class="interesting-areas">
       <h3>Intressanta områden att utforska</h3>
+      <app-areas-search-result
+        [areas]="intresstingAreas"
+      ></app-areas-search-result>
     </div>
 
     <div class="topics-of-interest">
       <h3>Information kopplat till dina angivna intressen.</h3>
+      <app-top-search-results
+        [data]="intresstingTopics"
+      ></app-top-search-results>
     </div>
   </div>
 </div>

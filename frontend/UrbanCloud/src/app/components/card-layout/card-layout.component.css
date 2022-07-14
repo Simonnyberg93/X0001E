@@ -1,8 +1,9 @@
 .child-1 {
-    background-color: white;
-    border-radius: 10px;
-  }
-  
-  .child {
-    padding: 10px;
-  }
+  background-color: transparent;
+  border-radius: 10px;
+  min-width: 280px;
+}
+
+.child {
+  padding: 10px;
+}

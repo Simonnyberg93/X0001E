@@ -10,59 +10,21 @@
     <div class="body">
       <div class="section topresults">
         <h3>Topresultat</h3>
-        <app-card-layout
-          [data]="data.slice(0, 3)"
-          [isTopThree]="true"
-        ></app-card-layout>
-        <div *ngIf="topResultsToggle && data.length > 3">
-          <app-card-layout [data]="data.slice(3, -1)"></app-card-layout>
-        </div>
-        <div
-          *ngIf="!topResultsToggle && data.length > 3"
-          class="show-more-wrapper"
-        >
-          <button
-            class="button"
-            mat-button
-            (click)="topResultsToggle = !topResultsToggle"
-          >
-            Visa fler
-          </button>
-        </div>
-        <div
-          *ngIf="topResultsToggle && data.length > 3"
-          class="show-less-wrapper"
-        >
-          <button
-            class="button"
-            mat-button
-            (click)="topResultsToggle = !topResultsToggle"
-          >
-            Visa färre
-          </button>
-        </div>
+        <app-top-search-results [data]="data"></app-top-search-results>
       </div>
       <div class="section actors">
         <h3>Aktörer</h3>
-        <div
-          class="top-container"
-          fxLayout="row wrap"
-          fxLayoutAlign="start start"
-          fxLayout.xs="column"
-          fxLayoutGap="20px"
-        >
-          <div
-            *ngFor="let acter of acters.slice(0, 4)"
-            fxFlex="20%"
-            class="child child-1"
-          >
-            <app-acter-card [acter]="acter"></app-acter-card>
-          </div>
-        </div>
+        <app-acters-search-result [acters]="acters"></app-acters-search-result>
       </div>
       <div class="section areas">
         <h3>Områden</h3>
-        <app-card-layout [data]="acters"></app-card-layout>
+        <app-areas-search-result [areas]="areas"></app-areas-search-result>
+      </div>
+      <div class="section-permissions">
+        <h3>Tillstånd</h3>
+        <app-permsissions-search-result
+          [permissions]="permissions"
+        ></app-permsissions-search-result>
       </div>
     </div>
   </ng-template>

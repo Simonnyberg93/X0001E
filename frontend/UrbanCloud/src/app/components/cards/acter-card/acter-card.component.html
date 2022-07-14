@@ -1,0 +1,20 @@
+<div class="mat-dialog-container">
+  <mat-card class="example-card mat-elevation-z4">
+    <mat-card-header class="header">
+      <div mat-card-avatar class="example-header-image">
+        <img mat-card-image [src]="acter.imageUrl" alt="Image not workin" />
+      </div>
+      <mat-card-subtitle class="card-title">
+        <a href="{{ acter.siteUrl }}">{{
+          cutAllExceptHostName(acter.siteUrl)
+        }}</a>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="card-content">
+      <h1>{{ acter.name }}</h1>
+      <p class="text-paragraph">
+        {{ acter.description }}
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>

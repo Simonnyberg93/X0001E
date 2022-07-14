@@ -1,0 +1,25 @@
+<div
+  class="top-container"
+  fxLayout="row wrap"
+  fxLayoutAlign="start start"
+  fxLayout.xs="column"
+  fxLayoutGap="20px"
+>
+  <div
+    *ngFor="let acter of acters.slice(0, viewArctersHighIdx)"
+    fxFlex="22%"
+    class="child child-1"
+  >
+    <app-acter-card class="acter" [acter]="acter"></app-acter-card>
+  </div>
+</div>
+<div *ngIf="!viewMoreActers && acters.length > 4" class="show-more-wrapper">
+  <button class="button" mat-button (click)="toggleViewActers()">
+    Visa fler
+  </button>
+</div>
+<div *ngIf="viewMoreActers && acters.length > 4" class="show-less-wrapper">
+  <button class="button" mat-button (click)="toggleViewActers()">
+    Visa färre
+  </button>
+</div>

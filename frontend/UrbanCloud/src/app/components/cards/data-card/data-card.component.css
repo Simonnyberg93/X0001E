@@ -1,0 +1,55 @@
+.container {
+  margin: 0;
+  border-radius: 10px;
+  min-height: 220px;
+}
+
+.maincard {
+  padding-top: 8%;
+  padding-bottom: 5%;
+  background-color: white;
+  border-radius: 10px;
+  min-height: 220px;
+}
+
+.title {
+  padding-left: 40px;
+}
+
+.t {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.button {
+  background-color: #818185;
+  color: white;
+  margin: 5px;
+}
+
+.smaller {
+  font-size: smaller;
+}
+
+.subcard-container {
+  min-height: 145px;
+  border-radius: 10px;
+}
+
+.subcard {
+  border-radius: 10px;
+  min-height: 145px;
+}
+
+.subheader {
+  padding-top: 2%;
+  padding-left: 2%;
+  /* margin-left: 5%; */
+  /* margin-right: 5%; */
+}
+
+.subcontent {
+  margin-bottom: 5%;
+  margin-left: 3%;
+  margin-right: 5%;
+}

@@ -6,8 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormlyModule } from '@ngx-formly/core';
-import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 
 // Components
 import { AppComponent } from './app.component';
@@ -22,7 +20,14 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { SearchComponent } from './components/search/search.component';
 import { UnderconstructionComponent } from './components/underconstruction/underconstruction.component';
 import { StartComponent } from './components/start/start.component';
-import { DataCardComponent } from './components/data-card/data-card.component';
+import { DataCardComponent } from './components/cards/data-card/data-card.component';
+import { CardLayoutComponent } from './components/card-layout/card-layout.component';
+import { ActerCardComponent } from './components/cards/acter-card/acter-card.component';
+import { TopSearchResultsComponent } from './components/search-results/top-search-results/top-search-results.component';
+import { AreasSearchResultComponent } from './components/search-results/areas-search-result/areas-search-result.component';
+import { ActersSearchResultComponent } from './components/search-results/acters-search-result/acters-search-result.component';
+import { PermsissionsSearchResultComponent } from './components/search-results/permsissions-search-result/permsissions-search-result.component';
+import { AreaCardComponent } from './components/cards/area-card/area-card.component';
 
 //Guards
 import { AuthIntercept } from './auth-intercept';
@@ -42,8 +47,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { CardLayoutComponent } from './components/card-layout/card-layout.component';
-import { ActerCardComponent } from './components/acter-card/acter-card.component';
+import { PermissionCardComponent } from './components/cards/permission-card/permission-card.component';
 
 @NgModule({
   declarations: [
@@ -62,18 +66,18 @@ import { ActerCardComponent } from './components/acter-card/acter-card.component
     DataCardComponent,
     CardLayoutComponent,
     ActerCardComponent,
+    TopSearchResultsComponent,
+    ActersSearchResultComponent,
+    AreasSearchResultComponent,
+    PermsissionsSearchResultComponent,
+    AreaCardComponent,
+    PermissionCardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    FormlyBootstrapModule,
-    FormlyModule.forRoot({
-      validationMessages: [
-        { name: 'required', message: 'This field is required' },
-      ],
-    }),
     ReactiveFormsModule,
     HttpClientModule,
     FlexLayoutModule,

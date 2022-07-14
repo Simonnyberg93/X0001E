@@ -1,0 +1,25 @@
+<app-card-layout
+  [data]="data.slice(0, 3)"
+  [isTopThree]="true"
+></app-card-layout>
+<div *ngIf="topResultsToggle && data.length > 3">
+  <app-card-layout [data]="data.slice(3, -1)"></app-card-layout>
+</div>
+<div *ngIf="!topResultsToggle && data.length > 3" class="show-more-wrapper">
+  <button
+    class="button"
+    mat-button
+    (click)="topResultsToggle = !topResultsToggle"
+  >
+    Visa fler
+  </button>
+</div>
+<div *ngIf="topResultsToggle && data.length > 3" class="show-less-wrapper">
+  <button
+    class="button"
+    mat-button
+    (click)="topResultsToggle = !topResultsToggle"
+  >
+    Visa färre
+  </button>
+</div>

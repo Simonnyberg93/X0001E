@@ -11,4 +11,14 @@ export class ActerCardComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  cutAllExceptHostName(url: string): string {
+    let result = url
+      .replace('www.', '')
+      .replace('http://', '')
+      .replace('https://', '')
+      .replace('.se', '')
+      .replace('.com', '');
+    return result;
+  }
 }
