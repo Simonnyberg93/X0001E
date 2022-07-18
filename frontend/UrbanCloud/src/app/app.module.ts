@@ -10,16 +10,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // Components
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { FrontPageComponent } from './components/front-page/front-page.component';
-import { ErrorpageComponent } from './components/errorpage/errorpage.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { TopicsOfInterestComponent } from './components/topics-of-interest/topics-of-interest.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
-import { SearchComponent } from './components/search/search.component';
-import { UnderconstructionComponent } from './components/underconstruction/underconstruction.component';
-import { StartComponent } from './components/start/start.component';
 import { DataCardComponent } from './components/cards/data-card/data-card.component';
 import { CardLayoutComponent } from './components/card-layout/card-layout.component';
 import { ActerCardComponent } from './components/cards/acter-card/acter-card.component';
@@ -29,7 +20,18 @@ import { ActersSearchResultComponent } from './components/search-results/acters-
 import { PermsissionsSearchResultComponent } from './components/search-results/permsissions-search-result/permsissions-search-result.component';
 import { AreaCardComponent } from './components/cards/area-card/area-card.component';
 
-//Guards
+// Pages
+import { FrontPageComponent } from './pages/front-page/front-page.component';
+import { ErrorpageComponent } from './pages/errorpage/errorpage.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { TopicsOfInterestComponent } from './pages/topics-of-interest/topics-of-interest.component';
+import { UnderconstructionComponent } from './components/underconstruction/underconstruction.component';
+import { StartComponent } from './pages/start/start.component';
+import { SearchComponent } from './pages/search/search.component';
+
+//HttpInteceptors
 import { AuthIntercept } from './auth-intercept';
 
 // Material
@@ -48,7 +50,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { PermissionCardComponent } from './components/cards/permission-card/permission-card.component';
-import { AdminStartComponent } from './components/admin-start/admin-start.component';
+import { AdminStartComponent } from './pages/admin-start/admin-start.component';
+import { AreaPageComponent } from './pages/area-page/area-page.component';
+import { ActorPageComponent } from './pages/actor-page/actor-page.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +78,8 @@ import { AdminStartComponent } from './components/admin-start/admin-start.compon
     AreaCardComponent,
     PermissionCardComponent,
     AdminStartComponent,
+    AreaPageComponent,
+    ActorPageComponent,
   ],
   imports: [
     BrowserModule,

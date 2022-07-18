@@ -1,0 +1,9 @@
+<p>actor-page works!</p>
+<p color="warn" class="errorMsg">{{ errorMessage }}</p>
+<p>ActorId: {{ actorId }}</p>
+<div *ngIf="actorObj">
+  <h1>{{ actorObj.title }}</h1>
+  <h3>{{ actorObj.siteUrl }}</h3>
+  <span>{{ actorObj.description }}</span>
+  <img src="{{ actorObj.imageUrl }}" />
+</div>

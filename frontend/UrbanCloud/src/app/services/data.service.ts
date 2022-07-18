@@ -23,6 +23,17 @@ export class DataService {
 
   constructor() {}
 
+  fetchActorById(actorId: string): Observable<any> {
+    this.dummyActersResult[0].id = actorId;
+    return of(this.dummyActersResult[0]);
+  }
+
+  fetchAreaById(areaId: string): Observable<any> {
+    // dummy data
+    this.dummyAreaResults[0].id = areaId;
+    return of(this.dummyAreaResults[0]);
+  }
+
   fetchDataFromSearchString(str: string): Observable<any> {
     let result: any = {
       topresults: this.dummyTopresults,

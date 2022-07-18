@@ -59,4 +59,8 @@ export class RouteService {
   openAdminStart() {
     this.router.navigate(['adminstart']);
   }
+
+  openAreaPage(areaId: string) {
+    this.router.navigate(['dashboard/area', areaId]);
+  }
 }

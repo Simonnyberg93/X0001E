@@ -1,0 +1,11 @@
+<p>area-page works!</p>
+<p color="warn" class="errorMsg">{{ errorMessage }}</p>
+<p>AreaId: {{ areaId }}</p>
+<div *ngIf="areaObj">
+  <h1>{{ areaObj.title }}</h1>
+  <ul>
+    <li *ngFor="let topic of areaObj.topics">
+      <a href="#">{{ topic }}</a>
+    </li>
+  </ul>
+</div>

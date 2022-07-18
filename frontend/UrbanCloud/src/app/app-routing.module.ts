@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminStartComponent } from './components/admin-start/admin-start.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ErrorpageComponent } from './components/errorpage/errorpage.component';
-import { FrontPageComponent } from './components/front-page/front-page.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { SearchComponent } from './components/search/search.component';
-import { StartComponent } from './components/start/start.component';
-import { TopicsOfInterestComponent } from './components/topics-of-interest/topics-of-interest.component';
+import { AdminStartComponent } from './pages/admin-start/admin-start.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ErrorpageComponent } from './pages/errorpage/errorpage.component';
+import { FrontPageComponent } from './pages/front-page/front-page.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { SearchComponent } from './pages/search/search.component';
+import { StartComponent } from './pages/start/start.component';
+import { TopicsOfInterestComponent } from './pages/topics-of-interest/topics-of-interest.component';
 import { UnderconstructionComponent } from './components/underconstruction/underconstruction.component';
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { RoleGuard } from './guards/role.guard';
-import { Role } from './models/Role';
+import { AreaPageComponent } from './pages/area-page/area-page.component';
+import { ActorPageComponent } from './pages/actor-page/actor-page.component';
 
 const routes: Routes = [
   { path: 'frontpage', component: FrontPageComponent },
@@ -57,6 +58,8 @@ const routes: Routes = [
         path: 'about',
         component: UnderconstructionComponent,
       },
+      { path: 'area/:areaId', component: AreaPageComponent },
+      { path: 'actor/:actorId', component: ActorPageComponent },
       {
         path: '',
         redirectTo: 'start', // perhaps change this to start when it is finished

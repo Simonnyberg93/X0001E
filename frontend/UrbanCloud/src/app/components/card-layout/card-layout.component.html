@@ -7,12 +7,16 @@
   fxLayoutGap="20px"
 >
   <div fxFlex="45%" class="child child-1">
-    <app-data-card [data]="data[0]" [isMainCard]="true"></app-data-card>
+    <app-data-card
+      *ngIf="data[0]"
+      [data]="data[0]"
+      [isMainCard]="true"
+    ></app-data-card>
   </div>
   <div class="child child-2" fxFlex="45%">
-    <app-data-card [data]="data[1]"></app-data-card>
+    <app-data-card *ngIf="data[1]" [data]="data[1]"></app-data-card>
     <br />
-    <app-data-card [data]="data[2]"></app-data-card>
+    <app-data-card *ngIf="data[2]" [data]="data[2]"></app-data-card>
   </div>
 </div>
 <ng-template #elseBlock>

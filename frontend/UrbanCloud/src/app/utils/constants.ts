@@ -54,10 +54,12 @@ export default class ConstantValues {
   ];
   static dummy: any[] = [
     {
+      id: '',
       title: 'Vatten och avlopp',
       source: '',
       imageUrl: '/assets/images/image-coming-soon.jpg',
-      text: 'Vatten och avlopp förkortat VA, är vattenförsörjning av dricksvatten och hanteringen av avloppsvatten. Både vattenförsörjning och avloppshantering använder sig av rörsystem och kräver reningsanläggningar. \n Dicksvatten för almänt bruk kommer från vattendrag eller brunnar för rening till ett',
+      description:
+        'Vatten och avlopp förkortat VA, är vattenförsörjning av dricksvatten och hanteringen av avloppsvatten. Både vattenförsörjning och avloppshantering använder sig av rörsystem och kräver reningsanläggningar. \n Dicksvatten för almänt bruk kommer från vattendrag eller brunnar för rening till ett',
       includes: [
         'Spillvattensystemet',
         'Dagvatten',
@@ -65,122 +67,149 @@ export default class ConstantValues {
       ],
     },
     {
+      id: '',
       title: 'Vatten',
       source: 'Boverket',
       imageUrl: '/assets/images/image-coming-soon.jpg',
-      text: 'Vatten avser såväl öppet hav som kustvatten, sjöar som vattendrag. Användningen Vatten anges för vattenområden som är lämpliga för olika användningar men där det inte är nödvändigt eller',
+      description:
+        'Vatten avser såväl öppet hav som kustvatten, sjöar som vattendrag. Användningen Vatten anges för vattenområden som är lämpliga för olika användningar men där det inte är nödvändigt eller',
       includes: [],
     },
     {
+      id: '',
       title: 'Mark- och vattenanvändning',
       source: 'Boverket',
       imageUrl: '/assets/images/image-coming-soon.jpg',
-      text: 'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
+      description:
+        'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
       includes: [],
     },
     {
+      id: '',
       title: 'Privat brunn',
       source: 'Luleå Komun',
       imageUrl: '/assets/images/image-coming-soon.jpg',
-      text: 'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
+      description:
+        'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
       includes: [],
     },
     {
+      id: '',
       title: 'Källvatten',
       source: 'Norbotten landsting',
       imageUrl: '/assets/images/image-coming-soon.jpg',
-      text: 'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
+      description:
+        'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
       includes: [],
     },
     {
+      id: '',
       title: 'Källvatten',
       source: 'Norbotten landsting',
       imageUrl: '/assets/images/image-coming-soon.jpg',
-      text: 'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
+      description:
+        'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
       includes: [],
     },
     {
+      id: '',
       title: 'Källvatten',
       source: 'Norbotten landsting',
       imageUrl: '/assets/images/image-coming-soon.jpg',
-      text: 'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
+      description:
+        'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
       includes: [],
     },
     {
+      id: '',
       title: 'Källvatten',
       source: 'Norbotten landsting',
       imageUrl: '/assets/images/image-coming-soon.jpg',
-      text: 'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
+      description:
+        'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
       includes: [],
     },
     {
+      id: '',
       title: 'Källvatten',
       source: 'Norbotten landsting',
       imageUrl: '/assets/images/image-coming-soon.jpg',
-      text: 'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
+      description:
+        'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
       includes: [],
     },
     {
+      id: '',
       title: 'Källvatten',
       source: 'Norbotten landsting',
       imageUrl: '/assets/images/image-coming-soon.jpg',
-      text: 'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
+      description:
+        'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
       includes: [],
     },
     {
+      id: '',
       title: 'Källvatten',
       source: 'Norbotten landsting',
       imageUrl: '/assets/images/image-coming-soon.jpg',
-      text: 'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
+      description:
+        'Mark- och vattenanvänding är en av de tre aspekterna i ÖP-modellen. I mark- och vattenanvändningskartan ska grundlagen av den avsedda användningen av mark- och',
       includes: [],
     },
   ];
 
   static dummyActers: any[] = [
     {
-      name: 'Svenskt Vatten',
+      id: '',
+      title: 'Svenskt Vatten',
       description:
         'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
       imageUrl: '/assets/images/svensktvatten.jpg',
       siteUrl: 'www.svensktvatten.se',
     },
     {
-      name: 'SGU',
+      id: '',
+      title: 'SGU',
       description:
         'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
       imageUrl: '/assets/images/index.jpg',
       siteUrl: 'www.sgu.se',
     },
     {
-      name: 'Lumire',
+      id: '',
+      title: 'Lumire',
       description:
         'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
       imageUrl: '/assets/images/lumire.jpg',
       siteUrl: 'www.lumire.se',
     },
     {
-      name: 'Luleå Kommun',
+      id: '',
+      title: 'Luleå Kommun',
       description:
         'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
       imageUrl: '/assets/images/lulea.jpg',
       siteUrl: 'www.lulea.se',
     },
     {
-      name: 'Svenskt Vatten',
+      id: '',
+      title: 'Svenskt Vatten',
       description:
         'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
       imageUrl: '/assets/images/svensktvatten.jpg',
       siteUrl: 'www.svensktvatten.se',
     },
     {
-      name: 'Svenskt Vatten',
+      id: '',
+      title: 'Svenskt Vatten',
       description:
         'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
       imageUrl: '/assets/images/svensktvatten.jpg',
       siteUrl: 'www.svensktvatten.se',
     },
     {
-      name: 'Svenskt Vatten',
+      id: '',
+      title: 'Svenskt Vatten',
       description:
         'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
       imageUrl: '/assets/images/svensktvatten.jpg',
@@ -190,6 +219,7 @@ export default class ConstantValues {
 
   static dummyAreas: any[] = [
     {
+      id: '',
       title: 'Vatten och avlopp',
       topics: [
         'Spillvattensystemet',
@@ -201,6 +231,7 @@ export default class ConstantValues {
       ],
     },
     {
+      id: '',
       title: 'Markanvisnings- processen',
       topics: [
         'Markanvisning',
@@ -211,6 +242,7 @@ export default class ConstantValues {
       ],
     },
     {
+      id: '',
       title: 'Detaljplan',
       topics: [
         'Planbeskrivning',
@@ -222,6 +254,7 @@ export default class ConstantValues {
       ],
     },
     {
+      id: '',
       title: 'Ekosystemtjänster',
       topics: [
         'Boverkets vägledning',
@@ -233,6 +266,7 @@ export default class ConstantValues {
       ],
     },
     {
+      id: '',
       title: 'Ekosystemtjänster',
       topics: [
         'Boverkets vägledning',
@@ -244,6 +278,7 @@ export default class ConstantValues {
       ],
     },
     {
+      id: '',
       title: 'Ekosystemtjänster',
       topics: [
         'Boverkets vägledning',
@@ -255,6 +290,7 @@ export default class ConstantValues {
       ],
     },
     {
+      id: '',
       title: 'Ekosystemtjänster',
       topics: [
         'Boverkets vägledning',
@@ -266,6 +302,7 @@ export default class ConstantValues {
       ],
     },
     {
+      id: '',
       title: 'Ekosystemtjänster',
       topics: [
         'Boverkets vägledning',
@@ -280,29 +317,39 @@ export default class ConstantValues {
 
   static dummyPermissions: any[] = [
     {
+      id: '',
       title: 'Tillstånd för vattenledning',
       source: 'Källa för texten',
-      text: 'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+      description:
+        'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
     },
     {
+      id: '',
       title: 'Tillstånd för VA-system',
       source: 'Källa för texten',
-      text: 'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+      description:
+        'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
     },
     {
+      id: '',
       title: 'Tillstånd för VA-system',
       source: 'Källa för texten',
-      text: 'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+      description:
+        'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
     },
     {
+      id: '',
       title: 'Tillstånd för VA-system',
       source: 'Källa för texten',
-      text: 'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+      description:
+        'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
     },
     {
+      id: '',
       title: 'Tillstånd för VA-system',
       source: 'Källa för texten',
-      text: 'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+      description:
+        'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
     },
   ];
 }
