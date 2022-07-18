@@ -5,17 +5,13 @@
     <button
       *ngIf="!isLoggedIn; else loggedIn"
       mat-button
-      class="btn createAccountBtn"
+      class="btn"
       (click)="navigateTo('register')"
     >
       Skapa konto
     </button>
     <ng-template #loggedIn>
-      <button
-        mat-button
-        class="btn createAccountBtn"
-        (click)="navigateTo('home')"
-      >
+      <button mat-button class="btn" (click)="navigateTo('home')">
         Dashboard
       </button>
     </ng-template>

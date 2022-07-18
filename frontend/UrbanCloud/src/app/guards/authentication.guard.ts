@@ -26,8 +26,7 @@ export class AuthenticationGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    const loginstatus = sessionStorage.getItem('loggedin');
-    if (loginstatus === 'true') {
+    if (this.authservice.isLoggedIn()) {
       return true;
     } else {
       console.log('you need to login');
@@ -35,11 +34,4 @@ export class AuthenticationGuard implements CanActivate {
       return false;
     }
   }
-
-  //   if (flag != "true") {
-  //     this.organicroute.openLogin();
-  //     return false;
-  //   }
-  //   return true;
-  // }
 }

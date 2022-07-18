@@ -33,7 +33,7 @@ export class TopicsOfInterestComponent implements OnInit {
     private authService: AuthenticateService,
     private dataService: DataService
   ) {
-    this.userProfile = this.authService.userValue;
+    this.userProfile = this.authService.getUserInfo();
     this.authService.getUserFromDatabase(this.userProfile.email).subscribe({
       next: (user: any) => {
         this.user = <UserDTO>user;

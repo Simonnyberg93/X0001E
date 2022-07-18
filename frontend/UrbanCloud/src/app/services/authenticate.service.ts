@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from '../environment/environment';
 import { UserDTO } from '../models/UserDTO';
 import { UserProfile } from '../models/UserProfile';
@@ -10,21 +10,10 @@ import { RouteService } from './route.service';
   providedIn: 'root',
 })
 export class AuthenticateService {
-  private userSubject: BehaviorSubject<UserProfile>;
-  public user: Observable<UserProfile>;
-
-  constructor(private httpcli: HttpClient, private routeService: RouteService) {
-    let currentUser = localStorage.getItem('currentUser');
-    if (currentUser !== null) {
-      this.userSubject = new BehaviorSubject<UserProfile>(
-        JSON.parse(currentUser)
-      );
-      this.user = this.userSubject.asObservable();
-    } else {
-      this.userSubject = new BehaviorSubject<UserProfile>(new UserProfile());
-      this.user = this.userSubject.asObservable();
-    }
-  }
+  constructor(
+    private httpcli: HttpClient,
+    private routeService: RouteService
+  ) {}
 
   registerUser(user: UserDTO): Observable<any> {
     return this.httpcli.post<UserDTO>(
@@ -45,21 +34,45 @@ export class AuthenticateService {
             email: username,
             token: token,
           };
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          sessionStorage.setItem('loggedin', 'true');
-          sessionStorage.setItem('token', user.token);
-          this.userSubject.next(user);
+          localStorage.setItem('token', user.token);
+          localStorage.setItem('email', user.email);
           return user;
         })
       );
   }
 
+  isLoggedIn() {
+    return localStorage.getItem('token') != null;
+  }
+
+  getToken() {
+    return localStorage.getItem('token');
+  }
+
   logout() {
-    localStorage.removeItem('currentUser');
-    sessionStorage.setItem('loggedin', 'false');
-    sessionStorage.removeItem('token');
-    this.userSubject.next(new UserProfile());
+    localStorage.removeItem('token');
     this.routeService.openLogin();
+  }
+
+  haveAdminAccess() {
+    var token = localStorage.getItem('token') || '';
+    if (token === undefined || token === '') {
+      return false;
+    }
+    var _extractedtoken = token.split('.')[1];
+    var _atobdata = atob(_extractedtoken);
+    var _finaldata = JSON.parse(_atobdata);
+    if (_finaldata.role === 'ADMIN') {
+      return true;
+    }
+    return false;
+  }
+
+  getUserInfo(): UserProfile {
+    let result: UserProfile = new UserProfile();
+    result.email = localStorage.getItem('email') || '';
+    result.token = localStorage.getItem('token') || '';
+    return result;
   }
 
   // unused for now
@@ -67,9 +80,5 @@ export class AuthenticateService {
     return this.httpcli.get(
       `${environment.backendUserApiUrl}/getuser/${email}`
     );
-  }
-
-  public get userValue(): UserProfile {
-    return this.userSubject.value;
   }
 }

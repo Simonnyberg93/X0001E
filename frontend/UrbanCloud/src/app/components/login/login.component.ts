@@ -7,7 +7,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { Topic } from 'src/app/models/Topic';
-import { UserDTO } from 'src/app/models/UserDTO';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { RouteService } from 'src/app/services/route.service';
 import { UserService } from 'src/app/services/user.service';
@@ -25,7 +24,10 @@ export class LoginComponent implements OnInit {
     private userService: UserService
   ) {
     this.loginForm = this.fb.group({
-      email: new UntypedFormControl('', [Validators.email, Validators.required]),
+      email: new UntypedFormControl('', [
+        Validators.email,
+        Validators.required,
+      ]),
       password: new UntypedFormControl('', [
         Validators.minLength(8),
         Validators.required,
@@ -48,19 +50,25 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
+
     this.authService.login(this.email?.value, this.password?.value).subscribe({
       next: (res: any) => {
-        sessionStorage.setItem('token', res.token);
-        sessionStorage.setItem('loggedin', 'true');
-        this.userService.fetchUsersTopicsOfInterestFromDb(res.email).subscribe({
-          next: (value: any) => {
-            let topics: Array<Topic> = <Array<Topic>>value;
-            this.routerService.openDashboard();
-          },
-          error: (err: any) => {
-            console.error(err);
-          },
-        });
+        // check if user is admin
+        if (this.authService.haveAdminAccess()) {
+          this.routerService.openAdminStart();
+        } else {
+          this.userService
+            .fetchUsersTopicsOfInterestFromDb(res.email)
+            .subscribe({
+              next: (value: any) => {
+                let topics: Array<Topic> = <Array<Topic>>value;
+                this.routerService.openDashboard();
+              },
+              error: (err: any) => {
+                console.error(err);
+              },
+            });
+        }
       },
       error: (error: any) => {
         console.error(error);

@@ -55,4 +55,8 @@ export class RouteService {
   openAbout() {
     this.router.navigate(['dashboard/about']);
   }
+
+  openAdminStart() {
+    this.router.navigate(['adminstart']);
+  }
 }

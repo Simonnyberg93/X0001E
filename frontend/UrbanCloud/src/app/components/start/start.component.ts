@@ -22,7 +22,7 @@ export class StartComponent implements OnInit {
   ngOnInit(): void {
     // populate arrays by quering db with user's settings
     this.authService
-      .getUserFromDatabase(this.authService.userValue.email)
+      .getUserFromDatabase(this.authService.getUserInfo().email)
       .subscribe({
         next: (value) => {
           let user = <UserDTO>value;

@@ -48,6 +48,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { PermissionCardComponent } from './components/cards/permission-card/permission-card.component';
+import { AdminStartComponent } from './components/admin-start/admin-start.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { PermissionCardComponent } from './components/cards/permission-card/perm
     PermsissionsSearchResultComponent,
     AreaCardComponent,
     PermissionCardComponent,
+    AdminStartComponent,
   ],
   imports: [
     BrowserModule,

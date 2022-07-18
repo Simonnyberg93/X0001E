@@ -7,6 +7,7 @@ export class UserDTO {
   lastname: string = '';
   email: string = '';
   password: string = '';
+  accountRole: string = '';
   roles: Array<Role> = [];
   areasOfInterest: Array<Area> = [];
   topicsOfInterest: Array<Topic> = [];
