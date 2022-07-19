@@ -221,7 +221,9 @@ export default class ConstantValues {
     {
       id: '',
       title: 'Vatten och avlopp',
-      topics: [
+      description:
+        'Vatten och avlopp förkortat VA, är vattenförsörjning av dricksvatten och hanteringen av avloppsvatten. Både vattenförsörjning och avloppshantering använder sig av rörsystem och kräver reningsanläggningar. \n Dicksvatten för almänt bruk kommer från vattendrag eller brunnar för rening till ett',
+      includes: [
         'Spillvattensystemet',
         'Dagvatten',
         'Dräneringsvatten',
@@ -233,7 +235,10 @@ export default class ConstantValues {
     {
       id: '',
       title: 'Markanvisnings- processen',
-      topics: [
+
+      description:
+        'Vatten avser såväl öppet hav som kustvatten, sjöar som vattendrag. Användningen Vatten anges för vattenområden som är lämpliga för olika användningar men där det inte är nödvändigt eller',
+      includes: [
         'Markanvisning',
         'Intresseanmälan från exploatör',
         'Markanvisningsavtal',
@@ -244,7 +249,8 @@ export default class ConstantValues {
     {
       id: '',
       title: 'Detaljplan',
-      topics: [
+      description: '',
+      includes: [
         'Planbeskrivning',
         'Analyser för detaljplan',
         'Dräneringsvatten',
@@ -256,7 +262,8 @@ export default class ConstantValues {
     {
       id: '',
       title: 'Ekosystemtjänster',
-      topics: [
+      description: '',
+      includes: [
         'Boverkets vägledning',
         'ESTER',
         'Dräneringsvatten',
@@ -268,7 +275,8 @@ export default class ConstantValues {
     {
       id: '',
       title: 'Ekosystemtjänster',
-      topics: [
+      description: '',
+      includes: [
         'Boverkets vägledning',
         'ESTER',
         'Dräneringsvatten',
@@ -280,7 +288,8 @@ export default class ConstantValues {
     {
       id: '',
       title: 'Ekosystemtjänster',
-      topics: [
+      description: '',
+      includes: [
         'Boverkets vägledning',
         'ESTER',
         'Dräneringsvatten',
@@ -292,7 +301,8 @@ export default class ConstantValues {
     {
       id: '',
       title: 'Ekosystemtjänster',
-      topics: [
+      description: '',
+      includes: [
         'Boverkets vägledning',
         'ESTER',
         'Dräneringsvatten',
@@ -304,7 +314,8 @@ export default class ConstantValues {
     {
       id: '',
       title: 'Ekosystemtjänster',
-      topics: [
+      description: '',
+      includes: [
         'Boverkets vägledning',
         'ESTER',
         'Dräneringsvatten',

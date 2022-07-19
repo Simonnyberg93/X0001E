@@ -19,6 +19,7 @@ import { AreasSearchResultComponent } from './components/search-results/areas-se
 import { ActersSearchResultComponent } from './components/search-results/acters-search-result/acters-search-result.component';
 import { PermsissionsSearchResultComponent } from './components/search-results/permsissions-search-result/permsissions-search-result.component';
 import { AreaCardComponent } from './components/cards/area-card/area-card.component';
+import { PermissionCardComponent } from './components/cards/permission-card/permission-card.component';
 
 // Pages
 import { FrontPageComponent } from './pages/front-page/front-page.component';
@@ -30,6 +31,9 @@ import { TopicsOfInterestComponent } from './pages/topics-of-interest/topics-of-
 import { UnderconstructionComponent } from './components/underconstruction/underconstruction.component';
 import { StartComponent } from './pages/start/start.component';
 import { SearchComponent } from './pages/search/search.component';
+import { AdminStartComponent } from './pages/admin-start/admin-start.component';
+import { AreaPageComponent } from './pages/area-page/area-page.component';
+import { ActorPageComponent } from './pages/actor-page/actor-page.component';
 
 //HttpInteceptors
 import { AuthIntercept } from './auth-intercept';
@@ -49,10 +53,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { PermissionCardComponent } from './components/cards/permission-card/permission-card.component';
-import { AdminStartComponent } from './pages/admin-start/admin-start.component';
-import { AreaPageComponent } from './pages/area-page/area-page.component';
-import { ActorPageComponent } from './pages/actor-page/actor-page.component';
 
 @NgModule({
   declarations: [
