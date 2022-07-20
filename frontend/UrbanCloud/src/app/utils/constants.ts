@@ -160,15 +160,48 @@ export default class ConstantValues {
 
   static dummyActers: any[] = [
     {
-      id: '',
+      id: '1',
+      includes: [
+        {
+          title: 'Svenskt Vattens föreningsstadgar',
+          source: 'Svenskt Vatten',
+          description:
+            'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+        },
+        {
+          title: 'Utblick 2050',
+          source: 'Svenkt Vatten',
+          description:
+            'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+        },
+        {
+          title: 'Svenskt vattens miljöpolicy',
+          source: 'Svenkt Vatten',
+          description:
+            'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+        },
+        {
+          title: 'Årets vattenstämma',
+          source: 'Svenkt Vatten',
+          description:
+            'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+        },
+        {
+          title: 'Nya grundvattenlagen',
+          source: 'Svenkt Vatten',
+          description:
+            'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+        },
+      ],
       title: 'Svenskt Vatten',
       description:
-        'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+        'Svenskt Vatten arbetar för att Sverige ska ha rent dricksvatten, friska sjöar och hav.\nVA-organisationerna är centrala aktörer för att säkra en långsiktigt hållbar utveckling och trygga vattenresurser i framtiden.\nSvenskt Vatten är branschorganisation för landets viktigaste livsmedelsproducenter och miljövårdsföretag – VA-organisationerna. I syfte att nå visionen att Sverige ska ha rent dricksvatten, friska sjöar och hav ska Sveriges VA-organisationer år 2026 väsentligt stärkt sin förmåga att:\n Leverera hållbara, kostnadseffektiva och säkra vattentjänster\nBidra i samhällsplanering och klimatanpassning\nVara en attraktiv arbetsgivare\n\nSvenskt Vattens styrelse består av 15 ledamöter som väljs på den ordinarie föreningsstämman. Styrelsen ansvarar för föreningens organisation medan den löpande förvaltningen sköts av en verkställande direktör enligt styrelsens riktlinjer och anvisningar. Valberedningen består av sju ledamöter som nomineras på den ordinarie föreningsstämman.',
       imageUrl: '/assets/images/svensktvatten.jpg',
       siteUrl: 'www.svensktvatten.se',
     },
     {
-      id: '',
+      id: '2',
+      includes: [],
       title: 'SGU',
       description:
         'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
@@ -176,7 +209,8 @@ export default class ConstantValues {
       siteUrl: 'www.sgu.se',
     },
     {
-      id: '',
+      id: '3',
+      includes: [],
       title: 'Lumire',
       description:
         'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
@@ -184,7 +218,8 @@ export default class ConstantValues {
       siteUrl: 'www.lumire.se',
     },
     {
-      id: '',
+      id: '4',
+      includes: [],
       title: 'Luleå Kommun',
       description:
         'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
@@ -192,26 +227,122 @@ export default class ConstantValues {
       siteUrl: 'www.lulea.se',
     },
     {
-      id: '',
+      id: '5',
+      includes: [
+        {
+          title: 'Svenskt Vattens föreningsstadgar',
+          source: 'Svenskt Vatten',
+          description:
+            'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+        },
+        {
+          title: 'Utblick 2050',
+          source: 'Svenkt Vatten',
+          description:
+            'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+        },
+        {
+          title: 'Svenskt vattens miljöpolicy',
+          source: 'Svenkt Vatten',
+          description:
+            'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+        },
+        {
+          title: 'Årets vattenstämma',
+          source: 'Svenkt Vatten',
+          description:
+            'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+        },
+        {
+          title: 'Årets vattenstämma',
+          source: 'Svenkt Vatten',
+          description:
+            'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+        },
+      ],
       title: 'Svenskt Vatten',
       description:
-        'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+        'Svenskt Vatten arbetar för att Sverige ska ha rent dricksvatten, friska sjöar och hav.\nVA-organisationerna är centrala aktörer för att säkra en långsiktigt hållbar utveckling och trygga vattenresurser i framtiden.\nSvenskt Vatten är branschorganisation för landets viktigaste livsmedelsproducenter och miljövårdsföretag – VA-organisationerna. I syfte att nå visionen att Sverige ska ha rent dricksvatten, friska sjöar och hav ska Sveriges VA-organisationer år 2026 väsentligt stärkt sin förmåga att:\n Leverera hållbara, kostnadseffektiva och säkra vattentjänster\nBidra i samhällsplanering och klimatanpassning\nVara en attraktiv arbetsgivare\n\nSvenskt Vattens styrelse består av 15 ledamöter som väljs på den ordinarie föreningsstämman. Styrelsen ansvarar för föreningens organisation medan den löpande förvaltningen sköts av en verkställande direktör enligt styrelsens riktlinjer och anvisningar. Valberedningen består av sju ledamöter som nomineras på den ordinarie föreningsstämman.',
       imageUrl: '/assets/images/svensktvatten.jpg',
       siteUrl: 'www.svensktvatten.se',
     },
     {
-      id: '',
+      id: '6',
+      includes: [
+        {
+          title: 'Svenskt Vattens föreningsstadgar',
+          source: 'Svenskt Vatten',
+          description:
+            'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+        },
+        {
+          title: 'Utblick 2050',
+          source: 'Svenkt Vatten',
+          description:
+            'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+        },
+        {
+          title: 'Svenskt vattens miljöpolicy',
+          source: 'Svenkt Vatten',
+          description:
+            'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+        },
+        {
+          title: 'Årets vattenstämma',
+          source: 'Svenkt Vatten',
+          description:
+            'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+        },
+        {
+          title: 'Årets vattenstämma',
+          source: 'Svenkt Vatten',
+          description:
+            'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+        },
+      ],
       title: 'Svenskt Vatten',
       description:
-        'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+        'Svenskt Vatten arbetar för att Sverige ska ha rent dricksvatten, friska sjöar och hav.\nVA-organisationerna är centrala aktörer för att säkra en långsiktigt hållbar utveckling och trygga vattenresurser i framtiden.\nSvenskt Vatten är branschorganisation för landets viktigaste livsmedelsproducenter och miljövårdsföretag – VA-organisationerna. I syfte att nå visionen att Sverige ska ha rent dricksvatten, friska sjöar och hav ska Sveriges VA-organisationer år 2026 väsentligt stärkt sin förmåga att:\n Leverera hållbara, kostnadseffektiva och säkra vattentjänster\nBidra i samhällsplanering och klimatanpassning\nVara en attraktiv arbetsgivare\n\nSvenskt Vattens styrelse består av 15 ledamöter som väljs på den ordinarie föreningsstämman. Styrelsen ansvarar för föreningens organisation medan den löpande förvaltningen sköts av en verkställande direktör enligt styrelsens riktlinjer och anvisningar. Valberedningen består av sju ledamöter som nomineras på den ordinarie föreningsstämman.',
       imageUrl: '/assets/images/svensktvatten.jpg',
       siteUrl: 'www.svensktvatten.se',
     },
     {
-      id: '',
+      id: '7',
+      includes: [
+        {
+          title: 'Svenskt Vattens föreningsstadgar',
+          source: 'Svenskt Vatten',
+          description:
+            'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+        },
+        {
+          title: 'Utblick 2050',
+          source: 'Svenkt Vatten',
+          description:
+            'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+        },
+        {
+          title: 'Svenskt vattens miljöpolicy',
+          source: 'Svenkt Vatten',
+          description:
+            'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+        },
+        {
+          title: 'Årets vattenstämma',
+          source: 'Svenkt Vatten',
+          description:
+            'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+        },
+        {
+          title: 'Årets vattenstämma',
+          source: 'Svenkt Vatten',
+          description:
+            'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+        },
+      ],
       title: 'Svenskt Vatten',
       description:
-        'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+        'Svenskt Vatten arbetar för att Sverige ska ha rent dricksvatten, friska sjöar och hav.\nVA-organisationerna är centrala aktörer för att säkra en långsiktigt hållbar utveckling och trygga vattenresurser i framtiden.\nSvenskt Vatten är branschorganisation för landets viktigaste livsmedelsproducenter och miljövårdsföretag – VA-organisationerna. I syfte att nå visionen att Sverige ska ha rent dricksvatten, friska sjöar och hav ska Sveriges VA-organisationer år 2026 väsentligt stärkt sin förmåga att:\n Leverera hållbara, kostnadseffektiva och säkra vattentjänster\nBidra i samhällsplanering och klimatanpassning\nVara en attraktiv arbetsgivare\n\nSvenskt Vattens styrelse består av 15 ledamöter som väljs på den ordinarie föreningsstämman. Styrelsen ansvarar för föreningens organisation medan den löpande förvaltningen sköts av en verkställande direktör enligt styrelsens riktlinjer och anvisningar. Valberedningen består av sju ledamöter som nomineras på den ordinarie föreningsstämman.',
       imageUrl: '/assets/images/svensktvatten.jpg',
       siteUrl: 'www.svensktvatten.se',
     },
@@ -219,7 +350,7 @@ export default class ConstantValues {
 
   static dummyAreas: any[] = [
     {
-      id: '',
+      id: '1',
       title: 'Vatten och avlopp',
       description:
         'Vatten och avlopp förkortat VA, är vattenförsörjning av dricksvatten och hanteringen av avloppsvatten. Både vattenförsörjning och avloppshantering använder sig av rörsystem och kräver reningsanläggningar. \n Dicksvatten för almänt bruk kommer från vattendrag eller brunnar för rening till ett',
@@ -233,7 +364,7 @@ export default class ConstantValues {
       ],
     },
     {
-      id: '',
+      id: '2',
       title: 'Markanvisnings- processen',
 
       description:
@@ -247,7 +378,7 @@ export default class ConstantValues {
       ],
     },
     {
-      id: '',
+      id: '3',
       title: 'Detaljplan',
       description:
         'Områdesbestämmelser och detaljplaner reglerar hur du får bygga på din fastighet.',
@@ -261,7 +392,7 @@ export default class ConstantValues {
       ],
     },
     {
-      id: '',
+      id: '4',
       title: 'Ekosystemtjänster',
       description:
         'Alla produkter och tjänster som ekosystemen ger människan och som bidrar till vår välfärd och livskvalitet.',
@@ -275,9 +406,10 @@ export default class ConstantValues {
       ],
     },
     {
-      id: 'Alla produkter och tjänster som ekosystemen ger människan och som bidrar till vår välfärd och livskvalitet.',
+      id: '5',
       title: 'Ekosystemtjänster',
-      description: '',
+      description:
+        'Alla produkter och tjänster som ekosystemen ger människan och som bidrar till vår välfärd och livskvalitet.',
       includes: [
         'Boverkets vägledning',
         'ESTER',
@@ -288,9 +420,10 @@ export default class ConstantValues {
       ],
     },
     {
-      id: 'Alla produkter och tjänster som ekosystemen ger människan och som bidrar till vår välfärd och livskvalitet.',
+      id: '6',
       title: 'Ekosystemtjänster',
-      description: '',
+      description:
+        'Alla produkter och tjänster som ekosystemen ger människan och som bidrar till vår välfärd och livskvalitet.',
       includes: [
         'Boverkets vägledning',
         'ESTER',
@@ -301,9 +434,10 @@ export default class ConstantValues {
       ],
     },
     {
-      id: 'Alla produkter och tjänster som ekosystemen ger människan och som bidrar till vår välfärd och livskvalitet.',
+      id: '7',
       title: 'Ekosystemtjänster',
-      description: '',
+      description:
+        'Alla produkter och tjänster som ekosystemen ger människan och som bidrar till vår välfärd och livskvalitet.',
       includes: [
         'Boverkets vägledning',
         'ESTER',
@@ -314,9 +448,10 @@ export default class ConstantValues {
       ],
     },
     {
-      id: 'Alla produkter och tjänster som ekosystemen ger människan och som bidrar till vår välfärd och livskvalitet.',
+      id: '8',
       title: 'Ekosystemtjänster',
-      description: '',
+      description:
+        'Alla produkter och tjänster som ekosystemen ger människan och som bidrar till vår välfärd och livskvalitet.',
       includes: [
         'Boverkets vägledning',
         'ESTER',

@@ -18,14 +18,14 @@ export class AreaPageComponent implements OnInit {
   actorsWithinArea: any[] = [];
   errorMessage: string = '';
 
-  constructor(
-    private route: ActivatedRoute,
-    private dataService: DataService
-  ) {}
+  constructor(private route: ActivatedRoute, private dataService: DataService) {
+    this.route.params.subscribe((params) => {
+      this.areaId = params['areaId'];
+      this.ngOnInit();
+    });
+  }
 
   ngOnInit(): void {
-    const routeParams = this.route.snapshot.paramMap;
-    this.areaId = String(routeParams.get('areaId'));
     if (this.areaId && this.areaId.length > 0) {
       // fetch data from db
       this.dataService.fetchAreaById(this.areaId).subscribe({
@@ -66,13 +66,6 @@ export class AreaPageComponent implements OnInit {
     } else {
       this.errorMessage = 'Ops something went wrong..';
     }
-  }
-
-  cutText(text: string, newLen: number): string {
-    if (text.length > newLen) {
-      return text.substring(0, newLen).concat('...');
-    }
-    return text;
   }
 
   toggleViewMoreIncludeObj() {

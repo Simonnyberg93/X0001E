@@ -63,4 +63,8 @@ export class RouteService {
   openAreaPage(areaId: string) {
     this.router.navigate(['dashboard/area', areaId]);
   }
+
+  openActorPage(actorId: string) {
+    this.router.navigate(['dashboard/actor', actorId]);
+  }
 }

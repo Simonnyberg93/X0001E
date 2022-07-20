@@ -24,8 +24,7 @@ export class DataService {
   constructor() {}
 
   fetchActorById(actorId: string): Observable<any> {
-    this.dummyActersResult[0].id = actorId;
-    return of(this.dummyActersResult[0]);
+    return of(this.dummyActersResult.find((a) => a.id === actorId));
   }
 
   fetchRelatedActors(areaId: string): Observable<any[]> {
@@ -34,8 +33,7 @@ export class DataService {
 
   fetchAreaById(areaId: string): Observable<any> {
     // dummy data
-    this.dummyAreaResults[0].id = areaId;
-    return of(this.dummyAreaResults[0]);
+    return of(this.dummyAreaResults.find((a) => a.id === areaId));
   }
 
   fetchTopicsByTitle(titles: string[]): Observable<any[]> {

@@ -20,6 +20,8 @@ import { ActersSearchResultComponent } from './components/search-results/acters-
 import { PermsissionsSearchResultComponent } from './components/search-results/permsissions-search-result/permsissions-search-result.component';
 import { AreaCardComponent } from './components/cards/area-card/area-card.component';
 import { PermissionCardComponent } from './components/cards/permission-card/permission-card.component';
+import { SmallActorCardComponent } from './components/cards/small-actor-card/small-actor-card.component';
+import { SmallAreaCardComponent } from './components/cards/small-area-card/small-area-card.component';
 
 // Pages
 import { FrontPageComponent } from './pages/front-page/front-page.component';
@@ -53,7 +55,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { SmallActorCardComponent } from './components/small-actor-card/small-actor-card.component';
+
+// Utilites
+import { CutTextPipe } from './utils/cut-text.pipe';
 
 @NgModule({
   declarations: [
@@ -82,6 +86,8 @@ import { SmallActorCardComponent } from './components/small-actor-card/small-act
     AreaPageComponent,
     ActorPageComponent,
     SmallActorCardComponent,
+    SmallAreaCardComponent,
+    CutTextPipe,
   ],
   imports: [
     BrowserModule,

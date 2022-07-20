@@ -1,9 +1,120 @@
-<p>actor-page works!</p>
-<p color="warn" class="errorMsg">{{ errorMessage }}</p>
-<p>ActorId: {{ actorId }}</p>
-<div *ngIf="actorObj">
-  <h1>{{ actorObj.title }}</h1>
-  <h3>{{ actorObj.siteUrl }}</h3>
-  <span>{{ actorObj.description }}</span>
-  <img src="{{ actorObj.imageUrl }}" />
+<div class="body">
+  <div class="content" fxLayout="row" fxLayout.xs="column">
+    <div class="col-1" fxFlex="70%">
+      <div class="wrapper-data">
+        <mat-card class="card main-card">
+          {{ actorObj.siteUrl }}
+          <mat-card-header class="header">
+            <mat-card-title class="card-title">
+              <img
+                [src]="actorObj.imageUrl"
+                style="max-width: 70px; max-height: 70px"
+              />
+              {{ actorObj.title | cutText: 20 }}
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="card-content">
+            <p *ngIf="!descriptionExpanded; else expanded">
+              {{ actorObj.description | cutText: 200 }}
+            </p>
+            <ng-template #expanded>
+              <p>{{ actorObj.description }}</p>
+            </ng-template>
+            <button
+              (click)="descriptionExpanded = !descriptionExpanded"
+              class="button"
+              mat-button
+            >
+              Läs mer
+            </button>
+          </mat-card-content>
+          <mat-card-subtitle *ngIf="includesObjects.length > 0"
+            >Från {{ actorObj.title }}</mat-card-subtitle
+          >
+          <mat-card-actions *ngIf="includesObjects.length > 0">
+            <div
+              class="top-container"
+              fxLayout="row wrap"
+              fxLayoutAlign="start start"
+              fxLayout.xs="column"
+              fxLayoutGap="20px"
+            >
+              <div
+                *ngFor="let obj of includesObjects.slice(0, viewIncludesIdx)"
+                fxFlex="45%"
+                class="child child-1"
+              >
+                <mat-card class="card mat-elevation-z4">
+                  <mat-card-header class="header">
+                    <mat-card-title class="card-title">
+                      {{ obj.title | cutText: 40 }}
+                    </mat-card-title>
+                    <mat-card-subtitle>{{
+                      obj.source | cutText: 50
+                    }}</mat-card-subtitle>
+                  </mat-card-header>
+                  <mat-card-content class="card-content">
+                    <p>
+                      {{ obj.description | cutText: 100 }}
+                    </p>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </div>
+            <div
+              *ngIf="!includesExpanded && includesObjects.length > 4"
+              class="show-more-wrapper"
+            >
+              <button
+                class="button"
+                mat-button
+                (click)="toggleViewMoreIncludeObj()"
+              >
+                Se fler
+              </button>
+            </div>
+            <div
+              *ngIf="includesExpanded && includesObjects.length > 4"
+              class="show-less-wrapper"
+            >
+              <button
+                class="button"
+                mat-button
+                (click)="toggleViewMoreIncludeObj()"
+              >
+                Se färre
+              </button>
+            </div>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+    <div class="col-2" fxFlex="30%">
+      <div class="side-wrapper">
+        <div class="title"><h1>Relaterade aktörer</h1></div>
+        <div
+          *ngFor="let obj of relatedActorsObj"
+          class="relatedlist"
+          style="margin-bottom: 20px"
+        >
+          <app-small-actor-card [actor]="obj"></app-small-actor-card>
+        </div>
+        <br />
+        <h3>Relaterat till {{ actorObj.title }}</h3>
+        <div *ngFor="let area of relatedAreasObj">
+          <app-small-area-card [area]="area"></app-small-area-card>
+        </div>
+        <br />
+        <h3>Andra läste också</h3>
+        <span class="others">Checklista för planering av VA-projekt</span>
+        <br />
+        <br />
+        <span class="others">Processtöd för VA-projekt</span>
+        <br />
+        <br />
+        <span class="others">Rörnät & klimat</span>
+        <br /><br />
+      </div>
+    </div>
+  </div>
 </div>

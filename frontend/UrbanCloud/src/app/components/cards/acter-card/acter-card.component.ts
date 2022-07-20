@@ -1,4 +1,6 @@
+import { DeclareFunctionStmt } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
+import { RouteService } from 'src/app/services/route.service';
 
 @Component({
   selector: 'app-acter-card',
@@ -6,9 +8,9 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./acter-card.component.css'],
 })
 export class ActerCardComponent implements OnInit {
-  @Input() acter: any = new Object();
+  @Input() actor: any = new Object();
 
-  constructor() {}
+  constructor(private routeService: RouteService) {}
 
   ngOnInit(): void {}
 
@@ -20,5 +22,9 @@ export class ActerCardComponent implements OnInit {
       .replace('.se', '')
       .replace('.com', '');
     return result;
+  }
+
+  routeToActorpage() {
+    this.routeService.openActorPage(this.actor.id);
   }
 }

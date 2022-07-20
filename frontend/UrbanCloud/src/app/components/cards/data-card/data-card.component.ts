@@ -18,12 +18,4 @@ export class DataCardComponent implements OnInit {
       this.maxTextLength = 400;
     }
   }
-
-  cutText(text: string, wantedLen: number): string {
-    if (text.length > wantedLen) {
-      return text.substring(0, wantedLen) + ' ... ';
-    } else {
-      return text;
-    }
-  }
 }

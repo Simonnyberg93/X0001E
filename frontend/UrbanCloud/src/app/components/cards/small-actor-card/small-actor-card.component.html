@@ -1,4 +1,4 @@
-<mat-card class="card">
+<mat-card class="card" (click)="routeToActorPage()">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image">
       <img
@@ -10,7 +10,7 @@
     </div>
     <mat-card-title>{{ actor.title }}</mat-card-title>
     <mat-card-subtitle class="card-title">{{
-      cutText(actor.description, 90)
+      actor.description | cutText: 90
     }}</mat-card-subtitle>
   </mat-card-header>
 </mat-card>

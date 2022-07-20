@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { RouteService } from 'src/app/services/route.service';
 
 @Component({
   selector: 'app-small-actor-card',
@@ -8,14 +9,11 @@ import { Component, Input, OnInit } from '@angular/core';
 export class SmallActorCardComponent implements OnInit {
   @Input() actor: any = new Object();
 
-  constructor() {}
+  constructor(private routeService: RouteService) {}
 
   ngOnInit(): void {}
 
-  cutText(text: string, newLen: number): string {
-    if (text.length > newLen) {
-      return text.substring(0, newLen - 1).concat('...');
-    }
-    return text;
+  routeToActorPage() {
+    this.routeService.openActorPage(this.actor.id);
   }
 }
