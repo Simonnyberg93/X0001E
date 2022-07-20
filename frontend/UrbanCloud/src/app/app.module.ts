@@ -13,10 +13,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { DataCardComponent } from './components/cards/data-card/data-card.component';
 import { CardLayoutComponent } from './components/card-layout/card-layout.component';
-import { ActerCardComponent } from './components/cards/acter-card/acter-card.component';
+import { ActorCardComponent } from './components/cards/actor-card/actor-card.component';
 import { TopSearchResultsComponent } from './components/search-results/top-search-results/top-search-results.component';
 import { AreasSearchResultComponent } from './components/search-results/areas-search-result/areas-search-result.component';
-import { ActersSearchResultComponent } from './components/search-results/acters-search-result/acters-search-result.component';
+import { ActorsSearchResultComponent } from './components/search-results/actors-search-result/actors-search-result.component';
 import { PermsissionsSearchResultComponent } from './components/search-results/permsissions-search-result/permsissions-search-result.component';
 import { AreaCardComponent } from './components/cards/area-card/area-card.component';
 import { PermissionCardComponent } from './components/cards/permission-card/permission-card.component';
@@ -75,9 +75,9 @@ import { CutTextPipe } from './utils/cut-text.pipe';
     StartComponent,
     DataCardComponent,
     CardLayoutComponent,
-    ActerCardComponent,
+    ActorCardComponent,
     TopSearchResultsComponent,
-    ActersSearchResultComponent,
+    ActorsSearchResultComponent,
     AreasSearchResultComponent,
     PermsissionsSearchResultComponent,
     AreaCardComponent,

@@ -10,7 +10,7 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class SearchComponent implements OnInit {
   data: any[] = [];
-  acters: any[] = [];
+  actors: any[] = [];
   areas: any[] = [];
   permissions: any[] = [];
 
@@ -68,7 +68,7 @@ export class SearchComponent implements OnInit {
   // this function gets called when searchbar component emits an event
   updateData(newItem: any) {
     this.data = <any[]>newItem.topresults;
-    this.acters = <any[]>newItem.actersresults;
+    this.actors = <any[]>newItem.actersresults;
     this.areas = <any[]>newItem.arearesults;
     this.permissions = <any[]>newItem.permissionsresults;
   }

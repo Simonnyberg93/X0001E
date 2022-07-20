@@ -1,13 +1,12 @@
-import { DeclareFunctionStmt } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { RouteService } from 'src/app/services/route.service';
 
 @Component({
-  selector: 'app-acter-card',
-  templateUrl: './acter-card.component.html',
-  styleUrls: ['./acter-card.component.css'],
+  selector: 'app-actor-card',
+  templateUrl: './actor-card.component.html',
+  styleUrls: ['./actor-card.component.css'],
 })
-export class ActerCardComponent implements OnInit {
+export class ActorCardComponent implements OnInit {
   @Input() actor: any = new Object();
 
   constructor(private routeService: RouteService) {}
