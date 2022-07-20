@@ -249,7 +249,8 @@ export default class ConstantValues {
     {
       id: '',
       title: 'Detaljplan',
-      description: '',
+      description:
+        'Områdesbestämmelser och detaljplaner reglerar hur du får bygga på din fastighet.',
       includes: [
         'Planbeskrivning',
         'Analyser för detaljplan',
@@ -262,7 +263,8 @@ export default class ConstantValues {
     {
       id: '',
       title: 'Ekosystemtjänster',
-      description: '',
+      description:
+        'Alla produkter och tjänster som ekosystemen ger människan och som bidrar till vår välfärd och livskvalitet.',
       includes: [
         'Boverkets vägledning',
         'ESTER',
@@ -273,7 +275,7 @@ export default class ConstantValues {
       ],
     },
     {
-      id: '',
+      id: 'Alla produkter och tjänster som ekosystemen ger människan och som bidrar till vår välfärd och livskvalitet.',
       title: 'Ekosystemtjänster',
       description: '',
       includes: [
@@ -286,7 +288,7 @@ export default class ConstantValues {
       ],
     },
     {
-      id: '',
+      id: 'Alla produkter och tjänster som ekosystemen ger människan och som bidrar till vår välfärd och livskvalitet.',
       title: 'Ekosystemtjänster',
       description: '',
       includes: [
@@ -299,7 +301,7 @@ export default class ConstantValues {
       ],
     },
     {
-      id: '',
+      id: 'Alla produkter och tjänster som ekosystemen ger människan och som bidrar till vår välfärd och livskvalitet.',
       title: 'Ekosystemtjänster',
       description: '',
       includes: [
@@ -312,7 +314,7 @@ export default class ConstantValues {
       ],
     },
     {
-      id: '',
+      id: 'Alla produkter och tjänster som ekosystemen ger människan och som bidrar till vår välfärd och livskvalitet.',
       title: 'Ekosystemtjänster',
       description: '',
       includes: [
@@ -323,6 +325,84 @@ export default class ConstantValues {
         'Hållbar nyanläggning',
         'Miljöbalken',
       ],
+    },
+  ];
+
+  static dummyTopics: any[] = [
+    {
+      title: 'Spillvattensystemet',
+      description:
+        'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+    },
+    {
+      title: 'Dagvatten',
+      description:
+        'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+    },
+    {
+      title: 'Dräneringsvatten',
+      description:
+        'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+    },
+    {
+      title: 'Drift underhåll och förnyelse av...',
+      description:
+        'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+    },
+    {
+      title: 'Markanvisning',
+      description:
+        'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+    },
+    {
+      title: 'Intresseanmälan från exploatör',
+      description:
+        'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+    },
+    {
+      title: 'Markanvisningsavtal',
+      description:
+        'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+    },
+    {
+      title: 'Detaljplan',
+      description:
+        'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+    },
+    {
+      title: 'Överlåtelseavtal',
+      description:
+        'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+    },
+    {
+      title: 'Planbeskrivning',
+      description:
+        'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+    },
+    {
+      title: 'Analyser för detaljplan',
+      description:
+        'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+    },
+    {
+      title: 'Boverkets vägledning',
+      description:
+        'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+    },
+    {
+      title: 'ESTER',
+      description:
+        'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+    },
+    {
+      title: 'Hållbar nyanläggning',
+      description:
+        'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
+    },
+    {
+      title: 'Miljöbalken',
+      description:
+        'In aliquet finibus nisi, quis molestie orci finibus vel. Nam maximus lacinia ipsum, a consectetur erat blandit ut. Fusce',
     },
   ];
 

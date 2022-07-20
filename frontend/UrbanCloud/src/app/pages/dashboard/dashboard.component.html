@@ -17,87 +17,98 @@
       </button>
 
       <mat-nav-list class="nav-list">
-        <mat-list-item class="first-list-item">
-          <mat-icon
-            (click)="routeToProfile()"
-            mat-list-icon
-            class="material-icons-outlined"
-            [ngStyle]="{ color: 'white' }"
+        <mat-list-item
+          (click)="routeToProfile()"
+          class="first-list-item"
+          [ngStyle]="{
+            'background-color':
+              currentRoute === 'profile' ? 'lightgray' : 'transparent'
+          }"
+        >
+          <mat-icon mat-list-icon class="material-icons-outlined"
             >person</mat-icon
           >
           <h4 mat-line *ngIf="isExpanded">Profil</h4>
         </mat-list-item>
 
-        <mat-list-item>
-          <mat-icon
-            (click)="routeToStart()"
-            mat-list-icon
-            class="material-icons-outlined"
-            [ngStyle]="{ color: 'white' }"
+        <mat-list-item
+          (click)="routeToStart()"
+          [ngStyle]="{
+            'background-color':
+              currentRoute === 'start' ? 'lightgray' : 'transparent'
+          }"
+        >
+          <mat-icon mat-list-icon class="material-icons-outlined"
             >home</mat-icon
           >
           <h4 mat-line *ngIf="isExpanded">Start</h4>
         </mat-list-item>
-        <mat-list-item>
-          <mat-icon
-            (click)="routeToSearch()"
-            mat-list-icon
-            class="material-icons-outlined"
-            [ngStyle]="{ color: 'white' }"
+        <mat-list-item
+          (click)="routeToSearch()"
+          [ngStyle]="{
+            'background-color':
+              currentRoute === 'search' ? 'lightgray' : 'transparent'
+          }"
+        >
+          <mat-icon mat-list-icon class="material-icons-outlined"
             >search</mat-icon
           >
           <h4 mat-line *ngIf="isExpanded">Sök</h4>
         </mat-list-item>
-        <mat-list-item>
-          <mat-icon
-            (click)="routeToMapTool()"
-            mat-list-icon
-            class="material-icons-outlined"
-            [ngStyle]="{ color: 'white' }"
-            >map</mat-icon
-          >
+        <mat-list-item
+          (click)="routeToMapTool()"
+          [ngStyle]="{
+            'background-color':
+              currentRoute === 'maptool' ? 'lightgray' : 'transparent'
+          }"
+        >
+          <mat-icon mat-list-icon class="material-icons-outlined">map</mat-icon>
           <h4 mat-line *ngIf="isExpanded">Kartverktyget</h4>
         </mat-list-item>
-        <mat-list-item>
-          <mat-icon
-            (click)="routeToMyproject()"
-            mat-list-icon
-            class="material-icons-outlined"
-            [ngStyle]="{ color: 'white' }"
+        <mat-list-item
+          (click)="routeToMyproject()"
+          [ngStyle]="{
+            'background-color':
+              currentRoute === 'myprojekt' ? 'lightgray' : 'transparent'
+          }"
+        >
+          <mat-icon mat-list-icon class="material-icons-outlined"
             >folder</mat-icon
           >
           <h4 mat-line *ngIf="isExpanded">Mina projekt</h4>
         </mat-list-item>
 
-        <mat-list-item>
-          <mat-icon
-            (click)="routeToAddproject()"
-            mat-list-icon
-            class="material-icons-outlined"
-            [ngStyle]="{ color: 'white' }"
+        <mat-list-item
+          (click)="routeToAddproject()"
+          [ngStyle]="{
+            'background-color':
+              currentRoute === 'addprojekt' ? 'lightgray' : 'transparent'
+          }"
+        >
+          <mat-icon mat-list-icon class="material-icons-outlined"
             >add_box</mat-icon
           >
           <h4 mat-line *ngIf="isExpanded">Nytt projekt</h4>
         </mat-list-item>
 
-        <mat-list-item>
-          <mat-icon
-            (click)="routeToAbout()"
-            mat-list-icon
-            class="material-icons-outlined"
-            [ngStyle]="{ color: 'white' }"
+        <mat-list-item
+          (click)="routeToAbout()"
+          [ngStyle]="{
+            'background-color':
+              currentRoute === 'about' ? 'lightgray' : 'transparent'
+          }"
+        >
+          <mat-icon mat-list-icon class="material-icons-outlined"
             >info</mat-icon
           >
           <h4 mat-line *ngIf="isExpanded">Om Urban Cloud</h4>
         </mat-list-item>
 
-        <mat-list-item>
+        <mat-list-item (click)="logout()">
           <mat-icon
             class="logoutBtn"
-            (click)="logout()"
             mat-list-icon
             class="material-icons-outlined"
-            [ngStyle]="{ color: 'white' }"
             >logout</mat-icon
           >
           <h4 mat-line *ngIf="isExpanded">Logga ut</h4>

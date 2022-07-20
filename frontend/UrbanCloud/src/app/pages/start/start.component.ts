@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserDTO } from 'src/app/models/UserDTO';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { DataService } from 'src/app/services/data.service';
-import { UserService } from 'src/app/services/user.service';
+import { RouteService } from 'src/app/services/route.service';
 
 @Component({
   selector: 'app-start',
@@ -11,16 +11,18 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class StartComponent implements OnInit {
   roleRelatedInfo: any[] = [];
-  intresstingAreas: any[] = [];
-  intresstingTopics: any[] = [];
+  showSearchBtn: boolean = false;
+  showNewpojectBtn: boolean = false;
+  showMaptoolBtn: boolean = false;
 
   constructor(
+    private routeService: RouteService,
     private dataService: DataService,
     private authService: AuthenticateService
   ) {}
 
   ngOnInit(): void {
-    // populate arrays by quering db with user's settings
+    // populate array by quering db with user's settings
     this.authService
       .getUserFromDatabase(this.authService.getUserInfo().email)
       .subscribe({
@@ -34,30 +36,22 @@ export class StartComponent implements OnInit {
               console.error(error);
             },
           });
-          this.dataService
-            .fetchDataFromUserAreaOfInterest(user.areasOfInterest)
-            .subscribe({
-              next: (value) => {
-                this.intresstingAreas = value;
-              },
-              error: (error) => {
-                console.error(error);
-              },
-            });
-          this.dataService
-            .fetchDataFromUserTopicsOfInterest(user.topicsOfInterest)
-            .subscribe({
-              next: (value) => {
-                this.intresstingTopics = value;
-              },
-              error: (error) => {
-                console.error(error);
-              },
-            });
         },
         error: (error) => {
           console.error(error);
         },
       });
+  }
+
+  routeToSearch() {
+    this.routeService.openSearch();
+  }
+
+  routeToMapTool() {
+    this.routeService.openMapTool();
+  }
+
+  routeToNewProject() {
+    this.routeService.openAddProject();
   }
 }

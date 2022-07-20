@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { RouteService } from 'src/app/services/route.service';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,10 +11,22 @@ import { RouteService } from 'src/app/services/route.service';
 })
 export class DashboardComponent implements OnInit {
   isExpanded: boolean = false;
+  currentRoute: string = '';
+
   constructor(
     private routeService: RouteService,
-    private authService: AuthenticateService
-  ) {}
+    private authService: AuthenticateService,
+    private router: Router,
+    private location: Location
+  ) {
+    router.events.subscribe((val) => {
+      if (location.path() != '') {
+        this.currentRoute = location.path().replace('/dashboard/', '');
+      } else {
+        this.currentRoute = '';
+      }
+    });
+  }
 
   ngOnInit(): void {}
 

@@ -28,12 +28,30 @@ export class DataService {
     return of(this.dummyActersResult[0]);
   }
 
+  fetchRelatedActors(areaId: string): Observable<any[]> {
+    return of(this.dummyActersResult.slice(0, 3));
+  }
+
   fetchAreaById(areaId: string): Observable<any> {
     // dummy data
     this.dummyAreaResults[0].id = areaId;
     return of(this.dummyAreaResults[0]);
   }
 
+  fetchTopicsByTitle(titles: string[]): Observable<any[]> {
+    let result: any[] = [];
+    let topics = ConstantValues.dummyTopics;
+    for (let x of topics) {
+      if (titles.includes(x.title)) {
+        result.push(x);
+      }
+    }
+    return of(result);
+  }
+
+  fetchRelatedAreas(areaId: string): Observable<any[]> {
+    return of(this.dummyAreaResults.slice(1, 4));
+  }
   fetchDataFromSearchString(str: string): Observable<any> {
     let result: any = {
       topresults: this.dummyTopresults,

@@ -5,6 +5,9 @@
 .example-container {
   height: 100vh;
 }
+.material-icons-outlined {
+  color: white;
+}
 
 .drawer {
   background-color: #818185;

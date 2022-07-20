@@ -10,6 +10,12 @@ import { DataService } from 'src/app/services/data.service';
 export class AreaPageComponent implements OnInit {
   areaId: string = '';
   areaObj: any = '';
+  descriptionExpanded: boolean = false;
+  includesExpanded: boolean = false;
+  viewIncludesIdx: number = 4;
+  includesObjects: any[] = [];
+  relatedAreasObj: any[] = [];
+  actorsWithinArea: any[] = [];
   errorMessage: string = '';
 
   constructor(
@@ -25,6 +31,33 @@ export class AreaPageComponent implements OnInit {
       this.dataService.fetchAreaById(this.areaId).subscribe({
         next: (value) => {
           this.areaObj = value;
+          // fetch includes objects
+          this.dataService.fetchTopicsByTitle(this.areaObj.includes).subscribe({
+            next: (value) => {
+              this.includesObjects = value;
+            },
+            error: (error) => {
+              console.error(error);
+            },
+          });
+          // fetch related areas
+          this.dataService.fetchRelatedAreas(this.areaId).subscribe({
+            next: (value) => {
+              this.relatedAreasObj = value;
+            },
+            error: (error) => {
+              console.error(error);
+            },
+          });
+          // fetch actors within this area
+          this.dataService.fetchRelatedActors(this.areaId).subscribe({
+            next: (value) => {
+              this.actorsWithinArea = value;
+            },
+            error: (error) => {
+              console.log(error);
+            },
+          });
         },
         error: (error) => {
           console.error(error);
@@ -32,6 +65,23 @@ export class AreaPageComponent implements OnInit {
       });
     } else {
       this.errorMessage = 'Ops something went wrong..';
+    }
+  }
+
+  cutText(text: string, newLen: number): string {
+    if (text.length > newLen) {
+      return text.substring(0, newLen).concat('...');
+    }
+    return text;
+  }
+
+  toggleViewMoreIncludeObj() {
+    if (!this.includesExpanded) {
+      this.viewIncludesIdx = -1;
+      this.includesExpanded = !this.includesExpanded;
+    } else {
+      this.viewIncludesIdx = 4;
+      this.includesExpanded = !this.includesExpanded;
     }
   }
 }
