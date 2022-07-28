@@ -2,7 +2,7 @@
   <div class="searchbar-wrapper">
     <app-searchbar (searchResultEvent)="updateData($event)"></app-searchbar>
   </div>
-  <div *ngIf="data.length < 1; else showResult" class="search-result-wrapper">
+  <div>
     <div class="body">
       <div class="section workrole">
         <h3>Information kopplat till din yrkesroll</h3>
@@ -23,29 +23,5 @@
         ></app-top-search-results>
       </div>
     </div>
-    <!-- <app-start></app-start> -->
   </div>
-
-  <ng-template #showResult class="search-result-wrapper">
-    <div class="body">
-      <div class="section topresults">
-        <h3>Topresultat</h3>
-        <app-top-search-results [data]="data"></app-top-search-results>
-      </div>
-      <div class="section actors">
-        <h3>Aktörer</h3>
-        <app-actors-search-result [actors]="actors"></app-actors-search-result>
-      </div>
-      <div class="section areas">
-        <h3>Områden</h3>
-        <app-areas-search-result [areas]="areas"></app-areas-search-result>
-      </div>
-      <div class="section-permissions">
-        <h3>Tillstånd</h3>
-        <app-permsissions-search-result
-          [permissions]="permissions"
-        ></app-permsissions-search-result>
-      </div>
-    </div>
-  </ng-template>
 </div>

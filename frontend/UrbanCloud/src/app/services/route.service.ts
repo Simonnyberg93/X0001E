@@ -67,4 +67,8 @@ export class RouteService {
   openActorPage(actorId: string) {
     this.router.navigate(['dashboard/actor', actorId]);
   }
+
+  openSearchResult(searchStr: string) {
+    this.router.navigate(['dashboard/searchresults', searchStr]);
+  }
 }

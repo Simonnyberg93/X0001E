@@ -14,6 +14,7 @@ import { AuthenticationGuard } from './guards/authentication.guard';
 import { RoleGuard } from './guards/role.guard';
 import { AreaPageComponent } from './pages/area-page/area-page.component';
 import { ActorPageComponent } from './pages/actor-page/actor-page.component';
+import { SearchResultPageComponent } from './pages/search-result-page/search-result-page.component';
 
 const routes: Routes = [
   { path: 'frontpage', component: FrontPageComponent },
@@ -33,6 +34,10 @@ const routes: Routes = [
       {
         path: 'search',
         component: SearchComponent,
+      },
+      {
+        path: 'searchresults/:searchStr',
+        component: SearchResultPageComponent,
       },
       {
         path: 'profile',

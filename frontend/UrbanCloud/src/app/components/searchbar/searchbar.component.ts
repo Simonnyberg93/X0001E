@@ -11,7 +11,7 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./searchbar.component.css'],
 })
 export class SearchbarComponent implements OnInit {
-  @Output() searchResultEvent = new EventEmitter<any>();
+  @Output() searchResultEvent = new EventEmitter<string>();
 
   control = new UntypedFormControl('');
   words: string[] = []; // retrieve from backend
@@ -46,15 +46,12 @@ export class SearchbarComponent implements OnInit {
   }
 
   onSubmit(f: NgForm) {
-    this.dataService.fetchDataFromSearchString(this.control.value).subscribe({
-      next: (value: any[]) => {
-        this.searchResultEvent.emit(value);
-      },
-      error: (error) => {
-        console.error(error);
-      },
-    });
-    this.control.reset();
-    f.reset();
+    if (this.control.value) {
+      this.searchResultEvent.emit(this.control.value);
+      this.control.reset();
+      f.reset();
+    } else {
+      alert('You must enter atleast one character before searching...');
+    }
   }
 }
