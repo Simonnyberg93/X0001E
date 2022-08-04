@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserDTO } from 'src/app/models/UserDTO';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { DataService } from 'src/app/services/data.service';
+import { RouteService } from 'src/app/services/route.service';
 
 @Component({
   selector: 'app-search',
@@ -19,6 +20,7 @@ export class SearchComponent implements OnInit {
   intresstingTopics: any[] = [];
 
   constructor(
+    private routeService: RouteService,
     private dataService: DataService,
     private authService: AuthenticateService
   ) {}
@@ -66,10 +68,7 @@ export class SearchComponent implements OnInit {
   }
 
   // this function gets called when searchbar component emits an event
-  updateData(newItem: any) {
-    this.data = <any[]>newItem.topresults;
-    this.actors = <any[]>newItem.actersresults;
-    this.areas = <any[]>newItem.arearesults;
-    this.permissions = <any[]>newItem.permissionsresults;
+  updateData(newItem: string) {
+    this.routeService.openSearchResult(newItem);
   }
 }

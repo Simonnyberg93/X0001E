@@ -58,6 +58,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 
 // Utilites
 import { CutTextPipe } from './utils/cut-text.pipe';
+import { SearchResultPageComponent } from './pages/search-result-page/search-result-page.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { CutTextPipe } from './utils/cut-text.pipe';
     SmallActorCardComponent,
     SmallAreaCardComponent,
     CutTextPipe,
+    SearchResultPageComponent,
   ],
   imports: [
     BrowserModule,
