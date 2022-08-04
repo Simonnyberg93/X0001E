@@ -43,7 +43,12 @@ public class UserFilter extends GenericFilter{
 					JwtParser jwtparser = Jwts.parser().setSigningKey("urbancloud");
 					Jwt<?, ?> jwtobj = jwtparser.parse(myToken);
 					Claims claimobj = (Claims) jwtobj.getBody();
-					System.out.println("logged in user is " + claimobj.getSubject());
+					//System.out.println("logged in user is " + claimobj.getSubject());
+					//System.out.println("ReqURI: " + httpRequest.getRequestURI());
+					// If a user tries to access data that belongs to another email, throw an exception
+					if (!httpRequest.getRequestURI().contains(claimobj.getSubject())) {
+						throw new Exception();
+					}
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
 					throw new ServletException("invalid token");

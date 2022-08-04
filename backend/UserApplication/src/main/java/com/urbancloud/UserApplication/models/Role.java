@@ -1,6 +1,7 @@
 package com.urbancloud.UserApplication.models;
 
 import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,49 +12,50 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Topic implements Serializable {
+public class Role implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long topicId;
+	private long roleId;
 
 	@Column(nullable = false)
-	private String topicName;
+	private String roleName;
 
 	@ManyToOne(targetEntity=UserDTO.class, fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "userId", nullable = false)
 	private UserDTO user;
 	
-	public Topic() {
+	public Role() {
 		super();
 	}
-
-	public Topic(String topicName, UserDTO user) {
-		this.topicName = topicName;
+	
+	public Role(String roleName, UserDTO user) {
+		this.roleName = roleName;
 		this.user = user;
 	}
 
-	public long getTopicId() {
-		return topicId;
+	public long getRoleId() {
+		return roleId;
 	}
 
-	public void setTopicId(long topicId) {
-		this.topicId = topicId;
+	public void setRoleId(long roleId) {
+		this.roleId = roleId;
 	}
 
-	public String getTopicName() {
-		return topicName;
+	public String getRoleName() {
+		return roleName;
 	}
 
-	public void setTopicName(String topicName) {
-		this.topicName = topicName;
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
 	}
 
 	@Override
 	public String toString() {
-		return "Topic [topicName=" + topicName + ", userId=" + user.getUserId() + "]";
+		return "Role [roleId=" + roleId + ", roleName=" + roleName + ", user=" + user.getUserId() + "]";
 	}
+	
 	
 }

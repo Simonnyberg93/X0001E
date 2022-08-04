@@ -1,6 +1,7 @@
 package com.urbancloud.UserApplication.models;
 
 import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,49 +12,50 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Topic implements Serializable {
+public class Area implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long topicId;
+	private long areaId;
 
 	@Column(nullable = false)
-	private String topicName;
+	private String areaName;
 
 	@ManyToOne(targetEntity=UserDTO.class, fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "userId", nullable = false)
 	private UserDTO user;
 	
-	public Topic() {
+	public Area() {
 		super();
-	}
-
-	public Topic(String topicName, UserDTO user) {
-		this.topicName = topicName;
+	} 
+	
+	public Area(String areaName, UserDTO user) {
+		this.areaName = areaName;
 		this.user = user;
 	}
 
-	public long getTopicId() {
-		return topicId;
+	public long getAreaId() {
+		return areaId;
 	}
 
-	public void setTopicId(long topicId) {
-		this.topicId = topicId;
+	public void setAreaId(long areaId) {
+		this.areaId = areaId;
 	}
 
-	public String getTopicName() {
-		return topicName;
+	public String getAreaName() {
+		return areaName;
 	}
 
-	public void setTopicName(String topicName) {
-		this.topicName = topicName;
+	public void setAreaName(String areaName) {
+		this.areaName = areaName;
 	}
 
 	@Override
 	public String toString() {
-		return "Topic [topicName=" + topicName + ", userId=" + user.getUserId() + "]";
+		return "Area [areaId=" + areaId + ", areaName=" + areaName + ", user=" + user.getUserId() + "]";
 	}
+	
 	
 }

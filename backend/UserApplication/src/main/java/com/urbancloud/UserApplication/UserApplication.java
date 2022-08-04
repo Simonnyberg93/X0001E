@@ -20,7 +20,8 @@ public class UserApplication {
 		filterBean.setFilter(new UserFilter());
 		filterBean.addUrlPatterns("/api/v1/user/topics/*");
 		filterBean.addUrlPatterns("/api/v1/user/role/*");
-		filterBean.addUrlPatterns("/api/v1/user/addtopic/*");
+		filterBean.addUrlPatterns("/api/v1/user/area/*");
+		filterBean.addUrlPatterns("/api/v1/user/getuser/*");
 		return filterBean;
 	}
 }

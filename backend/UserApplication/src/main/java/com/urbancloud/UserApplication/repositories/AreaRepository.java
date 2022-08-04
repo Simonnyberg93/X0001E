@@ -6,17 +6,17 @@ import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.urbancloud.UserApplication.models.Topic;
+
+import com.urbancloud.UserApplication.models.Area;
 import com.urbancloud.UserApplication.models.UserDTO;
 
 @Repository
-public interface TopicRepository extends JpaRepository<Topic, Long> {
+public interface AreaRepository extends JpaRepository<Area, Long> {
 
-	Topic findByTopicName(String topicName);
-
-	Set<Topic> findByUser(UserDTO user);
+	Area findByAreaName(String areaName);
 	
+	Set<Area> findByUser(UserDTO user);
+
 	@Transactional
 	void deleteAllByUser(UserDTO user);
-
 }
