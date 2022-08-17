@@ -76,8 +76,8 @@ export class AuthenticateService {
   }
 
   // unused for now
-  public getUserFromDatabase(email: string): Observable<Object> {
-    return this.httpcli.get(
+  public getUserFromDatabase(email: string): Observable<UserDTO> {
+    return this.httpcli.get<UserDTO>(
       `${environment.backendUserApiUrl}/getuser/${email}`
     );
   }

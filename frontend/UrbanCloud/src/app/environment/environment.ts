@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  backendUserApiUrl: `http://Testenvironment-env.eba-mhy4x4nr.us-east-1.elasticbeanstalk.com/api/v1/user`,
+  backendUserApiUrl: `http://localhost:8082/api/v1/user`,
+  backendInformationApiUrl: `http://localhost:8080/api/neo4j`,
 };

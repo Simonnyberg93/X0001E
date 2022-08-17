@@ -40,3 +40,14 @@
   margin-left: 10px;
   margin-right: 10px;
 }
+
+
+.smallcard {
+  background-color: #f5f5f5;
+  box-shadow: none;
+}
+
+.smallcard:hover {
+  background-color: #dddddd;
+}
+

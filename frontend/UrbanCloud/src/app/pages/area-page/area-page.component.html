@@ -5,23 +5,13 @@
         <mat-card class="card main-card">
           <mat-card-header class="header">
             <mat-card-title class="card-title">
-              {{ areaObj.title | cutText: 20 }}
+              {{ areaObj.title }}
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="card-content">
-            <p *ngIf="!descriptionExpanded; else expanded">
-              {{ areaObj.description | cutText: 200 }}
+            <p>
+              {{ areaObj.description }}
             </p>
-            <ng-template #expanded>
-              <p>{{ areaObj.description }}</p>
-            </ng-template>
-            <button
-              class="button"
-              mat-button
-              (click)="descriptionExpanded = !descriptionExpanded"
-            >
-              Läs mer
-            </button>
           </mat-card-content>
           <mat-card-subtitle *ngIf="includesObjects.length > 0"
             >Innefattar</mat-card-subtitle
@@ -89,12 +79,15 @@
           style="margin-bottom: 20px"
           *ngFor="let obj of relatedAreasObj"
         >
-          <app-small-area-card [area]="obj"></app-small-area-card>
+          <app-area-card [showSmallCard]="true" [area]="obj"></app-area-card>
         </div>
         <br />
         <h3>Aktörer inom {{ areaObj.title }}</h3>
         <div *ngFor="let actor of actorsWithinArea">
-          <app-small-actor-card [actor]="actor"></app-small-actor-card>
+          <app-actor-card
+            [showSmallCard]="true"
+            [actor]="actor"
+          ></app-actor-card>
         </div>
         <br />
         <h3>Andra läste också</h3>

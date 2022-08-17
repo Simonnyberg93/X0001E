@@ -1,4 +1,17 @@
+export enum typeOfNode {
+  AREA,
+  ACTOR,
+  DOCUMENT,
+  PERMISSION,
+  DEFAULT,
+}
+
 export default class ConstantValues {
+  static ACTOR = typeOfNode.ACTOR;
+  static AREA = typeOfNode.AREA;
+  static DOCUMENT = typeOfNode.DOCUMENT;
+  static PERMISSION = typeOfNode.PERMISSION;
+
   static workRoles: string[] = [
     'Projektering',
     'Projektledning',

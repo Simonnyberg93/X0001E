@@ -11,17 +11,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
-import { DataCardComponent } from './components/cards/data-card/data-card.component';
-import { CardLayoutComponent } from './components/card-layout/card-layout.component';
 import { ActorCardComponent } from './components/cards/actor-card/actor-card.component';
-import { TopSearchResultsComponent } from './components/search-results/top-search-results/top-search-results.component';
-import { AreasSearchResultComponent } from './components/search-results/areas-search-result/areas-search-result.component';
-import { ActorsSearchResultComponent } from './components/search-results/actors-search-result/actors-search-result.component';
-import { PermsissionsSearchResultComponent } from './components/search-results/permsissions-search-result/permsissions-search-result.component';
 import { AreaCardComponent } from './components/cards/area-card/area-card.component';
 import { PermissionCardComponent } from './components/cards/permission-card/permission-card.component';
-import { SmallActorCardComponent } from './components/cards/small-actor-card/small-actor-card.component';
-import { SmallAreaCardComponent } from './components/cards/small-area-card/small-area-card.component';
+import { SearchSectionComponent } from './components/search-results/search-section/search-section.component';
+import { DocumentCardComponent } from './components/cards/document-card/document-card.component';
 
 // Pages
 import { FrontPageComponent } from './pages/front-page/front-page.component';
@@ -36,6 +30,7 @@ import { SearchComponent } from './pages/search/search.component';
 import { AdminStartComponent } from './pages/admin-start/admin-start.component';
 import { AreaPageComponent } from './pages/area-page/area-page.component';
 import { ActorPageComponent } from './pages/actor-page/actor-page.component';
+import { SearchResultPageComponent } from './pages/search-result-page/search-result-page.component';
 
 //HttpInteceptors
 import { AuthIntercept } from './auth-intercept';
@@ -58,7 +53,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 
 // Utilites
 import { CutTextPipe } from './utils/cut-text.pipe';
-import { SearchResultPageComponent } from './pages/search-result-page/search-result-page.component';
 
 @NgModule({
   declarations: [
@@ -74,22 +68,16 @@ import { SearchResultPageComponent } from './pages/search-result-page/search-res
     SearchbarComponent,
     UnderconstructionComponent,
     StartComponent,
-    DataCardComponent,
-    CardLayoutComponent,
     ActorCardComponent,
-    TopSearchResultsComponent,
-    ActorsSearchResultComponent,
-    AreasSearchResultComponent,
-    PermsissionsSearchResultComponent,
     AreaCardComponent,
     PermissionCardComponent,
     AdminStartComponent,
     AreaPageComponent,
     ActorPageComponent,
-    SmallActorCardComponent,
-    SmallAreaCardComponent,
     CutTextPipe,
     SearchResultPageComponent,
+    SearchSectionComponent,
+    DocumentCardComponent,
   ],
   imports: [
     BrowserModule,

@@ -23,3 +23,28 @@
   padding-bottom: 20px;
   padding-left: 20px;
 }
+
+/* Small card */
+
+.smallcard {
+  background-color: #f5f5f5;
+  box-shadow: none;
+  padding: 2px;
+  padding-left: 0px;
+}
+
+.smallcard:hover {
+  background-color: #dddddd;
+  border-radius: 8px;
+}
+
+.smalltitle {
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.smallsub-title {
+  color: #777777;
+  font-family: Arial, Helvetica, sans-serif;
+}
+

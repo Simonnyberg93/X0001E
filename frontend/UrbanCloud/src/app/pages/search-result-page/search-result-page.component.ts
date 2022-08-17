@@ -1,5 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ActorDTO } from 'src/app/models/ActorDTO';
+import { AreaDTO } from 'src/app/models/AreaDTO';
+import { DocumentDTO } from 'src/app/models/DocumentDTO';
+import { PermissionDTO } from 'src/app/models/PermissionDTO';
 import { DataService } from 'src/app/services/data.service';
 import { RouteService } from 'src/app/services/route.service';
 
@@ -9,10 +13,10 @@ import { RouteService } from 'src/app/services/route.service';
   styleUrls: ['./search-result-page.component.css'],
 })
 export class SearchResultPageComponent implements OnInit {
-  data: any[] = [];
-  actors: any[] = [];
-  areas: any[] = [];
-  permissions: any[] = [];
+  actors: Array<ActorDTO> = [];
+  areas: Array<AreaDTO> = [];
+  documents: Array<DocumentDTO> = [];
+  permissions: Array<PermissionDTO> = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -20,19 +24,39 @@ export class SearchResultPageComponent implements OnInit {
     private routeService: RouteService
   ) {
     this.route.params.subscribe((params) => {
-      this.dataService
-        .fetchDataFromSearchString(params['searchStr'])
-        .subscribe({
-          next: (value) => {
-            this.data = value.topresults;
-            this.actors = value.actersresults;
-            this.areas = value.arearesults;
-            this.permissions = value.permissionsresults;
-          },
-          error: (error) => {
-            console.error(error);
-          },
-        });
+      let searchStr: string = params['searchStr'] + '~';
+      this.dataService.fetchActorsFromSearchString(searchStr).subscribe({
+        next: (value: Array<ActorDTO>) => {
+          this.actors = value;
+        },
+        error: (err) => {
+          console.error(err);
+        },
+      });
+      this.dataService.fetchAreasFromSearchString(searchStr).subscribe({
+        next: (value: Array<AreaDTO>) => {
+          this.areas = value;
+        },
+        error: (err) => {
+          console.error(err);
+        },
+      });
+      this.dataService.fetchPermissionsFromSearchString(searchStr).subscribe({
+        next: (value: Array<PermissionDTO>) => {
+          this.permissions = value;
+        },
+        error: (err) => {
+          console.error(err);
+        },
+      });
+      this.dataService.fetchDocumentsFromSearchString(searchStr).subscribe({
+        next: (value: Array<DocumentDTO>) => {
+          this.documents = value;
+        },
+        error: (err) => {
+          console.error(err);
+        },
+      });
     });
   }
 

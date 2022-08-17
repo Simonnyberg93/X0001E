@@ -1,0 +1,19 @@
+.show-more-wrapper {
+    margin-left: 50%;
+    margin-right: 50%;
+  }
+  
+  .show-less-wrapper {
+    margin-left: 50%;
+    margin-right: 50%;
+  }
+  
+  .button {
+    color: white;
+    background-color: #818181;
+    margin-top: 20px;
+  }
+
+  .section {
+    padding-top: 30px;
+  }

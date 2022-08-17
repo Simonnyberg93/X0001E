@@ -1,0 +1,127 @@
+<div class="section topresults">
+  <h3>{{ documentSectionHeader }}</h3>
+  <div
+    class="top-container"
+    fxLayout="row wrap"
+    fxLayoutAlign="start start"
+    fxLayout.xs="column"
+    fxLayoutGap="20px"
+  >
+    <div
+      *ngFor="let item of documents.slice(0, viewDocumentsHighIdx)"
+      fxFlex="22%"
+      class="child child-1"
+    >
+      <app-document-card [document]="item"></app-document-card>
+    </div>
+    <div
+      *ngIf="!viewMoreDocuments && documents.length > 4"
+      class="show-more-wrapper"
+    >
+      <button class="button" mat-button (click)="toggleViewDocuments()">
+        Visa fler
+      </button>
+    </div>
+    <div
+      *ngIf="viewMoreDocuments && documents.length > 4"
+      class="show-less-wrapper"
+    >
+      <button class="button" mat-button (click)="toggleViewDocuments()">
+        Visa färre
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Acters -->
+<div class="section actors">
+  <h3>{{ actorSectionHeader }}</h3>
+  <div
+    class="top-container"
+    fxLayout="row wrap"
+    fxLayoutAlign="start start"
+    fxLayout.xs="column"
+    fxLayoutGap="20px"
+  >
+    <div
+      *ngFor="let item of actors.slice(0, viewActorsHighIdx)"
+      fxFlex="22%"
+      class="child child-1"
+    >
+      <app-actor-card [actor]="item"></app-actor-card>
+    </div>
+    <div *ngIf="!viewMoreActors && actors.length > 4" class="show-more-wrapper">
+      <button class="button" mat-button (click)="toggleViewActors()">
+        Visa fler
+      </button>
+    </div>
+    <div *ngIf="viewMoreActors && actors.length > 4" class="show-less-wrapper">
+      <button class="button" mat-button (click)="toggleViewActors()">
+        Visa färre
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Areas -->
+<div class="section areas">
+  <h3>{{ areaSectionHeader }}</h3>
+  <div
+    class="top-container"
+    fxLayout="row wrap"
+    fxLayoutAlign="start start"
+    fxLayout.xs="column"
+    fxLayoutGap="20px"
+  >
+    <div
+      *ngFor="let item of areas.slice(0, viewAreasHighIdx)"
+      fxFlex="22%"
+      class="child child-1"
+    >
+      <app-area-card [area]="item"></app-area-card>
+    </div>
+    <div *ngIf="!viewMoreAreas && areas.length > 4" class="show-more-wrapper">
+      <button class="button" mat-button (click)="toggleViewAreas()">
+        Visa fler
+      </button>
+    </div>
+    <div *ngIf="viewMoreAreas && areas.length > 4" class="show-less-wrapper">
+      <button class="button" mat-button (click)="toggleViewAreas()">
+        Visa färre
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Permissions -->
+<div class="section-permissions" *ngIf="!notSearchResult">
+  <h3>Tillstånd</h3>
+  <div
+    class="top-container"
+    fxLayout="row wrap"
+    fxLayoutAlign="start start"
+    fxLayout.xs="column"
+    fxLayoutGap="20px"
+  >
+    <div
+      *ngFor="let item of permissions.slice(0, viewPermissionsHighIdx)"
+      fxFlex="22%"
+      class="child child-1"
+    >
+      <app-permission-card [permission]="item"></app-permission-card>
+    </div>
+    <div
+      *ngIf="!viewMorePermissions && permissions.length > 4"
+      class="show-more-wrapper"
+    >
+      <button class="button" mat-button (click)="toggleViewPermissions()">
+        Visa fler
+      </button>
+    </div>
+    <div
+      *ngIf="viewMorePermissions && permissions.length > 4"
+      class="show-less-wrapper"
+    >
+      <button class="button" mat-button (click)="toggleViewPermissions()">
+        Visa färre
+      </button>
+    </div>
+  </div>
+</div>

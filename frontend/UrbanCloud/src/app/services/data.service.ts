@@ -1,7 +1,13 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
+import { environment } from '../environment/environment';
+import { ActorDTO } from '../models/ActorDTO';
 import { Area } from '../models/Area';
+import { AreaDTO } from '../models/AreaDTO';
+import { DocumentDTO } from '../models/DocumentDTO';
+import { PermissionDTO } from '../models/PermissionDTO';
 import { Role } from '../models/Role';
 import { Topic } from '../models/Topic';
 import ConstantValues from '../utils/constants';
@@ -21,19 +27,62 @@ export class DataService {
   dummyAreas = ConstantValues.importantAreas;
   dummyTopics = ConstantValues.importantInfo;
 
-  constructor() {}
+  private backendUrl: string = environment.backendInformationApiUrl;
 
-  fetchActorById(actorId: string): Observable<any> {
-    return of(this.dummyActersResult.find((a) => a.id === actorId));
+  constructor(private httpcli: HttpClient) {}
+
+  fetchDocumentsFromUserTopicsOfInterest(
+    topicsOfInterest: Topic[]
+  ): Observable<Array<DocumentDTO>> {
+    let searchStr: string = '';
+    topicsOfInterest
+      .flatMap((value: Topic) => value.topicName)
+      .forEach((str: string) => searchStr.concat(str));
+    return this.fetchDocumentsFromSearchString(searchStr);
+  }
+  fetchAreasFromUserAreaOfInterest(
+    areasOfInterest: Area[]
+  ): Observable<Array<AreaDTO>> {
+    let searchStr: string = '';
+    areasOfInterest
+      .flatMap((value: Area) => value.areaName)
+      .forEach((str: string) => searchStr.concat(str));
+    return this.fetchAreasFromSearchString(searchStr);
+  }
+  fetchActorsFromWorkRoles(roles: Role[]): Observable<Array<ActorDTO>> {
+    let searchStr: string = '';
+    roles
+      .flatMap((value: Role) => value.roleName)
+      .forEach((str: string) => searchStr.concat(str));
+    return this.fetchActorsFromSearchString(searchStr);
+  }
+
+  fetchDocumentsByActorTitle(
+    actorTitle: string
+  ): Observable<Array<DocumentDTO>> {
+    return this.httpcli.get<Array<DocumentDTO>>(
+      `${this.backendUrl}/fetch/documents/bysource/${actorTitle}`
+    );
+  }
+
+  findRelatedAreas(areaTitle: string): Observable<Array<AreaDTO>> {
+    return this.httpcli.get<Array<AreaDTO>>(
+      `${this.backendUrl}/fetch/areas/byneighborarea/${areaTitle}`
+    );
+  }
+
+  fetchActorById(actorId: string): Observable<ActorDTO> {
+    return this.httpcli.get<ActorDTO>(`${this.backendUrl}/fetch/actor/byid/24`);
   }
 
   fetchRelatedActors(areaId: string): Observable<any[]> {
     return of(this.dummyActersResult.slice(0, 3));
   }
 
-  fetchAreaById(areaId: string): Observable<any> {
-    // dummy data
-    return of(this.dummyAreaResults.find((a) => a.id === areaId));
+  fetchAreaById(areaId: string): Observable<AreaDTO> {
+    return this.httpcli.get<AreaDTO>(
+      `${this.backendUrl}/fetch/area/byid/${areaId}`
+    );
   }
 
   fetchTopicsByTitle(titles: string[]): Observable<any[]> {
@@ -50,14 +99,28 @@ export class DataService {
   fetchRelatedAreas(areaId: string): Observable<any[]> {
     return of(this.dummyAreaResults.slice(1, 4));
   }
-  fetchDataFromSearchString(str: string): Observable<any> {
-    let result: any = {
-      topresults: this.dummyTopresults,
-      actersresults: this.dummyActersResult,
-      arearesults: this.dummyAreaResults,
-      permissionsresults: this.dummyPermissionResults,
-    };
-    return of(result); // for now just fake this
+
+  fetchActorsFromSearchString(str: string): Observable<Array<ActorDTO>> {
+    return this.httpcli.get<Array<ActorDTO>>(
+      `${this.backendUrl}/search/actors/${str}`
+    );
+  }
+  fetchAreasFromSearchString(str: string): Observable<Array<AreaDTO>> {
+    return this.httpcli.get<Array<AreaDTO>>(
+      `${this.backendUrl}/search/areas/${str}`
+    );
+  }
+  fetchDocumentsFromSearchString(str: string): Observable<Array<DocumentDTO>> {
+    return this.httpcli.get<Array<DocumentDTO>>(
+      `${this.backendUrl}/search/documents/${str}`
+    );
+  }
+  fetchPermissionsFromSearchString(
+    str: string
+  ): Observable<Array<PermissionDTO>> {
+    return this.httpcli.get<Array<PermissionDTO>>(
+      `${this.backendUrl}/search/permissions/${str}`
+    );
   }
 
   fetchDataFromWorkRoles(roles: Role[]): Observable<any> {
