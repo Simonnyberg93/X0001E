@@ -1,12 +1,10 @@
-<div class="container">
+<div class="container" *ngIf="!showSmallCard; else elseBlock">
   <mat-card class="card mat-elevation-z4" (click)="routeToPermissionPage()">
     <mat-card-header class="header">
       <mat-card-title class="card-title">
         {{ permission.title }}
       </mat-card-title>
-      <mat-card-subtitle>
-        <!-- {{ permission.source }} -->
-      </mat-card-subtitle>
+      <mat-card-subtitle> </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content class="card-content">
       <p>
@@ -15,3 +13,12 @@
     </mat-card-content>
   </mat-card>
 </div>
+
+<ng-template #elseBlock>
+  <div class="smallcustom smallcard" (click)="routeToPermissionPage()">
+    <div class="smallheader">
+      <p class="smalltitle">{{ permission.title | cutText: 40 }}</p>
+      <p class="smallsub-title">{{ permission.description | cutText: 100 }}</p>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,40 @@
+<div class="body">
+  <h1>{{ errorMessage }}</h1>
+  <div class="content" fxLayout="row" fxLayout.xs="column">
+    <div class="col-1" fxFlex="70%">
+      <div class="wrapper-data">
+        <mat-card class="card main-card">
+          <mat-card-header class="header">
+            <mat-card-title class="card-title">
+              {{ documentObj.title }}
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="card-content">
+            <p>
+              {{ documentObj.description }}
+            </p>
+          </mat-card-content>
+          <button class="button" mat-raised-button (click)="openSource()">
+            Se källa för dokumentet
+          </button>
+          <mat-card-actions>
+            <h3 *ngIf="actorSource.id != -1">Dokumentent kommer ifrån</h3>
+            <app-actor-card
+              [cutDescription]="500"
+              [showSmallCard]="true"
+              [actor]="actorSource"
+            ></app-actor-card>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+    <div class="col-2" fxFlex="30%">
+      <app-relation-side-bar
+        [actorSectionTitle]="'Relaterade aktörer'"
+        [areaSectionTitle]="'Relaterade områden'"
+        [relatedAreasObj]="relatedAreas"
+        [relatedActorsObj]="relatedActors"
+      ></app-relation-side-bar>
+    </div>
+  </div>
+</div>

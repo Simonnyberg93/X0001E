@@ -53,6 +53,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
 
 // Utilites
 import { CutTextPipe } from './utils/cut-text.pipe';
+import { DocumentPageComponent } from './pages/document-page/document-page.component';
+import { PermissionPageComponent } from './pages/permission-page/permission-page.component';
+import { AddHttpPipe } from './utils/add-http.pipe';
+import { RelationSideBarComponent } from './components/relation-side-bar/relation-side-bar.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +82,10 @@ import { CutTextPipe } from './utils/cut-text.pipe';
     SearchResultPageComponent,
     SearchSectionComponent,
     DocumentCardComponent,
+    DocumentPageComponent,
+    PermissionPageComponent,
+    AddHttpPipe,
+    RelationSideBarComponent,
   ],
   imports: [
     BrowserModule,

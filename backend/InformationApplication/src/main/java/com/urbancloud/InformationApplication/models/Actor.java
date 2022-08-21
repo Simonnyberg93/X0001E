@@ -21,15 +21,15 @@ public class Actor {
 	private String siteUrl;
 	
 	@Relationship(type="ACTIVE_IN", direction = Relationship.Direction.INCOMING)
-	@JsonIgnoreProperties("relatedActors")
+	@JsonIgnoreProperties({"relatedActors", "includes", "relatedPermissions"})
 	private List<Area> relatedAreas;
 
 	@Relationship(type="RELATED_TO")
-	@JsonIgnoreProperties("relatedActors")
+	@JsonIgnoreProperties({"relatedActors", "relatedAreas", "permissions"})
 	private List<Actor> relatedActors;
 	
 	@Relationship(type="LICENSED_BY", direction = Relationship.Direction.OUTGOING)
-	@JsonIgnoreProperties("licensedByActor")
+	@JsonIgnoreProperties({"licensedByActor", "laws"})
 	private List<Permission> permissions;
 
 

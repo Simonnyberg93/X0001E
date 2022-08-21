@@ -13,10 +13,8 @@
     </mat-step>
 
     <mat-step class="step">
-      <ng-template matStepLabel>Arbetsroll</ng-template>
-      <h1>
-        Välj några nyckelord som beskriver din arbetsroll (Välj upp till 5)
-      </h1>
+      <ng-template matStepLabel>Akörer</ng-template>
+      <h1>Välj några aktören som finns inom ditt område (Välj upp till 5)</h1>
       <div class="input add-new-word">
         <input
           required="true"
@@ -52,7 +50,7 @@
         </button>
         <ng-template #toManyRoles>
           <button mat-button disabled="true" class="button">Fortsätt</button>
-          <small class="error">Du kan välja som mest 5 st roller.</small>
+          <small class="error">Du kan välja som mest 5 st aktörer.</small>
         </ng-template>
       </div>
     </mat-step>
@@ -104,9 +102,9 @@
     </mat-step>
 
     <mat-step class="step">
-      <ng-template matStepLabel>Information</ng-template>
+      <ng-template matStepLabel>Dokument</ng-template>
       <h1>
-        Vilken typ av information är mest intressant för dig? (Välj upp till 7)
+        Vilka typer av dokument är mest intressant för dig? (Välj upp till 7)
       </h1>
       <div class="input add-new-word">
         <input
@@ -145,7 +143,7 @@
         <ng-template #toManyInfo>
           <button class="button" mat-button disabled="true">Klar</button>
           <small class="error"
-            >Du kan välja som mest 7 st ämnen av intresse.</small
+            >Du kan välja som mest 7 st dokument av intresse.</small
           >
         </ng-template>
       </div>

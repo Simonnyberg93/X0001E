@@ -68,6 +68,14 @@ export class RouteService {
     this.router.navigate(['dashboard/actor', actorId]);
   }
 
+  openDocumentPage(documentId: string) {
+    this.router.navigate(['dashboard/document', documentId]);
+  }
+
+  openPermissionPage(permissionId: string) {
+    this.router.navigate(['dashboard/permission', permissionId]);
+  }
+
   openSearchResult(searchStr: string) {
     this.router.navigate(['dashboard/searchresults', searchStr]);
   }

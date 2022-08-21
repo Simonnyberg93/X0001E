@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DocumentDTO } from 'src/app/models/DocumentDTO';
+import { RouteService } from 'src/app/services/route.service';
 
 @Component({
   selector: 'app-document-card',
@@ -18,11 +19,11 @@ export class DocumentCardComponent implements OnInit {
   };
   @Input() showSmallCard: boolean = false;
 
-  constructor() {}
+  constructor(private routeService: RouteService) {}
 
   ngOnInit(): void {}
 
   routeToDocumentpage() {
-    alert('Not yet implemented!');
+    this.routeService.openDocumentPage(this.document.id.toString());
   }
 }

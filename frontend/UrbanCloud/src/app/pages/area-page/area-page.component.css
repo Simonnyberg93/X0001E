@@ -6,6 +6,11 @@
   background-color: #f5f5f5;
   box-shadow: none;
 }
+
+.link-btn {
+  margin-bottom: 15px;
+}
+
 .col-1 {
   padding-top: 30px;
   padding-left: 20px;

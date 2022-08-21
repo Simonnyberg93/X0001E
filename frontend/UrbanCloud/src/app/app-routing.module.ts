@@ -15,6 +15,8 @@ import { RoleGuard } from './guards/role.guard';
 import { AreaPageComponent } from './pages/area-page/area-page.component';
 import { ActorPageComponent } from './pages/actor-page/actor-page.component';
 import { SearchResultPageComponent } from './pages/search-result-page/search-result-page.component';
+import { DocumentPageComponent } from './pages/document-page/document-page.component';
+import { PermissionPageComponent } from './pages/permission-page/permission-page.component';
 
 const routes: Routes = [
   { path: 'frontpage', component: FrontPageComponent },
@@ -65,6 +67,8 @@ const routes: Routes = [
       },
       { path: 'area/:areaId', component: AreaPageComponent },
       { path: 'actor/:actorId', component: ActorPageComponent },
+      { path: 'document/:documentId', component: DocumentPageComponent },
+      { path: 'permission/:permissionId', component: PermissionPageComponent },
       {
         path: '',
         redirectTo: 'start', // perhaps change this to start when it is finished

@@ -1,0 +1,76 @@
+<div class="body">
+  <div class="content" fxLayout="row" fxLayout.xs="column">
+    <div class="col-1" fxFlex="70%">
+      <div class="wrapper-data">
+        <mat-card class="card main-card">
+          <mat-card-header class="header">
+            <mat-card-title class="card-title">
+              {{ permissionObj.title }}
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="card-content">
+            <p>
+              {{ permissionObj.description }}
+            </p>
+          </mat-card-content>
+          <mat-card-subtitle *ngIf="permissionObj.laws.length > 0"
+            >Härledd av</mat-card-subtitle
+          >
+          <mat-card-actions>
+            <div
+              class="top-container"
+              fxLayout="row wrap"
+              fxLayoutAlign="start start"
+              fxLayout.xs="column"
+              fxLayoutGap="20px"
+            >
+              <div
+                *ngFor="let obj of permissionObj.laws.slice(0, viewLawsIdx)"
+                fxFlex="45%"
+                class="child child-1"
+              >
+                <app-document-card
+                  [showSmallCard]="true"
+                  [document]="obj"
+                ></app-document-card>
+              </div>
+            </div>
+            <div
+              *ngIf="!lawsExpanded && permissionObj.laws.length > 4"
+              class="show-more-wrapper"
+            >
+              <button class="button" mat-button (click)="toggleViewMoreLaws()">
+                Se fler
+              </button>
+            </div>
+            <div
+              *ngIf="lawsExpanded && permissionObj.laws.length > 4"
+              class="show-less-wrapper"
+            >
+              <button class="button" mat-button (click)="toggleViewMoreLaws()">
+                Se färre
+              </button>
+            </div>
+            <mat-card-subtitle *ngIf="permissionObj.licensedByActor"
+              >Licens ges av</mat-card-subtitle
+            >
+            <app-actor-card
+              *ngIf="permissionObj.licensedByActor"
+              [actor]="permissionObj.licensedByActor"
+              [showSmallCard]="true"
+              [cutDescription]="400"
+            ></app-actor-card>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+    <div class="col-2" fxFlex="30%">
+      <app-relation-side-bar
+        [actorSectionTitle]="'Relaterade aktörer'"
+        [areaSectionTitle]="'Relaterade områden'"
+        [relatedAreasObj]="relatedAreas"
+        [relatedActorsObj]="relatedActors"
+      ></app-relation-side-bar>
+    </div>
+  </div>
+</div>

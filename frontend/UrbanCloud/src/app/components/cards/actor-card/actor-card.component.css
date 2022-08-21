@@ -6,6 +6,16 @@
   background-color: #dddddd;
 }
 
+.image {
+  max-width: 200px;
+  max-height: 130px;
+}
+.small-header-image {
+  background-size: cover;
+  padding-top: 20px;
+  padding-right: 10px;
+}
+
 .example-card {
   background-color: white;
   border-radius: 15px;

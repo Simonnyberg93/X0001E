@@ -23,9 +23,7 @@ export class AuthIntercept implements HttpInterceptor {
     let authService = this.authInject.get(AuthenticateService);
     const newReq = req.clone({
       headers: new HttpHeaders()
-
         .set('Authorization', `Bearer ${authService.getToken()}`)
-
         .set('Access-Control-Allow-Origin', '*'),
     });
 

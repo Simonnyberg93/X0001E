@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActorDTO } from 'src/app/models/ActorDTO';
+import { AreaDTO } from 'src/app/models/AreaDTO';
+import { DocumentDTO } from 'src/app/models/DocumentDTO';
 import { UserDTO } from 'src/app/models/UserDTO';
 import { UserProfile } from 'src/app/models/UserProfile';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
@@ -37,19 +40,26 @@ export class TopicsOfInterestComponent implements OnInit {
     this.authService.getUserFromDatabase(this.userProfile.email).subscribe({
       next: (user: any) => {
         this.user = <UserDTO>user;
+        console.log(JSON.stringify(user));
         if (this.user) {
-          if (this.user.areasOfInterest) {
-            this.selectedAreas = this.user.areasOfInterest.map(
+          console.log('Areas' + this.user.areasOfInterests);
+          if (this.user.areasOfInterests != undefined) {
+            console.log('Areas');
+            this.selectedAreas = this.user.areasOfInterests.map(
               (area) => area.areaName
             );
+            this.selectedAreas.forEach((area) => console.log(`Area: ${area}`));
           }
-          if (this.user.topicsOfInterest) {
-            this.selectedInfo = this.user.topicsOfInterest.map(
+          if (this.user.topicsOfInterests) {
+            console.log('Topics');
+            this.selectedInfo = this.user.topicsOfInterests.map(
               (topic) => topic.topicName
             );
           }
           if (this.user.roles) {
+            console.log('Roles');
             this.selectedRoles = this.user.roles.map((role) => role.roleName);
+            this.selectedRoles.forEach((role) => console.log(`Role: ${role}`));
           }
         }
       },
@@ -61,25 +71,25 @@ export class TopicsOfInterestComponent implements OnInit {
 
   ngOnInit(): void {
     // fetch data from backend
-    this.dataService.fetchAreasOfInterest().subscribe({
-      next: (value: string[]) => {
-        this.importantAreas = value;
+    this.dataService.fetchAllAreas().subscribe({
+      next: (value: Array<AreaDTO>) => {
+        this.importantAreas = value.map((area) => area.title);
       },
       error: (error) => {
         console.error(error);
       },
     });
-    this.dataService.fetchTopicsOfInterest().subscribe({
-      next: (value: string[]) => {
-        this.importantInfo = value;
+    this.dataService.fetchAllDocuments().subscribe({
+      next: (value: Array<DocumentDTO>) => {
+        this.importantInfo = value.map((document) => document.title);
       },
       error: (error) => {
         console.error(error);
       },
     });
-    this.dataService.fetchWorkRoles().subscribe({
-      next: (value: string[]) => {
-        this.workRoles = value;
+    this.dataService.fetchAllActors().subscribe({
+      next: (value: Array<ActorDTO>) => {
+        this.workRoles = value.map((actor) => actor.title);
       },
       error: (error) => {
         console.error(error);
@@ -96,7 +106,7 @@ export class TopicsOfInterestComponent implements OnInit {
           console.log(`Updated roles. ${value}`);
         },
         error: (error) => {
-          //console.error(error);
+          console.error(error);
         },
       });
     this.userService
@@ -106,7 +116,7 @@ export class TopicsOfInterestComponent implements OnInit {
           console.log(`Updated areas of importance. ${value}`);
         },
         error: (error) => {
-          //console.error(error);
+          console.error(error);
         },
       });
     this.userService
@@ -116,7 +126,7 @@ export class TopicsOfInterestComponent implements OnInit {
           console.log(`Updated intresting topics. ${value}`);
         },
         error: (error) => {
-          //console.error(error);
+          console.error(error);
         },
       });
     // navigate to dashboard

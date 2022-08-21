@@ -1,12 +1,24 @@
-<div class="container">
+<div class="container" *ngIf="!showSmallCard; else elseBlock">
   <mat-card class="card mat-elevation-z4" (click)="routeToDocumentpage()">
     <mat-card-header class="header">
       <mat-card-title class="card-title">
         {{ document.title }}
       </mat-card-title>
+      <mat-card-subtitle class="card-title">{{
+        document.source
+      }}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content class="card-content">
-      <span class="desc">{{ document.description }}</span>
+      <span class="desc">{{ document.description | cutText: 300 }}</span>
     </mat-card-content>
   </mat-card>
 </div>
+
+<ng-template #elseBlock>
+  <div class="smallcustom smallcard" (click)="routeToDocumentpage()">
+    <div class="smallheader">
+      <p class="smalltitle">{{ document.title | cutText: 40 }}</p>
+      <p class="smallsub-title">{{ document.description | cutText: 100 }}</p>
+    </div>
+  </div>
+</ng-template>

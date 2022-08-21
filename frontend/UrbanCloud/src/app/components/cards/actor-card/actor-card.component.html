@@ -4,12 +4,14 @@
     (click)="routeToActorpage()"
   >
     <mat-card-header class="header">
-      <div mat-card-avatar class="example-header-image">
-        <img mat-card-image [src]="actor.imageUrl" alt="Image not workin" />
+      <div class="example-header-image">
+        <img
+          class="image"
+          mat-card-image
+          [src]="actor.imageUrl"
+          alt="Image not workin"
+        />
       </div>
-      <mat-card-subtitle class="card-title">
-        <a href="#">{{ cutAllExceptHostName(actor.siteUrl) }}</a>
-      </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content class="card-content">
       <h1>{{ actor.title }}</h1>
@@ -25,15 +27,15 @@
     <mat-card-header>
       <div mat-card-avatar class="small-header-image">
         <img
-          style="width: 50px; height: 50px"
-          mat-card-image
+          class="image"
           [src]="actor.imageUrl"
+          mat-card-image
           alt="Image not workin"
         />
       </div>
       <mat-card-title>{{ actor.title }}</mat-card-title>
       <mat-card-subtitle class="smallcard-title">{{
-        actor.description | cutText: 90
+        actor.description | cutText: cutDescription
       }}</mat-card-subtitle>
     </mat-card-header>
   </mat-card>

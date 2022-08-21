@@ -53,4 +53,30 @@ public interface NodeService {
 
 	public List<Area> fetchAreasByNeighbor(String areaTitle) throws Exception;
 	
+	public List<Actor> findMultipleByTitle(List<String> listOfTitles) throws Exception;
+
+	public List<Area> findMultipleAreasByTitle(List<String> listOfTitles) throws Exception;
+
+	public List<Document> findMultipleDocumentsByTitle(List<String> listOfTitles) throws Exception;
+
+	public List<Actor> fetchActorsByRelationToArea(Long areaId) throws Exception;
+
+	public List<Document> fetchDocumentsByRelationToArea(Long areaId) throws Exception;
+
+	public List<Permission> fetchPermissionsByShortestPathToArea(Long areaId) throws Exception;
+
+	public List<Actor> fetchActorsByRelatedToRelation(Long actorId) throws Exception;
+
+	public List<Area> fetchAreasByActiveInRelation(Long actorId) throws Exception;
+
+	public List<Permission> fetchPermissionsByLicensedByRelation(Long actorId) throws Exception;
+
+	public List<Area> fetchAreasByShortestPathToPermission(Long permissionId) throws Exception;
+
+	public List<Actor> fetchActorsByShortestPathToPermission(Long permissionId) throws Exception;
+
+	public Actor fetchActorByLicensedByRelation(Long permissionId) throws Exception;
+
+	public List<Document> fetchDocumentsByDerivesFromRelation(Long permissionId) throws Exception;
+	
 }

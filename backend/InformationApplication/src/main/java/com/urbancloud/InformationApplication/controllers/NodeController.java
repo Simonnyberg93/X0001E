@@ -38,6 +38,107 @@ public class NodeController {
 		}
 	}
 	
+	@GetMapping("/fetch/documents/by/derives_from/{permissionId}")
+	public ResponseEntity<?> fetchDocumentsByDerivesFromRelation(@PathVariable(value = "permissionId") Long permissionId) {
+		try {
+			List<Document> result = this.nodeService.fetchDocumentsByDerivesFromRelation(permissionId);
+			return new ResponseEntity<List<Document>>(result, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<String>("Failed to retrive nodes", HttpStatus.CONFLICT);
+		}
+	}
+	
+	@GetMapping("/fetch/actors/by/active_in/{areaId}")
+	public ResponseEntity<?> fetchActorByActiveInRelation(@PathVariable(value = "areaId") Long areaId) { 
+		try {
+			List<Actor> result = this.nodeService.fetchActorsByRelationToArea(areaId);
+			return new ResponseEntity<List<Actor>>(result, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<String>("FAIL", HttpStatus.CONFLICT);
+		}
+	}
+	
+	@GetMapping("/fetch/actors/by/related_to/{actorId}")
+	public ResponseEntity<?> fetchActorsByRelatedToRelation(@PathVariable(value = "actorId") Long actorId) {
+		try {
+			List<Actor> result = this.nodeService.fetchActorsByRelatedToRelation(actorId);
+			return new ResponseEntity<List<Actor>>(result, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<String>("FAIL", HttpStatus.CONFLICT);
+		}
+	}
+	
+	@GetMapping("/fetch/areas/by/active_in/{actorId}")
+	public ResponseEntity<?> fetchAreasByActiveInRelation(@PathVariable(value = "actorId") Long actorId) {
+		try {
+			List<Area> result = this.nodeService.fetchAreasByActiveInRelation(actorId);
+			return new ResponseEntity<List<Area>>(result, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<String>("FAIL", HttpStatus.CONFLICT);
+		}
+	}
+	
+	@GetMapping("/fetch/permissions/by/licenced_by/{actorId}")
+	public ResponseEntity<?> fetchPermissionsByLicensedByRelation(@PathVariable(value = "actorId") Long actorId) {
+		try {
+			List<Permission> result = this.nodeService.fetchPermissionsByLicensedByRelation(actorId);
+			return new ResponseEntity<List<Permission>>(result, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<String>("FAIL", HttpStatus.CONFLICT);
+		}
+	}
+	
+	@GetMapping("/fetch/actor/by/licensed_by/{permissionId}")
+	public ResponseEntity<?> fetchActorByLicensedByRelation(@PathVariable(value = "permissionId") Long permissionId) {
+		try {
+			Actor result = this.nodeService.fetchActorByLicensedByRelation(permissionId);
+			return new ResponseEntity<Actor>(result, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<String>("FAIL", HttpStatus.CONFLICT);
+		}
+	}
+	
+	@GetMapping("/fetch/documents/by/include/{areaId}")
+	public ResponseEntity<?> fetchDocumentByIncludeRelation(@PathVariable(value = "areaId") Long areaId) { 
+		try {
+			List<Document> result = this.nodeService.fetchDocumentsByRelationToArea(areaId);
+			return new ResponseEntity<List<Document>>(result, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<String>("FAIL", HttpStatus.CONFLICT);
+		}
+	}
+	
+	@GetMapping("/fetch/permission/by/shortestpath/{areaId}")
+	public ResponseEntity<?> fetchDocumentsByShortestpath(@PathVariable(value = "areaId") Long areaId) { 
+		try {
+			List<Permission> result = this.nodeService.fetchPermissionsByShortestPathToArea(areaId);
+			return new ResponseEntity<List<Permission>>(result, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<String>(" ", HttpStatus.CONFLICT);
+		}
+	}
+	
+	@GetMapping("/fetch/areas/by/shortestpath/{permissionId}")
+	public ResponseEntity<?> fetchAreasByShortestpath(@PathVariable(value = "permissionId") Long permissionId) { 
+		try {
+			List<Area> result = this.nodeService.fetchAreasByShortestPathToPermission(permissionId);
+			return new ResponseEntity<List<Area>>(result, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<String>(" ", HttpStatus.CONFLICT);
+		}
+	}
+	
+	@GetMapping("/fetch/actors/by/shortestpath/{permissionId}")
+	public ResponseEntity<?> fetchActorsByShortestpath(@PathVariable(value = "permissionId") Long permissionId) { 
+		try {
+			List<Actor> result = this.nodeService.fetchActorsByShortestPathToPermission(permissionId);
+			return new ResponseEntity<List<Actor>>(result, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<String>("Failed to fetch actors.", HttpStatus.CONFLICT);
+		}
+	}
+	
+	
 	@GetMapping("/fetch/area/byid/{id}")
 	public ResponseEntity<?> fetchAreaById(@PathVariable(value = "id") Long id) { 
 		try {
@@ -47,7 +148,7 @@ public class NodeController {
 			return new ResponseEntity<String>("Failed to retrive node with id " + id, HttpStatus.CONFLICT);
 		} 
 	}
-	
+
 	@GetMapping("/fetch/areas/byneighborarea/{areaTitle}")
 	public ResponseEntity<?> fetchAreaByNeighbor(@PathVariable(value = "areaTitle") String areaTitle) {
 		try {
@@ -129,6 +230,36 @@ public class NodeController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>("Failed to fetch documents!", HttpStatus.CONFLICT);
+		}
+	}
+	
+	@PostMapping("/fetch/actor/bytitles")
+	public ResponseEntity<?> fetchActorByTitles(@RequestBody List<String> listOfTitles) { 
+		try {
+			List<Actor> result = this.nodeService.findMultipleByTitle(listOfTitles);
+			return new ResponseEntity<List<Actor>>(result, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<String>("Failed to retrive nodes with titles " + listOfTitles, HttpStatus.CONFLICT);
+		}
+	}
+	
+	@PostMapping("/fetch/area/bytitles")
+	public ResponseEntity<?> fetchareaByTitles(@RequestBody List<String> listOfTitles) { 
+		try {
+			List<Area> result = this.nodeService.findMultipleAreasByTitle(listOfTitles);
+			return new ResponseEntity<List<Area>>(result, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<String>("Failed to retrive nodes with titles " + listOfTitles, HttpStatus.CONFLICT);
+		}
+	}
+	
+	@PostMapping("/fetch/documents/bytitles")
+	public ResponseEntity<?> fetchDocumentByTitles(@RequestBody List<String> listOfTitles) { 
+		try {
+			List<Document> result = this.nodeService.findMultipleDocumentsByTitle(listOfTitles);
+			return new ResponseEntity<List<Document>>(result, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<String>("Failed to retrive nodes with titles " + listOfTitles, HttpStatus.CONFLICT);
 		}
 	}
 	

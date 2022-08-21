@@ -12,6 +12,13 @@
             <p>
               {{ areaObj.description }}
             </p>
+            <button
+              class="button link-btn"
+              mat-raised-button
+              (click)="openAreaSourcePage()"
+            >
+              Läs mer här
+            </button>
           </mat-card-content>
           <mat-card-subtitle *ngIf="includesObjects.length > 0"
             >Innefattar</mat-card-subtitle
@@ -29,18 +36,10 @@
                 fxFlex="45%"
                 class="child child-1"
               >
-                <mat-card class="card mat-elevation-z4">
-                  <mat-card-header class="header">
-                    <mat-card-title class="card-title">
-                      {{ obj.title | cutText: 20 }}
-                    </mat-card-title>
-                  </mat-card-header>
-                  <mat-card-content class="card-content">
-                    <p>
-                      {{ obj.description | cutText: 100 }}
-                    </p>
-                  </mat-card-content>
-                </mat-card>
+                <app-document-card
+                  [showSmallCard]="true"
+                  [document]="obj"
+                ></app-document-card>
               </div>
             </div>
             <div
@@ -72,34 +71,12 @@
       </div>
     </div>
     <div class="col-2" fxFlex="30%">
-      <div class="side-wrapper">
-        <div class="title"><h1>Relaterade områden</h1></div>
-        <div
-          class="relatedlist"
-          style="margin-bottom: 20px"
-          *ngFor="let obj of relatedAreasObj"
-        >
-          <app-area-card [showSmallCard]="true" [area]="obj"></app-area-card>
-        </div>
-        <br />
-        <h3>Aktörer inom {{ areaObj.title }}</h3>
-        <div *ngFor="let actor of actorsWithinArea">
-          <app-actor-card
-            [showSmallCard]="true"
-            [actor]="actor"
-          ></app-actor-card>
-        </div>
-        <br />
-        <h3>Andra läste också</h3>
-        <span class="others">Checklista för planering av VA-projekt</span>
-        <br />
-        <br />
-        <span class="others">Processtöd för VA-projekt</span>
-        <br />
-        <br />
-        <span class="others">Rörnät & klimat</span>
-        <br /><br />
-      </div>
+      <app-relation-side-bar
+        [actorSectionTitle]="'Aktörer inom ' + areaObj.title"
+        [areaSectionTitle]="'Relaterade områden'"
+        [relatedAreasObj]="relatedAreasObj"
+        [relatedActorsObj]="actorsWithinArea"
+      ></app-relation-side-bar>
     </div>
   </div>
 </div>

@@ -25,10 +25,22 @@ public class SearchController {
 	@Autowired
 	SearchService service;
 	
+	@GetMapping("/fetch/mostsearchedwords")
+	public ResponseEntity<?> getMostSearchedWords() {
+		try {
+			List<String> words = this.service.fetchMostSearchedWords();
+			return new ResponseEntity<List<String>>(words, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<String>("Failed to fetch search words", HttpStatus.CONFLICT);
+		}
+			
+	}
+	
 	@GetMapping("/actors/{searchStr}")
 	public ResponseEntity<?> fulltextSearchForActors(@PathVariable(value = "searchStr") String searchStr) {
 		try {
 			List<Actor> result = this.service.fulltextSearchForActors(searchStr);
+			this.service.saveSearchWord(searchStr);
 			return new ResponseEntity<List<Actor>>(result, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<String>("Failed to search", HttpStatus.CONFLICT);

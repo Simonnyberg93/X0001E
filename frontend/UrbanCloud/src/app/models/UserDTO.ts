@@ -1,6 +1,6 @@
-import { Role } from './Role';
 import { Topic } from './Topic';
 import { Area } from './Area';
+import { Role } from './Role';
 
 export class UserDTO {
   firstname: string = '';
@@ -9,8 +9,8 @@ export class UserDTO {
   password: string = '';
   accountRole: string = '';
   roles: Array<Role> = [];
-  areasOfInterest: Array<Area> = [];
-  topicsOfInterest: Array<Topic> = [];
+  areasOfInterests: Array<Area> = [];
+  topicsOfInterests: Array<Topic> = [];
 
   constructor(fname: string, lname: string, email: string, password: string) {
     this.firstname = fname;

@@ -32,7 +32,7 @@ public class Area {
 	private List<Permission> relatedPermissions;
 	
 	
-	public Area() { }
+	public Area()  { }
 
 	public Long getId() {
 		return id;

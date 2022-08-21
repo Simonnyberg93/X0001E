@@ -12,6 +12,9 @@ import com.urbancloud.InformationApplication.models.Permission;
 
 @Repository
 public interface PermissionRepository extends Neo4jRepository<Permission, Long> {
+	
+	@Query("MATCH p=shortestPath( (x)-[*..6]-(b:Permission)) WHERE id(x)=$ident RETURN b limit 3;")
+	List<Permission> fetchByShortestPathToArea(@Param("ident") Long ident);
 
 	@Query("MATCH(permission:Permission) WHERE permission.title <> 'notEq' RETURN permission")
 	List<Permission> fetchAll();
@@ -21,5 +24,8 @@ public interface PermissionRepository extends Neo4jRepository<Permission, Long> 
 	
 	@Query("CALL db.index.fulltext.queryNodes(\"permissionSearch\", $searchStr) YIELD node, score RETURN node LIMIT $limit;")
 	List<Permission> fulltextSearch(@Param("searchStr") String searchStr, @Param("limit") int limit);
+
+	@Query("MATCH (a:Actor) WHERE id(a)=$actorId MATCH (a)-[:LICENSED_BY]-(b) RETURN b;")
+	List<Permission> fetchPermissionsByLicensedByRelation(@Param("actorId") Long actorId);
 	
 }

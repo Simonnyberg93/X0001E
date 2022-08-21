@@ -194,11 +194,8 @@ public class NodeServiceImpl implements NodeService {
 
 	@Override
 	public Area fetchAreaById(Long id) throws Exception {
-		Optional<Area> result = this.areaRepo.findById(id);
-		if(result.isPresent()) {
-			return result.get();
-		}
-		throw new Exception();
+		Area result = this.areaRepo.fetchById(id);
+		return result;
 	}
 
 	@Override
@@ -227,6 +224,73 @@ public class NodeServiceImpl implements NodeService {
 	@Override
 	public List<Area> fetchAreasByNeighbor(String areaTitle) throws Exception {
 		return this.areaRepo.findNeighboringAreas(areaTitle);
+	}
+
+	@Override
+	public List<Actor> findMultipleByTitle(List<String> listOfTitles) throws Exception {
+		return this.actorRepo.findMultipleByTitle(listOfTitles);
+	}
+
+	@Override
+	public List<Area> findMultipleAreasByTitle(List<String> listOfTitles) throws Exception {
+		return this.areaRepo.findAreaByTitle(listOfTitles);
+	}
+
+	@Override
+	public List<Document> findMultipleDocumentsByTitle(List<String> listOfTitles) throws Exception {
+		return this.documentRepo.findByTitle(listOfTitles);
+	}
+
+	@Override
+	public List<Actor> fetchActorsByRelationToArea(Long areaId) throws Exception {
+		return this.actorRepo.fetchByActiveInRelation(areaId);
+	}
+
+	@Override
+	public List<Document> fetchDocumentsByRelationToArea(Long areaId) throws Exception {
+		return this.documentRepo.fetchByIncludesRelation(areaId);
+	}
+
+	@Override
+	public List<Permission> fetchPermissionsByShortestPathToArea(Long areaId) throws Exception {
+		return this.permRepo.fetchByShortestPathToArea(areaId);
+	}
+
+	@Override
+	public List<Actor> fetchActorsByRelatedToRelation(Long actorId) throws Exception {
+		return this.actorRepo.fetchByRelatedToRelation(actorId);
+	}
+
+	@Override
+	public List<Area> fetchAreasByActiveInRelation(Long actorId) throws Exception {
+		return this.areaRepo.fetchAreasByActiveInRelation(actorId);
+	}
+
+	@Override
+	public List<Permission> fetchPermissionsByLicensedByRelation(Long actorId) throws Exception {
+		return this.permRepo.fetchPermissionsByLicensedByRelation(actorId);
+	}
+
+	@Override
+	public List<Area> fetchAreasByShortestPathToPermission(Long permissionId) throws Exception {
+		return this.areaRepo.fetchByShortestPathToPermission(permissionId);
+	}
+
+	@Override
+	public List<Actor> fetchActorsByShortestPathToPermission(Long permissionId) throws Exception {
+		return this.actorRepo.fetchByShortestPathToPermission(permissionId);
+	}
+
+	@Override
+	public Actor fetchActorByLicensedByRelation(Long permissionId) {
+		// TODO Auto-generated method stub
+		return this.actorRepo.fetchByLicensedByRelationToPermission(permissionId);
+	}
+
+	@Override
+	public List<Document> fetchDocumentsByDerivesFromRelation(Long permissionId) throws Exception {
+		// TODO Auto-generated method stub
+		return this.documentRepo.fetchDocumentsByDerivesFromRelation(permissionId);
 	}
 
 }

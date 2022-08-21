@@ -23,3 +23,24 @@
 .card:hover {
   background-color: #dddddd;
 }
+
+.smallheader{
+  padding-top: 20px;
+  padding-left: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.smallcard {
+  background-color: white;
+  border-radius: 15px;
+  min-height: 130px;
+  margin-bottom: 10px;
+}
+
+.smallcard:hover {
+  background-color: #dddddd;
+}
+
+.smalltitle {
+  font-weight: bold;
+}

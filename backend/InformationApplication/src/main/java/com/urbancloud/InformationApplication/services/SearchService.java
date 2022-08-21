@@ -16,5 +16,9 @@ public interface SearchService {
 	public List<Document> fulltextSearchForDocuments(String searchStr) throws Exception;
 
 	public List<Permission> fulltextSearchForPermissions(String searchStr) throws Exception;
+
+	public List<String> fetchMostSearchedWords() throws Exception;
+
+	void saveSearchWord(String searchStr);
 	
 }

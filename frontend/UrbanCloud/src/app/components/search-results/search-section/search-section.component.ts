@@ -40,7 +40,7 @@ export class SearchSectionComponent implements OnInit {
       this.actorSectionHeader = 'Aktörer kopplat till din yrkesroll';
       this.areaSectionHeader = 'Intressanta områden att utforska';
       this.documentSectionHeader =
-        'Dokument kopplat till dina angivna intressen.';
+        'Dokument kopplat till dina angivna intressen';
     }
   }
 

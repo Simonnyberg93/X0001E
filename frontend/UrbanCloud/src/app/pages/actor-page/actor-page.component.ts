@@ -3,7 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ActorDTO } from 'src/app/models/ActorDTO';
 import { AreaDTO } from 'src/app/models/AreaDTO';
 import { DocumentDTO } from 'src/app/models/DocumentDTO';
+import { PermissionDTO } from 'src/app/models/PermissionDTO';
 import { DataService } from 'src/app/services/data.service';
+import { AddHttpPipe } from 'src/app/utils/add-http.pipe';
 
 @Component({
   selector: 'app-actor-page',
@@ -23,12 +25,17 @@ export class ActorPageComponent implements OnInit {
     permissions: [],
   };
 
+  formatUrlPipe: AddHttpPipe = new AddHttpPipe();
+
   includesObjects: Array<DocumentDTO> = [];
   relatedActorsObj: Array<ActorDTO> = [];
   relatedAreasObj: Array<AreaDTO> = [];
+  licensesPermissions: Array<PermissionDTO> = [];
 
   includesExpanded: boolean = false;
+  permissionsExpanded: boolean = false;
   viewIncludesIdx: number = 4;
+  viewPermissionsIdx: number = 4;
   errorMessage: string = '';
 
   constructor(
@@ -59,6 +66,7 @@ export class ActorPageComponent implements OnInit {
     this.includesObjects = [];
     this.relatedActorsObj = [];
     this.relatedAreasObj = [];
+    this.licensesPermissions = [];
   }
 
   ngOnInit(): void {
@@ -67,8 +75,39 @@ export class ActorPageComponent implements OnInit {
       this.dataService.fetchActorById(this.actorId).subscribe({
         next: (value) => {
           this.actorObj = value;
-          this.relatedActorsObj = value.relatedActors;
-          this.relatedAreasObj = value.relatedAreas;
+          // fetchRelatedActors
+          this.dataService
+            .fetchActorsByRelatedToRelation(this.actorObj.id)
+            .subscribe({
+              next: (value: Array<ActorDTO>) => {
+                this.relatedActorsObj = value;
+              },
+              error: (err) => {
+                console.error(err);
+              },
+            });
+          // fetchRelatedAreas
+          this.dataService
+            .fetchAreasByActiveInRelation(this.actorObj.id)
+            .subscribe({
+              next: (value: Array<AreaDTO>) => {
+                this.relatedAreasObj = value;
+              },
+              error: (err) => {
+                console.error(err);
+              },
+            });
+          // fetch permissions by lisenced_by relation
+          this.dataService
+            .fetchPermissionsFromLicensedByRelation(this.actorObj.id)
+            .subscribe({
+              next: (value: Array<PermissionDTO>) => {
+                this.licensesPermissions = value;
+              },
+              error: (err) => {
+                console.error(err);
+              },
+            });
           // fetch documents from the Actor
           this.dataService
             .fetchDocumentsByActorTitle(this.actorObj.title)
@@ -90,6 +129,10 @@ export class ActorPageComponent implements OnInit {
     }
   }
 
+  openActorHomePage() {
+    window.open(this.formatUrlPipe.transform(this.actorObj.siteUrl), '_blank');
+  }
+
   toggleViewMoreIncludeObj() {
     if (!this.includesExpanded) {
       this.viewIncludesIdx = -1;
@@ -97,6 +140,16 @@ export class ActorPageComponent implements OnInit {
     } else {
       this.viewIncludesIdx = 4;
       this.includesExpanded = !this.includesExpanded;
+    }
+  }
+
+  toggleViewMorePermissionObj() {
+    if (!this.permissionsExpanded) {
+      this.viewPermissionsIdx = -1;
+      this.permissionsExpanded = !this.permissionsExpanded;
+    } else {
+      this.viewPermissionsIdx = 4;
+      this.permissionsExpanded = !this.permissionsExpanded;
     }
   }
 }

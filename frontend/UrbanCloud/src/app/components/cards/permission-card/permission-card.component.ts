@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PermissionDTO } from 'src/app/models/PermissionDTO';
+import { RouteService } from 'src/app/services/route.service';
 
 @Component({
   selector: 'app-permission-card',
@@ -11,16 +12,25 @@ export class PermissionCardComponent implements OnInit {
     id: 0,
     title: '',
     description: '',
-    licensedByActor: [],
+    licensedByActor: {
+      id: 0,
+      title: '',
+      description: '',
+      siteUrl: '',
+      imageUrl: '',
+      relatedAreas: [],
+      relatedActors: [],
+      permissions: [],
+    },
     laws: [],
   };
   @Input() showSmallCard: boolean = false;
 
-  constructor() {}
+  constructor(private routeService: RouteService) {}
 
   ngOnInit(): void {}
 
   routeToPermissionPage() {
-    alert('Not yet implemented!');
+    this.routeService.openPermissionPage(this.permission.id.toString());
   }
 }

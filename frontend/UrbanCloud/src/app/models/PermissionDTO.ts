@@ -5,14 +5,14 @@ export class PermissionDTO {
   id: number;
   title: string;
   description: string;
-  licensedByActor: Array<ActorDTO>;
+  licensedByActor: ActorDTO;
   laws: Array<DocumentDTO>;
 
   constructor(
     id: number,
     title: string,
     description: string,
-    licensedByActor: Array<ActorDTO>,
+    licensedByActor: ActorDTO,
     laws: Array<DocumentDTO>
   ) {
     this.id = id;

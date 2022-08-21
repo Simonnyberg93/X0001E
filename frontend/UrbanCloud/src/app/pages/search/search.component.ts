@@ -6,7 +6,6 @@ import { UserDTO } from 'src/app/models/UserDTO';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { DataService } from 'src/app/services/data.service';
 import { RouteService } from 'src/app/services/route.service';
-import { typeOfNode } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-search',
@@ -19,11 +18,6 @@ export class SearchComponent implements OnInit {
   areas: any[] = [];
   permissions: any[] = [];
 
-  AREA = typeOfNode.AREA;
-  ACTOR = typeOfNode.ACTOR;
-  DOCUMENT = typeOfNode.DOCUMENT;
-  PERMISSION = typeOfNode.PERMISSION;
-
   roleRelatedActors: any[] = [];
   intresstingAreas: any[] = [];
   intresstingDocuments: any[] = [];
@@ -35,44 +29,55 @@ export class SearchComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // populate arrays by quering db with user's settings
+    // populate array by quering db with user's settings
     this.authService
       .getUserFromDatabase(this.authService.getUserInfo().email)
       .subscribe({
         next: (value: UserDTO) => {
           let user = value;
-          console.log(`Userroles: ${user.roles.toString()}`);
-          this.dataService.fetchActorsFromWorkRoles(user.roles).subscribe({
-            next: (value: Array<ActorDTO>) => {
-              this.roleRelatedActors = value;
-            },
-            error: (error) => {
-              console.error(error);
-            },
-          });
-          this.dataService
-            .fetchAreasFromUserAreaOfInterest(user.areasOfInterest)
-            .subscribe({
-              next: (value: Array<AreaDTO>) => {
-                this.intresstingAreas = value;
-              },
-              error: (error) => {
-                console.error(error);
-              },
-            });
-          this.dataService
-            .fetchDocumentsFromUserTopicsOfInterest(user.topicsOfInterest)
-            .subscribe({
-              next: (value: Array<DocumentDTO>) => {
-                this.intresstingDocuments = value;
-              },
-              error: (error) => {
-                console.error(error);
-              },
-            });
+          if (user.roles && user.roles.length > 0) {
+            this.dataService
+              .fetchActorsByTitles(user.roles.map((role) => role.roleName))
+              .subscribe({
+                next: (value: Array<ActorDTO>) => {
+                  this.roleRelatedActors = value;
+                },
+                error: (error) => {
+                  console.error(error);
+                },
+              });
+          }
+          if (user.areasOfInterests && user.areasOfInterests.length > 0) {
+            this.dataService
+              .fetchAreasByTitles(
+                user.areasOfInterests.map((area) => area.areaName)
+              )
+              .subscribe({
+                next: (value: Array<AreaDTO>) => {
+                  this.intresstingAreas = value;
+                },
+                error: (error) => {
+                  console.error(error);
+                },
+              });
+          }
+          if (user.topicsOfInterests && user.topicsOfInterests.length > 0) {
+            this.dataService
+              .fetchDocumentsByTitles(
+                user.topicsOfInterests.map((document) => document.topicName)
+              )
+              .subscribe({
+                next: (value: Array<DocumentDTO>) => {
+                  this.intresstingDocuments = value;
+                },
+                error: (error) => {
+                  console.error(error);
+                },
+              });
+          }
         },
         error: (error) => {
-          console.error(error);
+          this.authService.logout();
         },
       });
   }

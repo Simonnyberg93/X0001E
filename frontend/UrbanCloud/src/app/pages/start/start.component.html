@@ -39,20 +39,12 @@
   </div>
 
   <div class="section interesting-areas">
-    <h3>Rekommenderat för dig</h3>
-    <!-- <app-top-search-results [data]="roleRelatedInfo"></app-top-search-results> -->
+    <h2>Rekommenderat för dig</h2>
+    <app-search-section
+      [notSearchResult]="true"
+      [actors]="roleRelatedActors"
+      [areas]="intresstingAreas"
+      [documents]="intresstingDocuments"
+    ></app-search-section>
   </div>
 </div>
-
-<!-- 
-    <div
-    class="wrapper"
-    fxLayout="row wrap"
-    fxLayoutAlign="start start"
-    fxLayout.xs="column"
-    fxLayoutGap="20px"
-  >
-    <div class="child" fxFlex="30%" *ngFor="let item of data">
-      <app-data-card [data]="item"></app-data-card>
-    </div>
- -->

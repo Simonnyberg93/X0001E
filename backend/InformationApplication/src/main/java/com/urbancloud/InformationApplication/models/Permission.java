@@ -17,7 +17,7 @@ public class Permission {
 	private Long id;
 	private String title;
 	private String description;
-	
+					  
 	@Relationship(type="LICENSED_BY", direction = Relationship.Direction.INCOMING)
 	@JsonIgnoreProperties("permissions")
 	private Actor licensedByActor;

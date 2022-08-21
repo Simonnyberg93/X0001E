@@ -1,0 +1,27 @@
+<div class="side-wrapper">
+  <div class="title">
+    <h1>{{ areaSectionTitle }}</h1>
+  </div>
+  <div
+    class="relatedlist"
+    style="margin-bottom: 20px"
+    *ngFor="let obj of relatedAreasObj"
+  >
+    <app-area-card [showSmallCard]="true" [area]="obj"></app-area-card>
+  </div>
+  <br />
+  <h3>{{ actorSectionTitle }}</h3>
+  <div *ngFor="let actor of relatedActorsObj">
+    <app-actor-card [showSmallCard]="true" [actor]="actor"></app-actor-card>
+  </div>
+  <br />
+  <h3>Andra läste också</h3>
+  <span class="others">Checklista för planering av VA-projekt</span>
+  <br />
+  <br />
+  <span class="others">Processtöd för VA-projekt</span>
+  <br />
+  <br />
+  <span class="others">Rörnät & klimat</span>
+  <br /><br />
+</div>

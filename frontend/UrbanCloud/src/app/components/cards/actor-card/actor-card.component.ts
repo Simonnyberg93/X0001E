@@ -8,6 +8,8 @@ import { RouteService } from 'src/app/services/route.service';
   styleUrls: ['./actor-card.component.css'],
 })
 export class ActorCardComponent implements OnInit {
+  @Input() cutDescription: number = 90;
+
   @Input() actor: ActorDTO = {
     id: 0,
     title: '',
@@ -25,8 +27,6 @@ export class ActorCardComponent implements OnInit {
   ngOnInit(): void {}
 
   cutAllExceptHostName(url: string): string {
-    console.log(`URL: ${url}`);
-    console.log(`Actor: ${JSON.stringify(this.actor)}`);
     let result = url
       .replace('www.', '')
       .replace('http://', '')
