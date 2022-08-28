@@ -2,27 +2,34 @@ package com.urbancloud.InformationApplication.repository;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.data.neo4j.repository.query.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import com.urbancloud.InformationApplication.models.Actor;
-import com.urbancloud.InformationApplication.models.Area;
-import com.urbancloud.InformationApplication.models.Document;
-import com.urbancloud.InformationApplication.models.Permission;
+import com.urbancloud.InformationApplication.models.ActorDTO;
 
+// MATCH (actor)-[:ACTIVE_IN]-(area) , area AS relatedAreas
 
 
 @Repository
 public interface ActorRepository extends Neo4jRepository<Actor, Long> {
 	
+	@Query("MATCH (actor:Actor)-[]-(n) WHERE id(actor)=1 RETURN actor, n;")
+	ActorDTO custom(@Param("actorId") Long actorId);
+	
+//	@Override
+//	@Query("MATCH (a:Actor) WHERE id(a)=$actorId RETURN a;")
+//	Optional<Actor> findById(@Param("actorId") Long actorId);
+	
 	Actor getActorByTitle(String title);
 
-	@Query("MATCH (a:Area) WHERE id(a)=$areaId MATCH (a)-[:ACTIVE_IN]-(b) RETURN b LIMIT 3;")
+	@Query("MATCH (a:Area) WHERE id(a)=$areaId MATCH (a)-[:ACTIVE_IN]-(b) RETURN b LIMIT 5;")
 	List<Actor> fetchByActiveInRelation(@Param("areaId") Long areaId);
 	
-	@Query("MATCH (a:Actor) WHERE id(a)=$actorId MATCH (a)-[:RELATED_TO]-(b) RETURN b;")
+	@Query("MATCH (a:Actor) WHERE id(a)=$actorId MATCH (a)-[:RELATED_TO]-(b) RETURN b LIMIT 5;")
 	List<Actor> fetchByRelatedToRelation(@Param("actorId") Long actorId);
 	
 	@Query("MATCH(actor:Actor) WHERE actor.title <> 'notEq' RETURN actor")

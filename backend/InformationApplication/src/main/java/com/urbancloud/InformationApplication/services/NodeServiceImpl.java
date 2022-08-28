@@ -6,7 +6,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.urbancloud.InformationApplication.exceptions.ActorNotFoundException;
+import com.urbancloud.InformationApplication.exceptions.AreaNotFoundException;
+import com.urbancloud.InformationApplication.exceptions.DocumentNotFoundException;
+import com.urbancloud.InformationApplication.exceptions.PermissionNotFoundException;
 import com.urbancloud.InformationApplication.models.Actor;
+import com.urbancloud.InformationApplication.models.ActorDTO;
 import com.urbancloud.InformationApplication.models.Area;
 import com.urbancloud.InformationApplication.models.Permission;
 import com.urbancloud.InformationApplication.models.Document;
@@ -184,36 +189,57 @@ public class NodeServiceImpl implements NodeService {
 	}
 
 	@Override
-	public Actor fetchActorById(Long id) throws Exception {
-		Optional<Actor> result = this.actorRepo.findById(id);
-		if(result.isPresent()) {
-			return result.get();
+	public Actor fetchActorById(Long id) throws ActorNotFoundException {
+		try {
+			Optional<Actor> result = this.actorRepo.findById(id);
+			if(result.isEmpty()) {
+				throw new ActorNotFoundException("Actor with id: {"+id+"} was not found.");
+			}
+			Actor actor = result.get();
+//			actor.setRelatedAreas(this.areaRepo.fetchAreasByActiveInRelation(actor.getId()));
+//			actor.setRelatedActors(this.actorRepo.fetchByRelatedToRelation(id));
+//			actor.setPermissions(this.permRepo.fetchPermissionsByLicensedByRelation(id));
+			return actor;
+		} catch(Exception e) {
+			throw new ActorNotFoundException(e.getMessage());
 		}
-		throw new Exception();
 	}
 
 	@Override
-	public Area fetchAreaById(Long id) throws Exception {
-		Area result = this.areaRepo.fetchById(id);
-		return result;
+	public Area fetchAreaById(Long id) throws AreaNotFoundException {
+		try {
+			Area result = this.areaRepo.fetchById(id);
+			result.setIncludes(this.documentRepo.fetchByIncludesRelation(id));
+			result.setRelatedActors(this.actorRepo.fetchByActiveInRelation(id));
+			return result;
+		} catch (Exception e) {
+			throw new AreaNotFoundException(e.getMessage());
+		}
 	}
 
 	@Override
-	public Permission fetchPermissionById(Long id) throws Exception {
-		Optional<Permission> result = this.permRepo.findById(id);
-		if(result.isPresent()) {
-			return result.get();
+	public Permission fetchPermissionById(Long id) throws PermissionNotFoundException {
+		try {
+			Optional<Permission> result = this.permRepo.findById(id);
+			Permission permission = result.get();
+			permission.setLicensedByActor(this.actorRepo.fetchByLicensedByRelationToPermission(id));
+			permission.setLaws(this.documentRepo.fetchDocumentsByDerivesFromRelation(id));
+			return permission;
+		} catch (Exception e) {
+			throw new PermissionNotFoundException();
 		}
-		throw new Exception();
 	}
 
 	@Override
-	public Document fetchDocumentById(Long id) throws Exception {
-		Optional<Document> result = this.documentRepo.findById(id);
-		if(result.isPresent()) {
-			return result.get();
+	public Document fetchDocumentById(Long id) throws DocumentNotFoundException {
+		try {
+			Optional<Document> result = this.documentRepo.findById(id);
+			Document document = result.get();
+			document.setAreas(this.areaRepo.fetchByInclude(id));
+			return document;
+		} catch (Exception e) {
+			throw new DocumentNotFoundException(e.getMessage());
 		}
-		throw new Exception();
 	}
 
 	@Override
@@ -241,10 +267,6 @@ public class NodeServiceImpl implements NodeService {
 		return this.documentRepo.findByTitle(listOfTitles);
 	}
 
-	@Override
-	public List<Actor> fetchActorsByRelationToArea(Long areaId) throws Exception {
-		return this.actorRepo.fetchByActiveInRelation(areaId);
-	}
 
 	@Override
 	public List<Document> fetchDocumentsByRelationToArea(Long areaId) throws Exception {
@@ -254,21 +276,6 @@ public class NodeServiceImpl implements NodeService {
 	@Override
 	public List<Permission> fetchPermissionsByShortestPathToArea(Long areaId) throws Exception {
 		return this.permRepo.fetchByShortestPathToArea(areaId);
-	}
-
-	@Override
-	public List<Actor> fetchActorsByRelatedToRelation(Long actorId) throws Exception {
-		return this.actorRepo.fetchByRelatedToRelation(actorId);
-	}
-
-	@Override
-	public List<Area> fetchAreasByActiveInRelation(Long actorId) throws Exception {
-		return this.areaRepo.fetchAreasByActiveInRelation(actorId);
-	}
-
-	@Override
-	public List<Permission> fetchPermissionsByLicensedByRelation(Long actorId) throws Exception {
-		return this.permRepo.fetchPermissionsByLicensedByRelation(actorId);
 	}
 
 	@Override
@@ -282,15 +289,9 @@ public class NodeServiceImpl implements NodeService {
 	}
 
 	@Override
-	public Actor fetchActorByLicensedByRelation(Long permissionId) {
+	public ActorDTO fetchActorCUSTOM(Long id) {
 		// TODO Auto-generated method stub
-		return this.actorRepo.fetchByLicensedByRelationToPermission(permissionId);
-	}
-
-	@Override
-	public List<Document> fetchDocumentsByDerivesFromRelation(Long permissionId) throws Exception {
-		// TODO Auto-generated method stub
-		return this.documentRepo.fetchDocumentsByDerivesFromRelation(permissionId);
+		return this.actorRepo.custom(id);
 	}
 
 }

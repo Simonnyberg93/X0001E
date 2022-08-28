@@ -1,4 +1,5 @@
 <div class="body">
+  <app-loading-spinner></app-loading-spinner>
   <h1>{{ errorMessage }}</h1>
   <div class="content" fxLayout="row" fxLayout.xs="column">
     <div class="col-1" fxFlex="70%">
@@ -32,7 +33,7 @@
       <app-relation-side-bar
         [actorSectionTitle]="'Relaterade aktörer'"
         [areaSectionTitle]="'Relaterade områden'"
-        [relatedAreasObj]="relatedAreas"
+        [relatedAreasObj]="documentObj.areas"
         [relatedActorsObj]="relatedActors"
       ></app-relation-side-bar>
     </div>

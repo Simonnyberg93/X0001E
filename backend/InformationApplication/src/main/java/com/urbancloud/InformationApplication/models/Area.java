@@ -19,18 +19,13 @@ public class Area {
 	private String description;
 	private String siteUrl;
 	
-	@Relationship(type="ACTIVE_IN", direction = Relationship.Direction.OUTGOING)
+	@Relationship(type="ACTIVE_IN")
 	@JsonIgnoreProperties("relatedAreas")
 	private List<Actor> relatedActors;
 	
 	@Relationship(type="INCLUDES")
 	@JsonIgnoreProperties("areas")
 	private List<Document> includes;
-	
-	@Relationship(type="RELATES_TO", direction = Relationship.Direction.INCOMING)
-	@JsonIgnoreProperties("relatedAreas")
-	private List<Permission> relatedPermissions;
-	
 	
 	public Area()  { }
 
@@ -81,15 +76,4 @@ public class Area {
 	public void setIncludes(List<Document> includes) {
 		this.includes = includes;
 	}
-
-	public List<Permission> getRelatedPermissions() {
-		return relatedPermissions;
-	}
-
-	public void setRelatedPermissions(List<Permission> relatedPermissions) {
-		this.relatedPermissions = relatedPermissions;
-	}
-
-	
-	
 }

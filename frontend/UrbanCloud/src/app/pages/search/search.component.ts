@@ -13,6 +13,8 @@ import { RouteService } from 'src/app/services/route.service';
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent implements OnInit {
+  showSpinner: boolean = true;
+
   data: any[] = [];
   actors: any[] = [];
   areas: any[] = [];
@@ -69,6 +71,7 @@ export class SearchComponent implements OnInit {
               .subscribe({
                 next: (value: Array<DocumentDTO>) => {
                   this.intresstingDocuments = value;
+                  this.showSpinner = false;
                 },
                 error: (error) => {
                   console.error(error);

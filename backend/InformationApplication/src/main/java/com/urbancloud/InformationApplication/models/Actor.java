@@ -20,8 +20,8 @@ public class Actor {
 	private String imageUrl;
 	private String siteUrl;
 	
-	@Relationship(type="ACTIVE_IN", direction = Relationship.Direction.INCOMING)
-	@JsonIgnoreProperties({"relatedActors", "includes", "relatedPermissions"})
+	@Relationship(type="ACTIVE_IN")
+	@JsonIgnoreProperties({"relatedActors"})
 	private List<Area> relatedAreas;
 
 	@Relationship(type="RELATED_TO")
@@ -31,7 +31,6 @@ public class Actor {
 	@Relationship(type="LICENSED_BY", direction = Relationship.Direction.OUTGOING)
 	@JsonIgnoreProperties({"licensedByActor", "laws"})
 	private List<Permission> permissions;
-
 
 	public Actor() { }
 
@@ -103,6 +102,14 @@ public class Actor {
 		this.relatedActors = relatedActors;
 	}
 
+	public List<Permission> getPermissions() {
+		return permissions;
+	}
+
+	public void setPermissions(List<Permission> permissions) {
+		this.permissions = permissions;
+	}
+	
 	@Override
 	public String toString() {
 		return "Actor [id=" + id + ", title=" + title + ", description=" + description + ", imageUrl=" + imageUrl

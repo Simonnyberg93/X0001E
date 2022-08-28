@@ -40,6 +40,7 @@ public class SearchController {
 	public ResponseEntity<?> fulltextSearchForActors(@PathVariable(value = "searchStr") String searchStr) {
 		try {
 			List<Actor> result = this.service.fulltextSearchForActors(searchStr);
+			System.out.println("Sucess: " + result);
 			this.service.saveSearchWord(searchStr);
 			return new ResponseEntity<List<Actor>>(result, HttpStatus.OK);
 		} catch (Exception e) {

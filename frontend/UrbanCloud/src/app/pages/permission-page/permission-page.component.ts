@@ -55,20 +55,7 @@ export class PermissionPageComponent implements OnInit {
       this.dataService.fetchPermissionById(this.permissionId).subscribe({
         next: (value: PermissionDTO) => {
           this.permissionObj = value;
-          this.dataService.fetchLicensingActor(this.permissionId).subscribe({
-            next: (value: ActorDTO) => {
-              this.permissionObj.licensedByActor = value;
-            },
-            error: (err) => console.error(err),
-          });
-          this.dataService
-            .fetchDocumentsByDerivesFrom(this.permissionId)
-            .subscribe({
-              next: (value: Array<DocumentDTO>) => {
-                this.permissionObj.laws = value;
-              },
-              error: (err) => console.error(err),
-            });
+          // fetch related actors
           this.dataService
             .fetchActorsByShortestPath(this.permissionId)
             .subscribe({
@@ -77,6 +64,7 @@ export class PermissionPageComponent implements OnInit {
               },
               error: (err) => console.error(err),
             });
+          // fetch related areas
           this.dataService
             .fetchAreasByShortestPath(this.permissionId)
             .subscribe({

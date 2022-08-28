@@ -20,11 +20,11 @@ public class Document {
 	private String description;
 	private String siteUrl;
 	
-	@Relationship(type="INCLUDES", direction = Relationship.Direction.INCOMING)
+	@Relationship(type="INCLUDES")
 	@JsonIgnoreProperties("includes")
 	private List<Area> areas;
 	
-	@Relationship(type="DERIVES_FROM", direction = Relationship.Direction.OUTGOING)
+	@Relationship(type="DERIVES_FROM")
 	@JsonIgnoreProperties("laws")
 	private List<Permission> relatedPermissions;
 	

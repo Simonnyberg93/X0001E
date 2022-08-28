@@ -1,0 +1,92 @@
+version: "3.7"
+services:
+  #MYSQL USER ACCOUNT DATABASE
+  mysqldb:
+    container_name: urbancloud-mysql-db
+    image: mysql:latest
+    restart: always
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    environment:
+      - MYSQL_DATABASE=useraccountsdb
+      - MYSQL_PASSWORD=password123
+      - MYSQL_ROOT_PASSWORD=password123
+    networks:
+      - mysqlspring_net
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
+
+  #SPRING BOOT APPLICATION THAT CONNECTS TO MYSQL
+  urbancloud-account-api:
+    container_name: urbancloud-user-microservice
+    depends_on:
+      mysqldb:
+        condition: service_healthy
+    restart: always
+    #image: springboot-account-api
+    build: ./accounts
+    ports:
+      - '8082:8082'
+    expose:
+      - '8082'
+    environment:
+      - spring.datasource.url=jdbc:mysql://mysqldb:3306/useraccountsdb?allowPublicKeyRetrieval=true&useSSL=false
+    networks:
+      - mysqlspring_net
+  #  SPRING BOOT APPLICATION THAT CONNECTS TO GRAPH DATABASE
+  urbancloud-information-api:
+    #image: springboot-information-api
+    container_name: urbancloud-information-microservice
+    build: ./info
+    ports:
+      - '8080:8080'
+    depends_on:
+      neo4j-db:
+        condition: service_healthy # Wait for neo4j to be ready
+    restart: always
+    environment:
+      SPRING_APPLICATION_JSON: '{ "spring.data.neo4j.uri": "bolt://neo4j-db:7687", "spring.data.neo4j.username": "neo4j", "spring.data.neo4j.password": "password"}'
+    networks:
+      - springneonet
+
+  #NEO4J INFORMATION GRAPH DATABASE
+  neo4j-db:
+    image: neo4j:latest
+    volumes:
+      - ./plugins:/var/lib/neo4j/plugins
+      # - ./data:/var/lib/neo4j/data
+      - ./import:/var/lib/neo4j/import
+    container_name: urbancloud-neo4j-db
+    restart: on-failure
+    ports:
+      - "7474:7474" #HTTP
+      - "7687:7687" #BOLT
+    environment:
+      NEO4J_AUTH: 'neo4j/password'
+      dbms_connector_bolt_listen__address: 'neo4j-db:7687'
+      dbms_connector_bolt_advertised__address: 'neo4j-db:7687'
+      NEO4J_dbms_security_procedures_unrestricted: 'apoc.*'
+      NEO4J_apoc_import_file_enabled: 'true'
+      NEO4J_apoc_export_file_enabled: 'true'
+      apoc.initializer.cypher.0: 'CALL apoc.cypher.runSchemaFile("file:///load-schema.cypher");'
+      # BUGG apoc.initializer.cypher.1: 'CALL apoc.cypher.runFile("file:///load-indexes.cypher");'
+      apoc.initializer.cypher.1: 'CALL apoc.import.json("file:///jsonDb.json");'
+      NEO4J_dbms_shell_enabled: 'true'
+      NEO4J_apoc_import_file_use__neo4j__config: 'true'
+      NEO4JLABS_PLUGINS: '["apoc"]'
+    networks:
+      - springneonet
+    healthcheck:
+      test: cypher-shell --username neo4j --password password 'CALL apoc.cypher.runFile("file:///load-indexes.cypher");'
+      interval: 20s
+      timeout: 20s
+      retries: 5
+networks:
+  mysqlspring_net:
+  springneonet:

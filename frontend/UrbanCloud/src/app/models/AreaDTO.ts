@@ -9,7 +9,6 @@ export class AreaDTO {
   siteUrl: string;
   relatedActors: Array<ActorDTO>;
   includes: Array<DocumentDTO>;
-  relatedPermissions: Array<PermissionDTO>;
 
   constructor(
     id: number,
@@ -17,8 +16,7 @@ export class AreaDTO {
     description: string,
     siteUrl: string,
     relatedActors: Array<ActorDTO>,
-    includes: Array<DocumentDTO>,
-    relatedPermissions: Array<PermissionDTO>
+    includes: Array<DocumentDTO>
   ) {
     this.id = id;
     this.title = title;
@@ -26,6 +24,5 @@ export class AreaDTO {
     this.siteUrl = siteUrl;
     this.relatedActors = relatedActors;
     this.includes = includes;
-    this.relatedPermissions = relatedPermissions;
   }
 }

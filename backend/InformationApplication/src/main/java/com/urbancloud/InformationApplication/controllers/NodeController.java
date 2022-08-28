@@ -14,7 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.urbancloud.InformationApplication.exceptions.ActorNotFoundException;
+import com.urbancloud.InformationApplication.exceptions.AreaNotFoundException;
+import com.urbancloud.InformationApplication.exceptions.DocumentNotFoundException;
+import com.urbancloud.InformationApplication.exceptions.PermissionNotFoundException;
 import com.urbancloud.InformationApplication.models.Actor;
+import com.urbancloud.InformationApplication.models.ActorDTO;
 import com.urbancloud.InformationApplication.models.Area;
 import com.urbancloud.InformationApplication.models.Permission;
 import com.urbancloud.InformationApplication.models.Document;
@@ -28,74 +33,34 @@ public class NodeController {
 	@Autowired
 	NodeService nodeService;
 	
+	@GetMapping("/fetch/custom/{id}")
+	public ResponseEntity<?> fetchCustom(@PathVariable(value="id") Long id){
+		ActorDTO result = this.nodeService.fetchActorCUSTOM(id);
+		return new ResponseEntity<ActorDTO>(result, HttpStatus.OK);
+	}
+	
 	@GetMapping("/fetch/actor/byid/{id}")
-	public ResponseEntity<?> fetchActorById(@PathVariable(value = "id") Long id) { 
-		try {
-			Actor result = this.nodeService.fetchActorById(id);
-			return new ResponseEntity<Actor>(result, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<String>("Failed to retrive node with id " + id, HttpStatus.CONFLICT);
-		}
+	public ResponseEntity<?> fetchActorById(@PathVariable(value = "id") Long id) throws ActorNotFoundException { 
+		Actor result = this.nodeService.fetchActorById(id);
+		return new ResponseEntity<Actor>(result, HttpStatus.OK);
 	}
 	
-	@GetMapping("/fetch/documents/by/derives_from/{permissionId}")
-	public ResponseEntity<?> fetchDocumentsByDerivesFromRelation(@PathVariable(value = "permissionId") Long permissionId) {
-		try {
-			List<Document> result = this.nodeService.fetchDocumentsByDerivesFromRelation(permissionId);
-			return new ResponseEntity<List<Document>>(result, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<String>("Failed to retrive nodes", HttpStatus.CONFLICT);
-		}
+	@GetMapping("/fetch/area/byid/{id}")
+	public ResponseEntity<?> fetchAreaById(@PathVariable(value = "id") Long id) throws AreaNotFoundException { 
+		Area result = this.nodeService.fetchAreaById(id);
+		return new ResponseEntity<Area>(result, HttpStatus.OK);
 	}
 	
-	@GetMapping("/fetch/actors/by/active_in/{areaId}")
-	public ResponseEntity<?> fetchActorByActiveInRelation(@PathVariable(value = "areaId") Long areaId) { 
-		try {
-			List<Actor> result = this.nodeService.fetchActorsByRelationToArea(areaId);
-			return new ResponseEntity<List<Actor>>(result, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<String>("FAIL", HttpStatus.CONFLICT);
-		}
+	@GetMapping("/fetch/document/byid/{id}")
+	public ResponseEntity<?> fetchDocumentById(@PathVariable(value = "id") Long id) throws DocumentNotFoundException { 
+		Document result = this.nodeService.fetchDocumentById(id);
+		return new ResponseEntity<Document>(result, HttpStatus.OK);
 	}
 	
-	@GetMapping("/fetch/actors/by/related_to/{actorId}")
-	public ResponseEntity<?> fetchActorsByRelatedToRelation(@PathVariable(value = "actorId") Long actorId) {
-		try {
-			List<Actor> result = this.nodeService.fetchActorsByRelatedToRelation(actorId);
-			return new ResponseEntity<List<Actor>>(result, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<String>("FAIL", HttpStatus.CONFLICT);
-		}
-	}
-	
-	@GetMapping("/fetch/areas/by/active_in/{actorId}")
-	public ResponseEntity<?> fetchAreasByActiveInRelation(@PathVariable(value = "actorId") Long actorId) {
-		try {
-			List<Area> result = this.nodeService.fetchAreasByActiveInRelation(actorId);
-			return new ResponseEntity<List<Area>>(result, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<String>("FAIL", HttpStatus.CONFLICT);
-		}
-	}
-	
-	@GetMapping("/fetch/permissions/by/licenced_by/{actorId}")
-	public ResponseEntity<?> fetchPermissionsByLicensedByRelation(@PathVariable(value = "actorId") Long actorId) {
-		try {
-			List<Permission> result = this.nodeService.fetchPermissionsByLicensedByRelation(actorId);
-			return new ResponseEntity<List<Permission>>(result, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<String>("FAIL", HttpStatus.CONFLICT);
-		}
-	}
-	
-	@GetMapping("/fetch/actor/by/licensed_by/{permissionId}")
-	public ResponseEntity<?> fetchActorByLicensedByRelation(@PathVariable(value = "permissionId") Long permissionId) {
-		try {
-			Actor result = this.nodeService.fetchActorByLicensedByRelation(permissionId);
-			return new ResponseEntity<Actor>(result, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<String>("FAIL", HttpStatus.CONFLICT);
-		}
+	@GetMapping("fetch/permission/byid/{id}")
+	public ResponseEntity<?> fetchPermissionById(@PathVariable(value = "id") Long id) throws PermissionNotFoundException {
+		Permission result = this.nodeService.fetchPermissionById(id);
+		return new ResponseEntity<Permission>(result, HttpStatus.OK);
 	}
 	
 	@GetMapping("/fetch/documents/by/include/{areaId}")
@@ -138,16 +103,6 @@ public class NodeController {
 		}
 	}
 	
-	
-	@GetMapping("/fetch/area/byid/{id}")
-	public ResponseEntity<?> fetchAreaById(@PathVariable(value = "id") Long id) { 
-		try {
-			Area result = this.nodeService.fetchAreaById(id);
-			return new ResponseEntity<Area>(result, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<String>("Failed to retrive node with id " + id, HttpStatus.CONFLICT);
-		} 
-	}
 
 	@GetMapping("/fetch/areas/byneighborarea/{areaTitle}")
 	public ResponseEntity<?> fetchAreaByNeighbor(@PathVariable(value = "areaTitle") String areaTitle) {
@@ -159,16 +114,6 @@ public class NodeController {
 		}
 	}
 	
-	@GetMapping("/fetch/document/byid/{id}")
-	public ResponseEntity<?> fetchDocumentById(@PathVariable(value = "id") Long id) { 
-		try {
-			Document result = this.nodeService.fetchDocumentById(id);
-			return new ResponseEntity<Document>(result, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<String>("Failed to retrive node with id " + id, HttpStatus.CONFLICT);
-		}
-	}
-	
 	@GetMapping("/fetch/documents/bysource/{source}")
 	public ResponseEntity<?> fetchDocumentBySource(@PathVariable(value = "source") String source) {
 		try {
@@ -176,16 +121,6 @@ public class NodeController {
 			return new ResponseEntity<List<Document>>(result, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<String>("Failed to retrive documents with source " + source, HttpStatus.CONFLICT);
-		}
-	}
-	
-	@GetMapping("fetch/permission/byid/{id}")
-	public ResponseEntity<?> fetchPermissionById(@PathVariable(value = "id") Long id) {
-		try {
-			Permission result = this.nodeService.fetchPermissionById(id);
-			return new ResponseEntity<Permission>(result, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<String>("Failed to retrive node with id " + id, HttpStatus.CONFLICT);
 		}
 	}
 	

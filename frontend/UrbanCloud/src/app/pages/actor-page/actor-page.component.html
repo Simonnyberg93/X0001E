@@ -1,4 +1,5 @@
 <div class="body">
+  <app-loading-spinner></app-loading-spinner>
   <div class="content" fxLayout="row" fxLayout.xs="column">
     <div class="col-1" fxFlex="70%">
       <div class="wrapper-data">
@@ -25,14 +26,16 @@
             Besök aktörens hemsida
           </button>
           <mat-card-subtitle
-            *ngIf="includesObjects.length > 0 || licensesPermissions.length > 0"
+            *ngIf="
+              includesObjects.length > 0 || actorObj.permissions.length > 0
+            "
             >Från {{ actorObj.title }}</mat-card-subtitle
           >
-          <mat-card-subtitle *ngIf="licensesPermissions.length > 0"
+          <mat-card-subtitle *ngIf="actorObj.permissions.length > 0"
             >{{ actorObj.title }} ger ut licenser till följande
             tillstånd</mat-card-subtitle
           >
-          <mat-card-actions *ngIf="licensesPermissions.length > 0">
+          <mat-card-actions *ngIf="actorObj.permissions.length > 0">
             <div
               class="top-container"
               fxLayout="row wrap"
@@ -42,7 +45,7 @@
             >
               <div
                 *ngFor="
-                  let obj of licensesPermissions.slice(0, viewPermissionsIdx)
+                  let obj of actorObj.permissions.slice(0, viewPermissionsIdx)
                 "
                 fxFlex="45%"
                 class="child child-1"
@@ -54,7 +57,7 @@
               </div>
             </div>
             <div
-              *ngIf="!permissionsExpanded && licensesPermissions.length > 4"
+              *ngIf="!permissionsExpanded && actorObj.permissions.length > 4"
               class="show-more-wrapper"
             >
               <button
@@ -66,7 +69,7 @@
               </button>
             </div>
             <div
-              *ngIf="permissionsExpanded && licensesPermissions.length > 4"
+              *ngIf="permissionsExpanded && actorObj.permissions.length > 4"
               class="show-less-wrapper"
             >
               <button
@@ -134,8 +137,8 @@
       <app-relation-side-bar
         [actorSectionTitle]="'Relaterade aktörer'"
         [areaSectionTitle]="'Relaterat till ' + actorObj.title"
-        [relatedActorsObj]="relatedActorsObj"
-        [relatedAreasObj]="relatedAreasObj"
+        [relatedActorsObj]="actorObj.relatedActors"
+        [relatedAreasObj]="actorObj.relatedAreas"
       ></app-relation-side-bar>
     </div>
   </div>

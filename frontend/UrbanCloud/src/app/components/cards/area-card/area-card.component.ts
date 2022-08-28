@@ -17,7 +17,6 @@ export class AreaCardComponent implements OnInit {
     siteUrl: '',
     relatedActors: [],
     includes: [],
-    relatedPermissions: [],
   };
   @Input() showSmallCard: boolean = false;
   constructor(
@@ -28,7 +27,8 @@ export class AreaCardComponent implements OnInit {
   ngOnInit(): void {
     // fetch include objects
     this.dataService.fetchDocumentsByIncludeRelation(this.area.id).subscribe({
-      next: (value: Array<DocumentDTO>) => (this.area.includes = value),
+      next: (value: Array<DocumentDTO>) =>
+        (this.area.includes = value.slice(0, 3)),
       error: (err) => console.error(err),
     });
   }
