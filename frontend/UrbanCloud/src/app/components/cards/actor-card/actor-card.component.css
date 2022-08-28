@@ -2,6 +2,10 @@
   background-size: cover;
 }
 
+.card {
+  height: 380px;
+}
+
 .card:hover {
   background-color: #dddddd;
 }

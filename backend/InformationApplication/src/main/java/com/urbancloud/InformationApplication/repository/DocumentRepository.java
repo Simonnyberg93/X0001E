@@ -12,7 +12,7 @@ import com.urbancloud.InformationApplication.models.Document;
 @Repository
 public interface DocumentRepository extends Neo4jRepository<Document, Long> {
 
-	@Query("MATCH(a:Area) WHERE id(a)=$areaId MATCH (a)-[:INCLUDES]-(b) RETURN b LIMIT 3;")
+	@Query("MATCH(a:Area) WHERE id(a)=$areaId MATCH (a)-[:INCLUDES]-(b) RETURN b LIMIT 5;")
 	List<Document> fetchByIncludesRelation(@Param("areaId") Long areaId);
 	
 	@Query("MATCH(document:Document) WHERE document.title <> 'notEq' RETURN document")

@@ -18,11 +18,11 @@ public class Permission {
 	private String title;
 	private String description;
 					  
-	@Relationship(type="LICENSED_BY", direction = Relationship.Direction.INCOMING)
+	@Relationship(type="LICENSED_BY")
 	@JsonIgnoreProperties("permissions")
 	private Actor licensedByActor;
 
-	@Relationship(type="DERIVES_FROM", direction = Relationship.Direction.INCOMING)
+	@Relationship(type="DERIVES_FROM")
 	@JsonIgnoreProperties("relatedPermissions")
 	private List<Document> laws;
 	

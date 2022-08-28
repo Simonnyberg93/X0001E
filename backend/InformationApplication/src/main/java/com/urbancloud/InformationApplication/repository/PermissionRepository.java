@@ -27,5 +27,8 @@ public interface PermissionRepository extends Neo4jRepository<Permission, Long> 
 
 	@Query("MATCH (a:Actor) WHERE id(a)=$actorId MATCH (a)-[:LICENSED_BY]-(b) RETURN b;")
 	List<Permission> fetchPermissionsByLicensedByRelation(@Param("actorId") Long actorId);
+
+	@Query("MATCH (a:Area) WHERE id(a)=$areaId MATCH (a)-[:RELATES_TO]-(d:Document) RETURN d LIMIT 5;")
+	List<Permission> fetchByRelatesTo(@Param("areaId") Long areaIdd);
 	
 }

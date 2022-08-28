@@ -1,6 +1,5 @@
 package com.urbancloud.InformationApplication.Relationships;
 
-import java.util.List;
 
 import org.springframework.data.neo4j.core.schema.RelationshipId;
 import org.springframework.data.neo4j.core.schema.RelationshipProperties;
@@ -14,18 +13,12 @@ public class ActiveIn {
 	@RelationshipId
 	private Long id;
 	
-	private final List<String> activeIn;
-	
 	@TargetNode
 	private final Actor actor;
 	
-	public ActiveIn(Actor actor, List<String> activeIn) {
+	public ActiveIn(Actor actor) {
 		this.actor = actor;
-		this.activeIn = activeIn;
 	}
 	
-	public List<String> getActiveIn(){
-		return activeIn;
-	}
 
 }

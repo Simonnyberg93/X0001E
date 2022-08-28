@@ -7,19 +7,26 @@ import {
 } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
 import { AuthenticateService } from './services/authenticate.service';
+import { LoadingService } from './services/loading.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthIntercept implements HttpInterceptor {
-  constructor(private authInject: Injector) {}
+  private totalRequests: number = 0;
+  constructor(
+    private authInject: Injector,
+    private loadingService: LoadingService
+  ) {}
 
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    this.totalRequests++;
+    this.loadingService.setLoading(true);
     let authService = this.authInject.get(AuthenticateService);
     const newReq = req.clone({
       headers: new HttpHeaders()
@@ -27,6 +34,13 @@ export class AuthIntercept implements HttpInterceptor {
         .set('Access-Control-Allow-Origin', '*'),
     });
 
-    return next.handle(newReq);
+    return next.handle(newReq).pipe(
+      finalize(() => {
+        this.totalRequests--;
+        if (this.totalRequests == 0) {
+          this.loadingService.setLoading(false);
+        }
+      })
+    );
   }
 }

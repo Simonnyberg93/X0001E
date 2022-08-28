@@ -22,13 +22,10 @@ export class AreaPageComponent implements OnInit {
     siteUrl: '',
     relatedActors: [],
     includes: [],
-    relatedPermissions: [],
   };
 
   relatedPermissions: Array<PermissionDTO> = [];
   relatedAreasObj: Array<AreaDTO> = [];
-  actorsWithinArea: Array<ActorDTO> = [];
-  includesObjects: Array<DocumentDTO> = [];
 
   errorMessage: string = '';
   descriptionExpanded: boolean = false;
@@ -56,24 +53,6 @@ export class AreaPageComponent implements OnInit {
       this.dataService.fetchAreaById(this.areaId).subscribe({
         next: (value: AreaDTO) => {
           this.areaObj = value;
-          // fetchDocuments
-          this.dataService.fetchDocumentsByIncludeRelation(value.id).subscribe({
-            next: (value: Array<DocumentDTO>) => {
-              this.includesObjects = value;
-            },
-            error: (err) => {
-              console.error(err);
-            },
-          });
-          // fetchActors
-          this.dataService.fetchActorsByActiveInRelation(value.id).subscribe({
-            next: (value: Array<ActorDTO>) => {
-              this.actorsWithinArea = value;
-            },
-            error: (err) => {
-              console.error(err);
-            },
-          });
           // fetchPermissions
           this.dataService.fetchPermissionsByShortestPath(value.id).subscribe({
             next: (value: Array<PermissionDTO>) => {
@@ -83,7 +62,6 @@ export class AreaPageComponent implements OnInit {
               console.error(err);
             },
           });
-          this.relatedPermissions = value.relatedPermissions;
           // find relatedAreas with shortest path
           this.dataService.findRelatedAreas(this.areaObj.title).subscribe({
             next: (value: AreaDTO[]) => {

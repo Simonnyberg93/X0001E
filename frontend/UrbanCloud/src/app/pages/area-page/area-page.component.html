@@ -1,4 +1,5 @@
 <div class="body">
+  <app-loading-spinner></app-loading-spinner>
   <div class="content" fxLayout="row" fxLayout.xs="column">
     <div class="col-1" fxFlex="70%">
       <div class="wrapper-data">
@@ -20,7 +21,7 @@
               Läs mer här
             </button>
           </mat-card-content>
-          <mat-card-subtitle *ngIf="includesObjects.length > 0"
+          <mat-card-subtitle *ngIf="areaObj.includes.length > 0"
             >Innefattar</mat-card-subtitle
           >
           <mat-card-actions>
@@ -32,7 +33,7 @@
               fxLayoutGap="20px"
             >
               <div
-                *ngFor="let obj of includesObjects.slice(0, viewIncludesIdx)"
+                *ngFor="let obj of areaObj.includes.slice(0, viewIncludesIdx)"
                 fxFlex="45%"
                 class="child child-1"
               >
@@ -43,7 +44,7 @@
               </div>
             </div>
             <div
-              *ngIf="!includesExpanded && includesObjects.length > 4"
+              *ngIf="!includesExpanded && areaObj.includes.length > 4"
               class="show-more-wrapper"
             >
               <button
@@ -55,7 +56,7 @@
               </button>
             </div>
             <div
-              *ngIf="includesExpanded && includesObjects.length > 4"
+              *ngIf="includesExpanded && areaObj.includes.length > 4"
               class="show-less-wrapper"
             >
               <button
@@ -75,7 +76,7 @@
         [actorSectionTitle]="'Aktörer inom ' + areaObj.title"
         [areaSectionTitle]="'Relaterade områden'"
         [relatedAreasObj]="relatedAreasObj"
-        [relatedActorsObj]="actorsWithinArea"
+        [relatedActorsObj]="areaObj.relatedActors"
       ></app-relation-side-bar>
     </div>
   </div>

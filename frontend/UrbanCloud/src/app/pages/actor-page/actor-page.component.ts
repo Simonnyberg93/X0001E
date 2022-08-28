@@ -28,9 +28,6 @@ export class ActorPageComponent implements OnInit {
   formatUrlPipe: AddHttpPipe = new AddHttpPipe();
 
   includesObjects: Array<DocumentDTO> = [];
-  relatedActorsObj: Array<ActorDTO> = [];
-  relatedAreasObj: Array<AreaDTO> = [];
-  licensesPermissions: Array<PermissionDTO> = [];
 
   includesExpanded: boolean = false;
   permissionsExpanded: boolean = false;
@@ -64,9 +61,6 @@ export class ActorPageComponent implements OnInit {
       permissions: [],
     };
     this.includesObjects = [];
-    this.relatedActorsObj = [];
-    this.relatedAreasObj = [];
-    this.licensesPermissions = [];
   }
 
   ngOnInit(): void {
@@ -75,39 +69,6 @@ export class ActorPageComponent implements OnInit {
       this.dataService.fetchActorById(this.actorId).subscribe({
         next: (value) => {
           this.actorObj = value;
-          // fetchRelatedActors
-          this.dataService
-            .fetchActorsByRelatedToRelation(this.actorObj.id)
-            .subscribe({
-              next: (value: Array<ActorDTO>) => {
-                this.relatedActorsObj = value;
-              },
-              error: (err) => {
-                console.error(err);
-              },
-            });
-          // fetchRelatedAreas
-          this.dataService
-            .fetchAreasByActiveInRelation(this.actorObj.id)
-            .subscribe({
-              next: (value: Array<AreaDTO>) => {
-                this.relatedAreasObj = value;
-              },
-              error: (err) => {
-                console.error(err);
-              },
-            });
-          // fetch permissions by lisenced_by relation
-          this.dataService
-            .fetchPermissionsFromLicensedByRelation(this.actorObj.id)
-            .subscribe({
-              next: (value: Array<PermissionDTO>) => {
-                this.licensesPermissions = value;
-              },
-              error: (err) => {
-                console.error(err);
-              },
-            });
           // fetch documents from the Actor
           this.dataService
             .fetchDocumentsByActorTitle(this.actorObj.title)

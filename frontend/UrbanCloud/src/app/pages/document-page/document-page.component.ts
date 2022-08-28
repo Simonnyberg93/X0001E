@@ -16,7 +16,6 @@ export class DocumentPageComponent implements OnInit {
   formatUrlPipe: AddHttpPipe = new AddHttpPipe();
 
   errorMessage: string = '';
-  relatedAreas: Array<AreaDTO> = [];
   relatedActors: Array<ActorDTO> = [];
 
   documentId: string = '';
@@ -75,13 +74,6 @@ export class DocumentPageComponent implements OnInit {
       this.dataService.fetchActorsByShortestPath(this.documentId).subscribe({
         next: (value: Array<ActorDTO>) => {
           this.relatedActors = value;
-        },
-        error: (err) => console.error(err),
-      });
-      //fetch related areas (shortestpath)
-      this.dataService.fetchAreasByShortestPath(this.documentId).subscribe({
-        next: (value: Array<AreaDTO>) => {
-          this.relatedAreas = value;
         },
         error: (err) => console.error(err),
       });

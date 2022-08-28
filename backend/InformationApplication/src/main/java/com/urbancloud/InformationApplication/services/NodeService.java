@@ -2,20 +2,25 @@ package com.urbancloud.InformationApplication.services;
 
 import java.util.List;
 
+import com.urbancloud.InformationApplication.exceptions.ActorNotFoundException;
+import com.urbancloud.InformationApplication.exceptions.AreaNotFoundException;
+import com.urbancloud.InformationApplication.exceptions.DocumentNotFoundException;
+import com.urbancloud.InformationApplication.exceptions.PermissionNotFoundException;
 import com.urbancloud.InformationApplication.models.Actor;
+import com.urbancloud.InformationApplication.models.ActorDTO;
 import com.urbancloud.InformationApplication.models.Area;
 import com.urbancloud.InformationApplication.models.Permission;
 import com.urbancloud.InformationApplication.models.Document;
 
 public interface NodeService {
 	
-	public Actor fetchActorById(Long id) throws Exception;
+	public Actor fetchActorById(Long id) throws ActorNotFoundException;
 	
-	public Area fetchAreaById(Long id) throws Exception;
+	public Area fetchAreaById(Long id) throws AreaNotFoundException;
 	
-	public Permission fetchPermissionById(Long id) throws Exception;
+	public Permission fetchPermissionById(Long id) throws PermissionNotFoundException;
 	
-	public Document fetchDocumentById(Long id) throws Exception;
+	public Document fetchDocumentById(Long id) throws DocumentNotFoundException;
 
 	public List<Actor> fetchAllActors() throws Exception;
 	
@@ -59,24 +64,16 @@ public interface NodeService {
 
 	public List<Document> findMultipleDocumentsByTitle(List<String> listOfTitles) throws Exception;
 
-	public List<Actor> fetchActorsByRelationToArea(Long areaId) throws Exception;
-
 	public List<Document> fetchDocumentsByRelationToArea(Long areaId) throws Exception;
 
 	public List<Permission> fetchPermissionsByShortestPathToArea(Long areaId) throws Exception;
-
-	public List<Actor> fetchActorsByRelatedToRelation(Long actorId) throws Exception;
-
-	public List<Area> fetchAreasByActiveInRelation(Long actorId) throws Exception;
-
-	public List<Permission> fetchPermissionsByLicensedByRelation(Long actorId) throws Exception;
 
 	public List<Area> fetchAreasByShortestPathToPermission(Long permissionId) throws Exception;
 
 	public List<Actor> fetchActorsByShortestPathToPermission(Long permissionId) throws Exception;
 
-	public Actor fetchActorByLicensedByRelation(Long permissionId) throws Exception;
+	public ActorDTO fetchActorCUSTOM(Long id);
 
-	public List<Document> fetchDocumentsByDerivesFromRelation(Long permissionId) throws Exception;
-	
+
+
 }

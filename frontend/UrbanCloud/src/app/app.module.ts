@@ -57,6 +57,7 @@ import { DocumentPageComponent } from './pages/document-page/document-page.compo
 import { PermissionPageComponent } from './pages/permission-page/permission-page.component';
 import { AddHttpPipe } from './utils/add-http.pipe';
 import { RelationSideBarComponent } from './components/relation-side-bar/relation-side-bar.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { RelationSideBarComponent } from './components/relation-side-bar/relatio
     PermissionPageComponent,
     AddHttpPipe,
     RelationSideBarComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
