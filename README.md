@@ -17,7 +17,7 @@ This project was a part of a master thesis project at Luleå university of techn
 
 ## Getting Started
 
-You have two options when running the application locally, either with the use of docker containers or not. In option 1 the docker setup is explained and option 2 without docker. Option 1 is highly recommended as it requires a lot less configurations.
+You have two options when running the application locally, either by using docker containers or not. In option 1 the docker setup is explained and option 2 without docker. Option 1 is highly recommended as it requires a lot less configurations.
 
 ## Option 1 - Docker
 
