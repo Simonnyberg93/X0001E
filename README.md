@@ -51,7 +51,7 @@ CREATE FULLTEXT INDEX permissionSearch IF NOT EXISTS FOR (n:Permission) ON EACH 
 ```
 
 
-5. Start the frontend application, Open a new terminal, go to `/frontend/urbancloud`. Run commands:
+5. (`Soon as docker container aswell`) Start the frontend application, Open a new terminal, go to `/frontend/urbancloud`. Run commands:
 
 ```
 npm install
@@ -60,7 +60,7 @@ npm run start
 
 6. The application should now be up and running on `http://localhost:4200`
 
-## Option 2 - No docker
+## Option 2 - No docker TODO: this guide is not complete
 
 Requirements:
 
