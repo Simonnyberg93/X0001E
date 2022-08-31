@@ -40,14 +40,18 @@ docker-compose up
 
 3. Wait a few minutes to let all services start and for the database to be loaded.
 
-4. Install search indexes for database: In your browser go to `http://localhost:7474/browser`. Run the commmand:
+4. Install search indexes for database: In your browser go to `http://localhost:7474/browser`. Run the commmands:
 
 ```cypher
-CALL apoc.cypher.runSchemaFile("file:///load-indexes.cypher");
+CREATE FULLTEXT INDEX titlesAndDescriptions IF NOT EXISTS FOR (n:Actor|Area|Document|Permission) ON EACH [n.title, n.description];
+CREATE FULLTEXT INDEX actorSearch IF NOT EXISTS FOR (n:Actor) ON EACH [n.title, n.description];
+CREATE FULLTEXT INDEX areaSearch IF NOT EXISTS FOR (n:Area) ON EACH [n.title, n.description];
+CREATE FULLTEXT INDEX documentSearch IF NOT EXISTS FOR (n:Document) ON EACH [n.title, n.description];
+CREATE FULLTEXT INDEX permissionSearch IF NOT EXISTS FOR (n:Permission) ON EACH [n.title, n.description];
 ```
 
 
-5. Start the frontend application, go to `/frontend/urbancloud`. Run commands:
+5. Start the frontend application, Open a new terminal, go to `/frontend/urbancloud`. Run commands:
 
 ```
 npm install
@@ -71,7 +75,7 @@ Requirements:
 4. Go to `/backend/UserApplication/src/main/resources/application.properties` and `/backend/InformationApplication/src/main/resources/application.properties`. Make sure the username and passwords matches your databases.
 5. In your favourite Java IDE, start InformationApplication and UserApplication.
 6. Go to `/frontend/urbancloud`.
-7. Enter commands into cmd:
+7. Open terminal and enter commands:
 
 ```
 npm install
