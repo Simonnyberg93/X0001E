@@ -25,12 +25,12 @@
           >
             Besök aktörens hemsida
           </button>
-          <mat-card-subtitle
+          <!-- <mat-card-subtitle
             *ngIf="
               includesObjects.length > 0 || actorObj.permissions.length > 0
             "
             >Från {{ actorObj.title }}</mat-card-subtitle
-          >
+          > -->
           <mat-card-subtitle *ngIf="actorObj.permissions.length > 0"
             >{{ actorObj.title }} ger ut licenser till följande
             tillstånd</mat-card-subtitle

@@ -11,8 +11,8 @@ import com.urbancloud.InformationApplication.models.Area;
 @Repository
 public interface AreaRepository extends Neo4jRepository<Area, Long> {
 	
-	@Query("MATCH (a:Area) WHERE id(a) = $areaId RETURN a")
-	Area fetchById(@Param("areaId") Long areaId);
+//	@Query("MATCH (a:Area) WHERE id(a) = $areaId RETURN a")
+//	Area fetchById(@Param("areaId") Long areaId);
 
 	@Query("MATCH(area:Area) WHERE area.title <> 'notEq' RETURN area")
 	List<Area> fetchAll();

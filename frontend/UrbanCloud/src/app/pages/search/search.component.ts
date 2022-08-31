@@ -4,8 +4,8 @@ import { AreaDTO } from 'src/app/models/AreaDTO';
 import { DocumentDTO } from 'src/app/models/DocumentDTO';
 import { UserDTO } from 'src/app/models/UserDTO';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
-import { DataService } from 'src/app/services/data.service';
 import { RouteService } from 'src/app/services/route.service';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -26,7 +26,7 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private routeService: RouteService,
-    private dataService: DataService,
+    private searchService: SearchService,
     private authService: AuthenticateService
   ) {}
 
@@ -38,7 +38,7 @@ export class SearchComponent implements OnInit {
         next: (value: UserDTO) => {
           let user = value;
           if (user.roles && user.roles.length > 0) {
-            this.dataService
+            this.searchService
               .fetchActorsByTitles(user.roles.map((role) => role.roleName))
               .subscribe({
                 next: (value: Array<ActorDTO>) => {
@@ -50,7 +50,7 @@ export class SearchComponent implements OnInit {
               });
           }
           if (user.areasOfInterests && user.areasOfInterests.length > 0) {
-            this.dataService
+            this.searchService
               .fetchAreasByTitles(
                 user.areasOfInterests.map((area) => area.areaName)
               )
@@ -64,7 +64,7 @@ export class SearchComponent implements OnInit {
               });
           }
           if (user.topicsOfInterests && user.topicsOfInterests.length > 0) {
-            this.dataService
+            this.searchService
               .fetchDocumentsByTitles(
                 user.topicsOfInterests.map((document) => document.topicName)
               )

@@ -9,7 +9,6 @@ import org.springframework.data.neo4j.repository.query.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import com.urbancloud.InformationApplication.models.Actor;
-import com.urbancloud.InformationApplication.models.ActorDTO;
 
 // MATCH (actor)-[:ACTIVE_IN]-(area) , area AS relatedAreas
 
@@ -17,8 +16,7 @@ import com.urbancloud.InformationApplication.models.ActorDTO;
 @Repository
 public interface ActorRepository extends Neo4jRepository<Actor, Long> {
 	
-	@Query("MATCH (actor:Actor)-[]-(n) WHERE id(actor)=1 RETURN actor, n;")
-	ActorDTO custom(@Param("actorId") Long actorId);
+
 	
 //	@Override
 //	@Query("MATCH (a:Actor) WHERE id(a)=$actorId RETURN a;")
@@ -59,6 +57,9 @@ public interface ActorRepository extends Neo4jRepository<Actor, Long> {
 
 	@Query("MATCH (p:Permission) WHERE id(p)=$permissionId MATCH (p)-[:LICENSED_BY]-(a) RETURN a;")
 	Actor fetchByLicensedByRelationToPermission(@Param("permissionId") Long permissionId);
+
+	@Query("MATCH (n) WHERE id(n)=$id SET n.validUrl=$validUrl RETURN n.title;")
+	Optional<Object> updateValidUrlAttribute(@Param("id") Long id, @Param("validUrl") boolean validUrl);
 
 
 	

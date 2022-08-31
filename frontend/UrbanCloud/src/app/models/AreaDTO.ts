@@ -1,6 +1,5 @@
 import { ActorDTO } from './ActorDTO';
 import { DocumentDTO } from './DocumentDTO';
-import { PermissionDTO } from './PermissionDTO';
 
 export class AreaDTO {
   id: number;

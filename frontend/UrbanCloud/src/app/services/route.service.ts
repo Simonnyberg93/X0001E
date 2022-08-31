@@ -60,6 +60,10 @@ export class RouteService {
     this.router.navigate(['adminstart']);
   }
 
+  openErrorOverview() {
+    this.router.navigate(['adminstart/erroroverview']);
+  }
+
   openAreaPage(areaId: string) {
     this.router.navigate(['dashboard/area', areaId]);
   }

@@ -7,7 +7,6 @@ import com.urbancloud.InformationApplication.exceptions.AreaNotFoundException;
 import com.urbancloud.InformationApplication.exceptions.DocumentNotFoundException;
 import com.urbancloud.InformationApplication.exceptions.PermissionNotFoundException;
 import com.urbancloud.InformationApplication.models.Actor;
-import com.urbancloud.InformationApplication.models.ActorDTO;
 import com.urbancloud.InformationApplication.models.Area;
 import com.urbancloud.InformationApplication.models.Permission;
 import com.urbancloud.InformationApplication.models.Document;
@@ -72,8 +71,7 @@ public interface NodeService {
 
 	public List<Actor> fetchActorsByShortestPathToPermission(Long permissionId) throws Exception;
 
-	public ActorDTO fetchActorCUSTOM(Long id);
-
+	public boolean updateValidUrl(Long id, boolean validUrl);
 
 
 }

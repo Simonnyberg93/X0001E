@@ -3,7 +3,7 @@ import { UntypedFormControl, NgForm } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 import { startWith, map } from 'rxjs/operators';
 import { Output, EventEmitter } from '@angular/core';
-import { DataService } from 'src/app/services/data.service';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-searchbar',
@@ -17,8 +17,8 @@ export class SearchbarComponent implements OnInit {
   words: string[] = []; // retrieve from backend
   filteredSearchwords: Observable<string[]>;
 
-  constructor(private dataService: DataService) {
-    this.dataService.fetchMostSearchedWords().subscribe({
+  constructor(private searchService: SearchService) {
+    this.searchService.fetchMostSearchedWords().subscribe({
       next: (value: string[]) => {
         this.words = value;
       },

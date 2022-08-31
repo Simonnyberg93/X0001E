@@ -58,6 +58,11 @@ import { PermissionPageComponent } from './pages/permission-page/permission-page
 import { AddHttpPipe } from './utils/add-http.pipe';
 import { RelationSideBarComponent } from './components/relation-side-bar/relation-side-bar.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { AdminErrorOverviewPageComponent } from './pages/admin-error-overview-page/admin-error-overview-page.component';
+import { FaultyObjectsTableComponent } from './components/faulty-objects-table/faulty-objects-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -88,6 +93,8 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     AddHttpPipe,
     RelationSideBarComponent,
     LoadingSpinnerComponent,
+    AdminErrorOverviewPageComponent,
+    FaultyObjectsTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -111,6 +118,9 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     MatDividerModule,
     MatListModule,
     MatExpansionModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthIntercept, multi: true },

@@ -1,8 +1,10 @@
 package com.urbancloud.InformationApplication.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +25,9 @@ import com.urbancloud.InformationApplication.models.Actor;
 import com.urbancloud.InformationApplication.models.ActorDTO;
 import com.urbancloud.InformationApplication.models.Area;
 import com.urbancloud.InformationApplication.models.Permission;
+import com.urbancloud.InformationApplication.models.PermissionDTO;
 import com.urbancloud.InformationApplication.models.Document;
+import com.urbancloud.InformationApplication.models.DocumentDTO;
 import com.urbancloud.InformationApplication.services.NodeService;
 
 @CrossOrigin
@@ -33,16 +38,11 @@ public class NodeController {
 	@Autowired
 	NodeService nodeService;
 	
-	@GetMapping("/fetch/custom/{id}")
-	public ResponseEntity<?> fetchCustom(@PathVariable(value="id") Long id){
-		ActorDTO result = this.nodeService.fetchActorCUSTOM(id);
-		return new ResponseEntity<ActorDTO>(result, HttpStatus.OK);
-	}
-	
 	@GetMapping("/fetch/actor/byid/{id}")
 	public ResponseEntity<?> fetchActorById(@PathVariable(value = "id") Long id) throws ActorNotFoundException { 
-		Actor result = this.nodeService.fetchActorById(id);
-		return new ResponseEntity<Actor>(result, HttpStatus.OK);
+		Actor result = nodeService.fetchActorById(id);
+		ActorDTO dto = new ActorDTO(result);
+		return new ResponseEntity<ActorDTO>(dto, HttpStatus.OK);
 	}
 	
 	@GetMapping("/fetch/area/byid/{id}")
@@ -54,13 +54,15 @@ public class NodeController {
 	@GetMapping("/fetch/document/byid/{id}")
 	public ResponseEntity<?> fetchDocumentById(@PathVariable(value = "id") Long id) throws DocumentNotFoundException { 
 		Document result = this.nodeService.fetchDocumentById(id);
-		return new ResponseEntity<Document>(result, HttpStatus.OK);
+		DocumentDTO dto = new DocumentDTO(result);
+		return new ResponseEntity<DocumentDTO>(dto, HttpStatus.OK);
 	}
 	
 	@GetMapping("fetch/permission/byid/{id}")
 	public ResponseEntity<?> fetchPermissionById(@PathVariable(value = "id") Long id) throws PermissionNotFoundException {
 		Permission result = this.nodeService.fetchPermissionById(id);
-		return new ResponseEntity<Permission>(result, HttpStatus.OK);
+		PermissionDTO dto = new PermissionDTO(result);
+		return new ResponseEntity<PermissionDTO>(dto, HttpStatus.OK);
 	}
 	
 	@GetMapping("/fetch/documents/by/include/{areaId}")
@@ -313,5 +315,16 @@ public class NodeController {
 			return new ResponseEntity<String>("Success", HttpStatus.OK);
 		}
 		return new ResponseEntity<String>("Fail", HttpStatus.CONFLICT);
+	}
+	
+	@GetMapping("/update/validurl/{nodeId}/{validUrl}")
+	public ResponseEntity<?> updateNode(@PathVariable(value = "nodeId") Long id, @PathVariable(value = "validUrl") boolean validUrl){
+		boolean success = this.nodeService.updateValidUrl(id, validUrl);
+		if (success) {
+			System.out.println("SUCCESS");
+			return new ResponseEntity<Object>("Url status is set to: "+validUrl+", for node with id: "+id+".", HttpStatus.OK);
+		}
+		System.out.println("FAIL");
+		return new ResponseEntity<Object>("Failed to set url status to: "+validUrl+", for node with id: "+id+".", HttpStatus.CONFLICT);
 	}
 }

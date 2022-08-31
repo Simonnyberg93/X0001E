@@ -5,6 +5,8 @@ import { Area } from 'src/app/models/Area';
 import { AreaDTO } from 'src/app/models/AreaDTO';
 import { DocumentDTO } from 'src/app/models/DocumentDTO';
 import { DataService } from 'src/app/services/data.service';
+import { SearchService } from 'src/app/services/search.service';
+import { UrlValidatorService } from 'src/app/services/url-validator.service';
 import { AddHttpPipe } from 'src/app/utils/add-http.pipe';
 
 @Component({
@@ -42,6 +44,8 @@ export class DocumentPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
+    private searchService: SearchService,
+    private validateUrlService: UrlValidatorService,
     private router: Router
   ) {
     // force route reload whenever params change;
@@ -59,7 +63,7 @@ export class DocumentPageComponent implements OnInit {
         next: (value: DocumentDTO) => {
           this.documentObj = value;
           //fetch actor by source
-          this.dataService
+          this.searchService
             .fetchActorsByTitles([this.documentObj.source])
             .subscribe({
               next: (value: Array<ActorDTO>) => {
@@ -83,9 +87,21 @@ export class DocumentPageComponent implements OnInit {
   }
 
   openSource() {
-    window.open(
-      this.formatUrlPipe.transform(this.documentObj.siteUrl),
-      '_blank'
-    );
+    const url: string = this.formatUrlPipe.transform(this.documentObj.siteUrl);
+    this.validateUrlService
+      .validateUrl(url, this.documentObj.id)
+      .then((urlIsValid: boolean) => {
+        console.log(`Then: ${urlIsValid}`);
+        if (urlIsValid) {
+          window.open(url, '_blank');
+        } else {
+          alert(
+            `Ops, you found a broken URL. A notice has been sent to administrators.`
+          );
+        }
+      })
+      .catch((reason) => {
+        console.log(reason);
+      });
   }
 }

@@ -8,6 +8,8 @@ import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.urbancloud.InformationApplication.Relationships.DerivesFrom;
+import com.urbancloud.InformationApplication.Relationships.LicensedBy;
 
 @Node
 public class Permission {
@@ -18,13 +20,13 @@ public class Permission {
 	private String title;
 	private String description;
 					  
-	@Relationship(type="LICENSED_BY")
-	@JsonIgnoreProperties("permissions")
-	private Actor licensedByActor;
+	@Relationship(type="LICENSED_BY", direction = Relationship.Direction.INCOMING)
+	@JsonIgnoreProperties("id")
+	private LicensedBy licensedByActor;
 
-	@Relationship(type="DERIVES_FROM")
-	@JsonIgnoreProperties("relatedPermissions")
-	private List<Document> laws;
+	@Relationship(type="DERIVES_FROM", direction = Relationship.Direction.INCOMING)
+	@JsonIgnoreProperties("id")
+	private List<DerivesFrom> laws;
 	
 	public Permission() { }
 
@@ -52,20 +54,21 @@ public class Permission {
 		this.description = description;
 	}
 
-	public Actor getLicensedByActor() {
+	public LicensedBy getLicensedByActor() {
 		return licensedByActor;
 	}
 
-	public void setLicensedByActor(Actor licensedByActor) {
+	public void setLicensedByActor(LicensedBy licensedByActor) {
 		this.licensedByActor = licensedByActor;
 	}
 
-	public List<Document> getLaws() {
+	public List<DerivesFrom> getLaws() {
 		return laws;
 	}
 
-	public void setLaws(List<Document> laws) {
+	public void setLaws(List<DerivesFrom> laws) {
 		this.laws = laws;
 	}
+
 	
 }

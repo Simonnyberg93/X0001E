@@ -7,7 +7,7 @@ export class AddHttpPipe implements PipeTransform {
   transform(url: string): string {
     let newUrl: string = '';
     if (!/^http[s]?:\/\//.test(url)) {
-      newUrl += 'http://';
+      newUrl += 'https://';
     }
     return (newUrl += url);
   }

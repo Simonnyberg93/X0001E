@@ -1,40 +1,39 @@
 package com.urbancloud.InformationApplication.Relationships;
 
-
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
-
-
 import org.springframework.data.neo4j.core.schema.RelationshipProperties;
 import org.springframework.data.neo4j.core.schema.TargetNode;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import com.urbancloud.InformationApplication.models.Area;
+import com.urbancloud.InformationApplication.models.Actor;
 
 @RelationshipProperties
-public class ActiveIn {
-	
-	@Id 
+public class LicensedBy {
+
+	@Id
 	@GeneratedValue
 	private Long id;
 	
 	@TargetNode
-	@JsonIgnoreProperties({"relatedActors", "includes"})
-	private final Area area;
+	@JsonIgnoreProperties({"permissions", "relatedActorsInc", "relatedActorsOut", "relatedAreas"})
+	private final Actor actor;
 	
-	public ActiveIn(Area area) {
-		this.area = area;
+	public LicensedBy(Actor actor) {
+		this.actor = actor;
 	}
-	
-	public Area getArea() {
-		return this.area;
-	}
-	
+
 	public Long getId() {
-		return this.id;
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Actor getActor() {
+		return actor;
 	}
 	
-
-
+	
 }

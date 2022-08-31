@@ -8,9 +8,11 @@ import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.urbancloud.InformationApplication.Relationships.ActiveIn;
+import com.urbancloud.InformationApplication.Relationships.RelatedTo;
 
 @Node
-public class Actor {
+public class Actor  {
 
 	@Id
 	@GeneratedValue
@@ -19,14 +21,19 @@ public class Actor {
 	private String description;
 	private String imageUrl;
 	private String siteUrl;
+	private boolean validUrl = true;
 	
-	@Relationship(type="ACTIVE_IN")
-	@JsonIgnoreProperties({"relatedActors"})
-	private List<Area> relatedAreas;
+	@Relationship(type="ACTIVE_IN", direction = Relationship.Direction.INCOMING)
+	@JsonIgnoreProperties({"id"})
+	private List<ActiveIn> relatedAreas;
 
-	@Relationship(type="RELATED_TO")
-	@JsonIgnoreProperties({"relatedActors", "relatedAreas", "permissions"})
-	private List<Actor> relatedActors;
+	@Relationship(type="RELATED_TO", direction = Relationship.Direction.INCOMING)
+	@JsonIgnoreProperties({"id"})
+	private List<RelatedTo> relatedActorsInc;
+	
+	@Relationship(type="RELATED_TO", direction = Relationship.Direction.OUTGOING)
+	@JsonIgnoreProperties({"id"})
+	private List<RelatedTo> relatedActorsOut;
 	
 	@Relationship(type="LICENSED_BY", direction = Relationship.Direction.OUTGOING)
 	@JsonIgnoreProperties({"licensedByActor", "laws"})
@@ -34,6 +41,22 @@ public class Actor {
 
 	public Actor() { }
 
+	public List<RelatedTo> getRelatedActorsInc() {
+		return relatedActorsInc;
+	}
+
+	public void setRelatedActorsInc(List<RelatedTo> relatedActorsInc) {
+		this.relatedActorsInc = relatedActorsInc;
+	}
+
+	public List<RelatedTo> getRelatedActorsOut() {
+		return relatedActorsOut;
+	}
+
+	public void setRelatedActorsOut(List<RelatedTo> relatedActorsOut) {
+		this.relatedActorsOut = relatedActorsOut;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -66,19 +89,12 @@ public class Actor {
 		this.imageUrl = imageUrl;
 	}
 
-	public String getSourceUrl() {
-		return siteUrl;
-	}
 
-	public void setSourceUrl(String sourceUrl) {
-		this.siteUrl = sourceUrl;
-	}
-
-	public List<Area> getRelatedAreas() {
+	public List<ActiveIn> getRelatedAreas() {
 		return relatedAreas;
 	}
 
-	public void setRelatedAreas(List<Area> relatedAreas) {
+	public void setRelatedAreas(List<ActiveIn> relatedAreas) {
 		this.relatedAreas = relatedAreas;
 	}
 
@@ -92,16 +108,6 @@ public class Actor {
 		this.siteUrl = siteUrl;
 	}
 
-
-	public List<Actor> getRelatedActors() {
-		return relatedActors;
-	}
-
-
-	public void setRelatedActors(List<Actor> relatedActors) {
-		this.relatedActors = relatedActors;
-	}
-
 	public List<Permission> getPermissions() {
 		return permissions;
 	}
@@ -110,11 +116,18 @@ public class Actor {
 		this.permissions = permissions;
 	}
 	
+	public boolean isValidUrl() {
+		return validUrl;
+	}
+
+	public void setValidUrl(boolean validUrl) {
+		this.validUrl = validUrl;
+	}
+
 	@Override
 	public String toString() {
 		return "Actor [id=" + id + ", title=" + title + ", description=" + description + ", imageUrl=" + imageUrl
 				+ ", siteUrl=" + siteUrl + "]";
 	}
 
-	
 }

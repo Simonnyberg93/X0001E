@@ -1,4 +1,4 @@
-<div class="section topresults">
+<div class="section" *ngIf="documents.length > 0">
   <h3>{{ documentSectionHeader }}</h3>
   <div
     class="top-container"
@@ -33,7 +33,7 @@
   </div>
 </div>
 <!-- Actors -->
-<div class="section actors">
+<div class="section actors" *ngIf="actors.length > 0">
   <h3>{{ actorSectionHeader }}</h3>
   <div
     class="top-container"
@@ -62,7 +62,7 @@
   </div>
 </div>
 <!-- Areas -->
-<div class="section areas">
+<div class="section areas" *ngIf="areas.length > 0">
   <h3>{{ areaSectionHeader }}</h3>
   <div
     class="top-container"
@@ -91,7 +91,10 @@
   </div>
 </div>
 <!-- Permissions -->
-<div class="section-permissions" *ngIf="!notSearchResult">
+<div
+  class="section section-permissions"
+  *ngIf="!notSearchResult && permissions.length > 0"
+>
   <h3>Tillstånd</h3>
   <div
     class="top-container"

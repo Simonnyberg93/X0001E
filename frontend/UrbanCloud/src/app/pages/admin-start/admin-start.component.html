@@ -9,13 +9,14 @@
             <p style="letter-spacing: 0.2em">MANAGE DATABASE</p>
           </a>
         </mat-card-content>
-        <a [routerLink]="['/dashboard/area', 'test']">AreaPage</a>
-        <a [routerLink]="['/dashboard/actor', 'test']">ActorPage</a>
       </mat-card>
 
       <mat-card class="admin-dashboard-card">
         <mat-card-content>
-          <a [routerLink]="['']" routerLinkActive="router-link-active">
+          <a
+            [routerLink]="['/erroroverview']"
+            routerLinkActive="router-link-active"
+          >
             <mat-icon>bug_report</mat-icon>
             <p style="letter-spacing: 0.2em">VIEW ERRORS</p>
           </a>
@@ -41,4 +42,5 @@
       </mat-card>
     </div>
   </section>
+  <router-outlet></router-outlet>
 </div>

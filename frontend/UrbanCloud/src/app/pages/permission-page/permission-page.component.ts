@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActorDTO } from 'src/app/models/ActorDTO';
 import { AreaDTO } from 'src/app/models/AreaDTO';
-import { DocumentDTO } from 'src/app/models/DocumentDTO';
 import { PermissionDTO } from 'src/app/models/PermissionDTO';
 import { DataService } from 'src/app/services/data.service';
 

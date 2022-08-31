@@ -80,21 +80,7 @@ public class RelationshipServiceImpl implements RelationshipService {
 
 	@Override
 	public void addPermissionToDocumentRelation(Long permissionId, Long documentId) throws Exception {
-		Optional<Permission> p = this.permRepo.findById(permissionId);
-		Optional<Document> d = this.documentRepo.findById(documentId);
-		if (p.isEmpty() || d.isEmpty()) {
-			throw new Exception("Cannot find nodes");
-		}
-		Permission perm = p.get();
-		Document doc = d.get();
-		List<Document> documents = perm.getLaws();
-		List<Permission> perms = doc.getRelatedPermissions();
-		documents.add(doc);
-		perms.add(perm);
-		perm.setLaws(documents);
-		doc.setRelatedPermissions(perms);
-		this.documentRepo.save(doc);
-		this.permRepo.save(perm);
+		
 	}
 
 }

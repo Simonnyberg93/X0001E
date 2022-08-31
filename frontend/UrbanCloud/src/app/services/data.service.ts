@@ -15,6 +15,12 @@ export class DataService {
 
   constructor(private httpcli: HttpClient) {}
 
+  fetchActorByTitle(actorTitle: string): Observable<ActorDTO> {
+    return this.httpcli.get<ActorDTO>(
+      `${this.backendUrl}/fetch/actor/bytitle/${actorTitle}`
+    );
+  }
+
   fetchAllActors(): Observable<Array<ActorDTO>> {
     return this.httpcli.get<Array<ActorDTO>>(
       `${this.backendUrl}/fetch/all/actors`
@@ -56,33 +62,6 @@ export class DataService {
   ): Observable<Array<DocumentDTO>> {
     return this.httpcli.get<Array<DocumentDTO>>(
       `${this.backendUrl}/fetch/documents/by/include/${areaId}`
-    );
-  }
-
-  fetchMostSearchedWords(): Observable<Array<string>> {
-    return this.httpcli.get<Array<string>>(
-      `${this.backendUrl}/search/fetch/mostsearchedwords`
-    );
-  }
-
-  fetchActorsByTitles(arg0: string[]): Observable<Array<ActorDTO>> {
-    return this.httpcli.post<Array<ActorDTO>>(
-      `${this.backendUrl}/fetch/actor/bytitles`,
-      arg0
-    );
-  }
-
-  fetchDocumentsByTitles(arg0: string[]): Observable<Array<DocumentDTO>> {
-    return this.httpcli.post<Array<DocumentDTO>>(
-      `${this.backendUrl}/fetch/documents/bytitles`,
-      arg0
-    );
-  }
-
-  fetchAreasByTitles(arg0: string[]): Observable<Array<AreaDTO>> {
-    return this.httpcli.post<Array<AreaDTO>>(
-      `${this.backendUrl}/fetch/area/bytitles`,
-      arg0
     );
   }
 

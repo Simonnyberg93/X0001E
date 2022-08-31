@@ -17,6 +17,7 @@ import { ActorPageComponent } from './pages/actor-page/actor-page.component';
 import { SearchResultPageComponent } from './pages/search-result-page/search-result-page.component';
 import { DocumentPageComponent } from './pages/document-page/document-page.component';
 import { PermissionPageComponent } from './pages/permission-page/permission-page.component';
+import { AdminErrorOverviewPageComponent } from './pages/admin-error-overview-page/admin-error-overview-page.component';
 
 const routes: Routes = [
   { path: 'frontpage', component: FrontPageComponent },
@@ -79,6 +80,11 @@ const routes: Routes = [
   {
     path: 'adminstart',
     component: AdminStartComponent,
+    canActivate: [AuthenticationGuard, RoleGuard],
+  },
+  {
+    path: 'erroroverview',
+    component: AdminErrorOverviewPageComponent,
     canActivate: [AuthenticationGuard, RoleGuard],
   },
   { path: '', redirectTo: 'frontpage', pathMatch: 'full' },

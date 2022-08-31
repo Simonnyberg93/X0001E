@@ -18,13 +18,14 @@ public class Area {
 	private String title;
 	private String description;
 	private String siteUrl;
+	private boolean validUrl;
 	
-	@Relationship(type="ACTIVE_IN")
-	@JsonIgnoreProperties("relatedAreas")
+	@Relationship(type="ACTIVE_IN", direction = Relationship.Direction.OUTGOING)
+	@JsonIgnoreProperties({"relatedAreas", "relatedActorsInc", "relatedActorsOut", "permissions"})
 	private List<Actor> relatedActors;
 	
-	@Relationship(type="INCLUDES")
-	@JsonIgnoreProperties("areas")
+	@Relationship(type="INCLUDES", direction = Relationship.Direction.OUTGOING)
+	@JsonIgnoreProperties({"areas", "relatedPermissions"})
 	private List<Document> includes;
 	
 	public Area()  { }
@@ -76,4 +77,14 @@ public class Area {
 	public void setIncludes(List<Document> includes) {
 		this.includes = includes;
 	}
+
+	public boolean isValidUrl() {
+		return validUrl;
+	}
+
+	public void setValidUrl(boolean validUrl) {
+		this.validUrl = validUrl;
+	}
+	
+	
 }

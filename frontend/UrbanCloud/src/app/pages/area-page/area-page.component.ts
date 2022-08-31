@@ -6,6 +6,7 @@ import { AreaDTO } from 'src/app/models/AreaDTO';
 import { DocumentDTO } from 'src/app/models/DocumentDTO';
 import { PermissionDTO } from 'src/app/models/PermissionDTO';
 import { DataService } from 'src/app/services/data.service';
+import { UrlValidatorService } from 'src/app/services/url-validator.service';
 import { AddHttpPipe } from 'src/app/utils/add-http.pipe';
 
 @Component({
@@ -37,6 +38,7 @@ export class AreaPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
+    private validateUrlService: UrlValidatorService,
     private router: Router
   ) {
     // force route reload whenever params change;
@@ -82,7 +84,22 @@ export class AreaPageComponent implements OnInit {
   }
 
   openAreaSourcePage() {
-    window.open(this.formatUrlPipe.transform(this.areaObj.siteUrl), '_blank');
+    const url: string = this.formatUrlPipe.transform(this.areaObj.siteUrl);
+    this.validateUrlService
+      .validateUrl(url, this.areaObj.id)
+      .then((urlIsValid: boolean) => {
+        console.log(`Then: ${urlIsValid}`);
+        if (urlIsValid) {
+          window.open(url, '_blank');
+        } else {
+          alert(
+            `Ops, you found a broken URL. A notice has been sent to administrators.`
+          );
+        }
+      })
+      .catch((reason) => {
+        console.log(reason);
+      });
   }
 
   toggleViewMoreIncludeObj() {

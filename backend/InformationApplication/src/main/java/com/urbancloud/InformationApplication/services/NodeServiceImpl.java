@@ -11,7 +11,6 @@ import com.urbancloud.InformationApplication.exceptions.AreaNotFoundException;
 import com.urbancloud.InformationApplication.exceptions.DocumentNotFoundException;
 import com.urbancloud.InformationApplication.exceptions.PermissionNotFoundException;
 import com.urbancloud.InformationApplication.models.Actor;
-import com.urbancloud.InformationApplication.models.ActorDTO;
 import com.urbancloud.InformationApplication.models.Area;
 import com.urbancloud.InformationApplication.models.Permission;
 import com.urbancloud.InformationApplication.models.Document;
@@ -196,11 +195,9 @@ public class NodeServiceImpl implements NodeService {
 				throw new ActorNotFoundException("Actor with id: {"+id+"} was not found.");
 			}
 			Actor actor = result.get();
-//			actor.setRelatedAreas(this.areaRepo.fetchAreasByActiveInRelation(actor.getId()));
-//			actor.setRelatedActors(this.actorRepo.fetchByRelatedToRelation(id));
-//			actor.setPermissions(this.permRepo.fetchPermissionsByLicensedByRelation(id));
 			return actor;
 		} catch(Exception e) {
+			e.printStackTrace();
 			throw new ActorNotFoundException(e.getMessage());
 		}
 	}
@@ -208,10 +205,11 @@ public class NodeServiceImpl implements NodeService {
 	@Override
 	public Area fetchAreaById(Long id) throws AreaNotFoundException {
 		try {
-			Area result = this.areaRepo.fetchById(id);
-			result.setIncludes(this.documentRepo.fetchByIncludesRelation(id));
-			result.setRelatedActors(this.actorRepo.fetchByActiveInRelation(id));
-			return result;
+			Optional<Area> result = this.areaRepo.findById(id);
+			if (result.isEmpty()) {
+				throw new Exception("Could not find Area with id: {"+id+"}.");
+			}
+			return result.get();
 		} catch (Exception e) {
 			throw new AreaNotFoundException(e.getMessage());
 		}
@@ -222,8 +220,6 @@ public class NodeServiceImpl implements NodeService {
 		try {
 			Optional<Permission> result = this.permRepo.findById(id);
 			Permission permission = result.get();
-			permission.setLicensedByActor(this.actorRepo.fetchByLicensedByRelationToPermission(id));
-			permission.setLaws(this.documentRepo.fetchDocumentsByDerivesFromRelation(id));
 			return permission;
 		} catch (Exception e) {
 			throw new PermissionNotFoundException();
@@ -234,9 +230,10 @@ public class NodeServiceImpl implements NodeService {
 	public Document fetchDocumentById(Long id) throws DocumentNotFoundException {
 		try {
 			Optional<Document> result = this.documentRepo.findById(id);
-			Document document = result.get();
-			document.setAreas(this.areaRepo.fetchByInclude(id));
-			return document;
+			if (result.isEmpty()) {
+				throw new Exception("Could not find Document with id: {"+id+"}.");
+			}
+			return result.get();
 		} catch (Exception e) {
 			throw new DocumentNotFoundException(e.getMessage());
 		}
@@ -289,9 +286,12 @@ public class NodeServiceImpl implements NodeService {
 	}
 
 	@Override
-	public ActorDTO fetchActorCUSTOM(Long id) {
-		// TODO Auto-generated method stub
-		return this.actorRepo.custom(id);
+	public boolean updateValidUrl(Long id, boolean validUrl) {
+		Optional<Object> obj = this.actorRepo.updateValidUrlAttribute(id, validUrl);
+		if (obj.isEmpty()) {
+			return false;
+		}
+		return true;
 	}
 
 }
