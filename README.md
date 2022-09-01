@@ -24,7 +24,6 @@ You have two options when running the application locally, either by using docke
 Requirements:
 
 - Docker: [Docker - Get Started](https://www.docker.com/get-started/)
-- NodeJS - [NodeJS](https://nodejs.org/en/)
 
 1. clone the repo
 
@@ -32,8 +31,9 @@ Requirements:
 git clone https://github.com/Simonnyberg93/X0001E.git
 ```
 
-2. Start the docker images for the backend: move to `backend-docker-setup` folder, and open terminal.
-Enter:
+2. Start the docker images: move to `docker` folder, and open terminal.
+   Enter:
+
 ```
 docker-compose up
 ```
@@ -50,15 +50,7 @@ CREATE FULLTEXT INDEX documentSearch IF NOT EXISTS FOR (n:Document) ON EACH [n.t
 CREATE FULLTEXT INDEX permissionSearch IF NOT EXISTS FOR (n:Permission) ON EACH [n.title, n.description];
 ```
 
-
-5. (`Soon as docker container aswell`) Start the frontend application, Open a new terminal, go to `/frontend/urbancloud`. Run commands:
-
-```
-npm install
-npm run start
-```
-
-6. The application should now be up and running on `http://localhost:4200`
+5. The frontend application should now be up and running on `http://localhost:4200`. You can view the neo4j database from `http://localhost:4200`.
 
 ## Option 2 - No docker TODO: this guide is not complete
 
@@ -81,4 +73,5 @@ Requirements:
 npm install
 npm run start
 ```
+
 The application should now be up and running on `http://localhost:4200`

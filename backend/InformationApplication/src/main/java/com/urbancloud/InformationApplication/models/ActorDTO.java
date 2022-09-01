@@ -35,9 +35,20 @@ public class ActorDTO implements Serializable {
 		this.imageUrl = actorObj.getImageUrl();
 		this.siteUrl = actorObj.getSiteUrl();
 		this.permissions = actorObj.getPermissions();
+		if(this.permissions == null) {
+			this.permissions = new ArrayList<Permission>();
+		}
 		this.validUrl = actorObj.isValidUrl();
-		actorObj.getRelatedActorsInc().forEach(rel -> this.relatedActors.add(rel.getActor()));
-		actorObj.getRelatedActorsOut().forEach(rel -> this.relatedActors.add(rel.getActor()));
+		actorObj.getRelatedActorsInc()
+			.forEach(rel -> {
+				System.out.println("Relation: " + rel.tooString(actorObj.getTitle()));
+				this.relatedActors.add(rel.getActor());
+			});
+		actorObj.getRelatedActorsOut()
+			.forEach(rel -> {
+				this.relatedActors.add(rel.getActor());
+				System.out.println("Relation: " + rel.tooString(actorObj.getTitle()));
+			});
 		actorObj.getRelatedAreas().forEach(rel -> this.relatedAreas.add(rel.getArea()));
 	}
 

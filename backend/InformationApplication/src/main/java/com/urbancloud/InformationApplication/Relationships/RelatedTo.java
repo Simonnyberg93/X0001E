@@ -31,4 +31,8 @@ public class RelatedTo {
 	public Long getId() {
 		return this.id;
 	}
+	
+	public String tooString(String actorTitle) {
+		return String.format("(%s)-[:%s]->(%s)", actorTitle, "RELATED_TO", this.actor.getTitle());
+	}
 }

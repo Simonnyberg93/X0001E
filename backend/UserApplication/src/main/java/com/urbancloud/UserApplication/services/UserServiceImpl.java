@@ -132,10 +132,6 @@ public class UserServiceImpl implements UserService {
 			throw new UserNotFoundException();
 		}
 		Set<Topic> s = user.getTopicsOfInterests();
-		for (Topic t : s) {
-			System.out.println(">>" + t.getTopicName());
-		}
-		System.out.println("User: " + user);
 		return user;
 	}
 

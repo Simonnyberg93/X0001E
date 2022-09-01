@@ -71,6 +71,9 @@ export class ActorPageComponent implements OnInit {
       this.dataService.fetchActorById(this.actorId).subscribe({
         next: (value: any) => {
           this.actorObj = value;
+          if (!this.actorObj.permissions) {
+            this.actorObj.permissions = [];
+          }
           // fetch documents from the Actor
           this.dataService
             .fetchDocumentsByActorTitle(this.actorObj.title)

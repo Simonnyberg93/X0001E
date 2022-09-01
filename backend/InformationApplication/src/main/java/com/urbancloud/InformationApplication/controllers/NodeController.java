@@ -321,10 +321,8 @@ public class NodeController {
 	public ResponseEntity<?> updateNode(@PathVariable(value = "nodeId") Long id, @PathVariable(value = "validUrl") boolean validUrl){
 		boolean success = this.nodeService.updateValidUrl(id, validUrl);
 		if (success) {
-			System.out.println("SUCCESS");
 			return new ResponseEntity<Object>("Url status is set to: "+validUrl+", for node with id: "+id+".", HttpStatus.OK);
 		}
-		System.out.println("FAIL");
 		return new ResponseEntity<Object>("Failed to set url status to: "+validUrl+", for node with id: "+id+".", HttpStatus.CONFLICT);
 	}
 }

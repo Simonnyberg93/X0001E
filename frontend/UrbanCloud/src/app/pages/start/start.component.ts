@@ -41,34 +41,34 @@ export class StartComponent implements OnInit {
                   console.error(error);
                 },
               });
-          }
-          if (user.areasOfInterests && user.areasOfInterests.length > 0) {
-            this.searchService
-              .fetchAreasByTitles(
-                user.areasOfInterests.map((area) => area.areaName)
-              )
-              .subscribe({
-                next: (value: Array<AreaDTO>) => {
-                  this.intresstingAreas = value;
-                },
-                error: (error) => {
-                  console.error(error);
-                },
-              });
-          }
-          if (user.topicsOfInterests && user.topicsOfInterests.length > 0) {
-            this.searchService
-              .fetchDocumentsByTitles(
-                user.topicsOfInterests.map((document) => document.topicName)
-              )
-              .subscribe({
-                next: (value: Array<DocumentDTO>) => {
-                  this.intresstingDocuments = value;
-                },
-                error: (error) => {
-                  console.error(error);
-                },
-              });
+            if (user.areasOfInterests && user.areasOfInterests.length > 0) {
+              this.searchService
+                .fetchAreasByTitles(
+                  user.areasOfInterests.map((area) => area.areaName)
+                )
+                .subscribe({
+                  next: (value: Array<AreaDTO>) => {
+                    this.intresstingAreas = value;
+                  },
+                  error: (error) => {
+                    console.error(error);
+                  },
+                });
+            }
+            if (user.topicsOfInterests && user.topicsOfInterests.length > 0) {
+              this.searchService
+                .fetchDocumentsByTitles(
+                  user.topicsOfInterests.map((document) => document.topicName)
+                )
+                .subscribe({
+                  next: (value: Array<DocumentDTO>) => {
+                    this.intresstingDocuments = value;
+                  },
+                  error: (error) => {
+                    console.error(error);
+                  },
+                });
+            }
           }
         },
         error: (error) => {

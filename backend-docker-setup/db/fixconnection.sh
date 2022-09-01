@@ -1,6 +1,0 @@
-echo "Creating new user g..."
-mysql -uroot -p"password123" -e "CREATE USER 'g'@'%' IDENTIFIED BY 'password123';"
-echo "Granting privileges..."
-mysql -uroot -p"password123" -e "GRANT ALL PRIVILEGES ON *.* TO 'g'@'%';"
-mysql -uroot -p"password123" -e "FLUSH PRIVILEGES;"
-echo "All done."
