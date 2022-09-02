@@ -1,13 +1,11 @@
 package com.urbancloud.InformationApplication.services;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.urbancloud.InformationApplication.models.Document;
-import com.urbancloud.InformationApplication.models.Permission;
 import com.urbancloud.InformationApplication.repository.ActorRepository;
 import com.urbancloud.InformationApplication.repository.AreaRepository;
 import com.urbancloud.InformationApplication.repository.DocumentRepository;

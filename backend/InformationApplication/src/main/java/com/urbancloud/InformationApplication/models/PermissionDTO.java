@@ -14,6 +14,7 @@ public class PermissionDTO implements Serializable {
 	private Long id;
 	private String title;
 	private String description;
+	private String label = "Permission";
 					  
 	@JsonIgnoreProperties({"relatedActorsInc", "relatedActorsOut", "relatedAreas", "permissions"})
 	private Actor licensedByActor;
@@ -28,6 +29,20 @@ public class PermissionDTO implements Serializable {
 		this.licensedByActor = permission.getLicensedByActor().getActor();
 		permission.getLaws().forEach(rel -> this.laws.add(rel.getDocument()));
 	}
+	
+	
+
+	public String getLabel() {
+		return label;
+	}
+
+
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+
 
 	public Long getId() {
 		return id;

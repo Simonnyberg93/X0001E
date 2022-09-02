@@ -17,6 +17,7 @@ public class DocumentDTO implements Serializable{
 	private String description;
 	private String siteUrl;
 	private boolean validUrl;
+	private String label = "Document";
 	
 	@JsonIgnoreProperties({"includes", "relatedActors"})
 	private List<Area> areas = new ArrayList<Area>();
@@ -34,6 +35,32 @@ public class DocumentDTO implements Serializable{
 		this.validUrl = document.isValidUrl();
 		document.getAreas().forEach(rel -> this.areas.add(rel.getArea()));
 	}
+	
+	
+
+	public boolean isValidUrl() {
+		return validUrl;
+	}
+
+
+
+	public void setValidUrl(boolean validUrl) {
+		this.validUrl = validUrl;
+	}
+
+
+
+	public String getLabel() {
+		return label;
+	}
+
+
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+
 
 	public Long getId() {
 		return id;

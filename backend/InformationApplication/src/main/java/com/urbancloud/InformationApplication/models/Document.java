@@ -2,8 +2,6 @@ package com.urbancloud.InformationApplication.models;
 
 import java.util.List;
 
-import org.springframework.data.neo4j.core.schema.GeneratedValue;
-import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
@@ -11,14 +9,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.urbancloud.InformationApplication.Relationships.Includes;
 
 @Node
-public class Document {
+public class Document extends NodeDTO {
 	
-	@Id
-	@GeneratedValue
-	private Long id;
-	private String title;
+	private final String label = "Document";
+
 	private String source;
-	private String description;
 	private String siteUrl;
 	private boolean validUrl;
 	
@@ -36,25 +31,13 @@ public class Document {
 	public List<Includes> getAreas() {
 		return areas;
 	}
+	
+	public String getLabel() {
+		return label;
+	}
 
 	public void setAreas(List<Includes> areas) {
 		this.areas = areas;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
 	}
 
 	public String getSource() {
@@ -63,14 +46,6 @@ public class Document {
 
 	public void setSource(String source) {
 		this.source = source;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public String getSiteUrl() {

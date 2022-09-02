@@ -2,8 +2,6 @@ package com.urbancloud.InformationApplication.models;
 
 import java.util.List;
 
-import org.springframework.data.neo4j.core.schema.GeneratedValue;
-import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
@@ -12,13 +10,9 @@ import com.urbancloud.InformationApplication.Relationships.ActiveIn;
 import com.urbancloud.InformationApplication.Relationships.RelatedTo;
 
 @Node
-public class Actor  {
+public class Actor extends NodeDTO  {
 
-	@Id
-	@GeneratedValue
-	private Long id;
-	private String title;
-	private String description;
+	private final String label = "Actor";
 	private String imageUrl;
 	private String siteUrl;
 	private boolean validUrl = true;
@@ -55,30 +49,6 @@ public class Actor  {
 
 	public void setRelatedActorsOut(List<RelatedTo> relatedActorsOut) {
 		this.relatedActorsOut = relatedActorsOut;
-	}
-	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public String getImageUrl() {
@@ -123,11 +93,14 @@ public class Actor  {
 	public void setValidUrl(boolean validUrl) {
 		this.validUrl = validUrl;
 	}
+	
+	public String getLabel() {
+		return label;
+	}
 
 	@Override
 	public String toString() {
-		return "Actor [id=" + id + ", title=" + title + ", description=" + description + ", imageUrl=" + imageUrl
-				+ ", siteUrl=" + siteUrl + "]";
+		return "Actor [imageUrl=" + imageUrl + ", siteUrl=" + siteUrl + ", validUrl=" + validUrl + "]";
 	}
-
+	
 }

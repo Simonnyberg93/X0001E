@@ -5,6 +5,7 @@ import java.util.List;
 import com.urbancloud.InformationApplication.models.Actor;
 import com.urbancloud.InformationApplication.models.Area;
 import com.urbancloud.InformationApplication.models.Document;
+import com.urbancloud.InformationApplication.models.NodeDTO;
 import com.urbancloud.InformationApplication.models.Permission;
 
 public interface SearchService {
@@ -20,5 +21,9 @@ public interface SearchService {
 	public List<String> fetchMostSearchedWords() throws Exception;
 
 	void saveSearchWord(String searchStr);
+
+	public List<NodeDTO> fulltextSearch(String searchStr) throws Exception;
+
+	public List<NodeDTO> findNodesByTitles(List<String> searchStrings) throws Exception;
 	
 }

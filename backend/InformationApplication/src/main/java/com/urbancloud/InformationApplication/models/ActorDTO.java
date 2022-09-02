@@ -17,6 +17,7 @@ public class ActorDTO implements Serializable {
 	private String description;
 	private String imageUrl;
 	private String siteUrl;
+	private String label = "Actor";
 	private boolean validUrl;
 	
 	@JsonIgnoreProperties({"includes", "relatedActors"})
@@ -122,6 +123,16 @@ public class ActorDTO implements Serializable {
 
 	public void setValidUrl(boolean validUrl) {
 		this.validUrl = validUrl;
+	}
+	
+	
+
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
 	@Override

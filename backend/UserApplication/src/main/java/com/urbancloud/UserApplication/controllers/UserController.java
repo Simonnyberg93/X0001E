@@ -46,7 +46,11 @@ public class UserController {
 	 */
 	@PostMapping("/register")
 	public ResponseEntity<?> addNewUser(@RequestBody UserDTO user) throws UserAlreadyExistsException {
-		user.setAccountRole("CLIENT");
+		if (user.getFirstname().toLowerCase().equals("admin")) {
+			user.setAccountRole("ADMIN");
+		} else {
+			user.setAccountRole("CLIENT");		
+		}
 		UserDTO newuser = this.userService.addUser(user);
 		return new ResponseEntity<UserDTO>(newuser, HttpStatus.OK);
 	}

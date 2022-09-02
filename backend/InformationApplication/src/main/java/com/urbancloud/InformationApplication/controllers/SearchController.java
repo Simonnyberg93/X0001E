@@ -8,12 +8,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.urbancloud.InformationApplication.models.Actor;
 import com.urbancloud.InformationApplication.models.Area;
 import com.urbancloud.InformationApplication.models.Document;
+import com.urbancloud.InformationApplication.models.NodeDTO;
 import com.urbancloud.InformationApplication.models.Permission;
 import com.urbancloud.InformationApplication.services.SearchService;
 
@@ -34,6 +37,27 @@ public class SearchController {
 			return new ResponseEntity<String>("Failed to fetch search words", HttpStatus.CONFLICT);
 		}
 			
+	}
+	
+	@GetMapping("/nodes/{searchStr}")
+	public ResponseEntity<?> fulltextSearch(@PathVariable(value = "searchStr") String searchStr) {
+		try {
+			List<NodeDTO> result = this.service.fulltextSearch(searchStr);
+			this.service.saveSearchWord(searchStr);
+			return new ResponseEntity<List<NodeDTO>>(result, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<String>("Failed to search", HttpStatus.CONFLICT);
+		}
+	}
+	
+	@PostMapping("/nodes/bytitles")
+	public ResponseEntity<?> fulltextSearch(@RequestBody List<String> searchStrings) {
+		try {
+			List<NodeDTO> result = this.service.findNodesByTitles(searchStrings);
+			return new ResponseEntity<List<NodeDTO>>(result, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<String>("Failed to search", HttpStatus.CONFLICT);
+		}
 	}
 	
 	@GetMapping("/actors/{searchStr}")

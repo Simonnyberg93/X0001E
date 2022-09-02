@@ -10,17 +10,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import com.urbancloud.InformationApplication.models.Actor;
 
-// MATCH (actor)-[:ACTIVE_IN]-(area) , area AS relatedAreas
-
-
 @Repository
 public interface ActorRepository extends Neo4jRepository<Actor, Long> {
-	
-
-	
-//	@Override
-//	@Query("MATCH (a:Actor) WHERE id(a)=$actorId RETURN a;")
-//	Optional<Actor> findById(@Param("actorId") Long actorId);
 	
 	Actor getActorByTitle(String title);
 
@@ -35,7 +26,6 @@ public interface ActorRepository extends Neo4jRepository<Actor, Long> {
 	
 	@Query("MATCH (n: Actor) WHERE n.title IN $listOfTitles RETURN n;")
 	List<Actor> findMultipleByTitle(@Param("listOfTitles") List<String> listOfTitles);
-
 	
 	@Query("MATCH (actor1:Actor) MATCH (actor2:Actor) WHERE id(actor1) = $firstNodeId AND id(actor2) = $secondNodeId MERGE (actor1)-[:RELATED_TO]-(actor2);")
 	void addRelatedActor(@Param("firstNodeId") Long firstNodeId, @Param("secondNodeId") Long secondNodeId);
@@ -48,9 +38,6 @@ public interface ActorRepository extends Neo4jRepository<Actor, Long> {
 	
 	@Query("MATCH (a:Actor) MATCH (p:Permission) WHERE id(a) = $actorId AND id(p) = $permissionId MERGE (a)-[:LICENSED_BY]-(p);")
 	void addRelatedPermission(@Param("actorId") Long actorId, @Param("permissionId") Long permissionId);
-
-	@Query("CALL db.index.fulltext.queryNodes(\"actorSearch\", $searchStr) YIELD node, score RETURN node LIMIT $limit;")
-	List<Actor> fulltextSearch(@Param("searchStr") String searchStr, @Param("limit") int limit);
 
 	@Query("MATCH p=shortestPath((x)-[*..6]-(a:Actor)) WHERE id(x)=$ident RETURN a LIMIT 3;")
 	List<Actor> fetchByShortestPathToPermission(@Param("ident") Long ident);

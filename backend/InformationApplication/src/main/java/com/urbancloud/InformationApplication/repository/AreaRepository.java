@@ -22,9 +22,6 @@ public interface AreaRepository extends Neo4jRepository<Area, Long> {
 	
 	@Query("MATCH (a:Area) MATCH (p: Permission) WHERE id(a) = $areaId AND id(p) = $permissionId MERGE (p)-[:RELATES_TO]-(a)")
 	void addRelatedPermissions(@Param("areaId") Long areaId, @Param("permissionId") Long permissionId);
-	
-	@Query("CALL db.index.fulltext.queryNodes(\"areaSearch\", $searchStr) YIELD node, score RETURN node LIMIT $limit;")
-	List<Area> fulltextSearch(@Param("searchStr") String searchStr, @Param("limit") int limit);
 
 	@Query("MATCH p=shortestPath( (a:Area {title: $areaTitle})-[*..6]-(b:Area)) WHERE a<>b RETURN b limit 3;")
 	List<Area> findNeighboringAreas(@Param("areaTitle") String areaTitle);

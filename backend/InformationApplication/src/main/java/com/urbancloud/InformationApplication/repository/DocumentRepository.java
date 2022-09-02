@@ -18,9 +18,6 @@ public interface DocumentRepository extends Neo4jRepository<Document, Long> {
 	@Query("MATCH(document:Document) WHERE document.title <> 'notEq' RETURN document")
 	List<Document> fetchAll();
 	
-	@Query("CALL db.index.fulltext.queryNodes(\"documentSearch\", $searchStr) YIELD node, score RETURN node LIMIT $limit;")
-	List<Document> fulltextSearch(@Param("searchStr") String searchStr, @Param("limit") int limit);
-
 	@Query("MATCH (n:Document) WHERE n.source = $source RETURN n;")
 	List<Document> findBySource(@Param("source") String source);
 

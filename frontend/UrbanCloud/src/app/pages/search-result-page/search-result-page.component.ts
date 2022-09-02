@@ -25,40 +25,35 @@ export class SearchResultPageComponent implements OnInit {
   ) {
     this.route.params.subscribe((params) => {
       let searchStr: string = params['searchStr'] + '~';
-      this.searchService.fetchActorsFromSearchString(searchStr).subscribe({
-        next: (value: Array<ActorDTO>) => {
-          this.actors = value;
-          this.searchService.fetchAreasFromSearchString(searchStr).subscribe({
-            next: (value: Array<AreaDTO>) => {
-              this.areas = value;
-              this.searchService
-                .fetchPermissionsFromSearchString(searchStr)
-                .subscribe({
-                  next: (value: Array<PermissionDTO>) => {
-                    this.permissions = value;
-                    this.searchService
-                      .fetchDocumentsFromSearchString(searchStr)
-                      .subscribe({
-                        next: (value: Array<DocumentDTO>) => {
-                          this.documents = value;
-                        },
-                        error: (err) => {
-                          console.error(err);
-                        },
-                      });
-                  },
-                  error: (err) => {
-                    console.error(err);
-                  },
-                });
-            },
-            error: (err) => {
-              console.error(err);
-            },
+      this.searchService.findNodesFromSearchString(searchStr).subscribe({
+        next: (value: Array<any>) => {
+          value.forEach((obj) => {
+            switch (obj.label) {
+              case 'Actor': {
+                this.actors.push(obj);
+                break;
+              }
+              case 'Area': {
+                this.areas.push(obj);
+                break;
+              }
+              case 'Document': {
+                this.documents.push(obj);
+                break;
+              }
+              case 'Permission': {
+                this.permissions.push(obj);
+                break;
+              }
+              default: {
+                console.log(`Found a node that does not match any known type`);
+                break;
+              }
+            }
           });
         },
-        error: (err) => {
-          console.error(err);
+        error: (error) => {
+          console.error(error);
         },
       });
     });

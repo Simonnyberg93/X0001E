@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActorDTO } from 'src/app/models/ActorDTO';
-import { AreaDTO } from 'src/app/models/AreaDTO';
-import { DocumentDTO } from 'src/app/models/DocumentDTO';
 import { UserDTO } from 'src/app/models/UserDTO';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { RouteService } from 'src/app/services/route.service';
@@ -18,7 +15,6 @@ export class SearchComponent implements OnInit {
   data: any[] = [];
   actors: any[] = [];
   areas: any[] = [];
-  permissions: any[] = [];
 
   roleRelatedActors: any[] = [];
   intresstingAreas: any[] = [];
@@ -36,48 +32,36 @@ export class SearchComponent implements OnInit {
       .getUserFromDatabase(this.authService.getUserInfo().email)
       .subscribe({
         next: (value: UserDTO) => {
-          let user = value;
-          if (user.roles && user.roles.length > 0) {
-            this.searchService
-              .fetchActorsByTitles(user.roles.map((role) => role.roleName))
-              .subscribe({
-                next: (value: Array<ActorDTO>) => {
-                  this.roleRelatedActors = value;
-                },
-                error: (error) => {
-                  console.error(error);
-                },
+          let userInterests: Array<string> = concatUserData(value);
+          this.searchService.findNodesFromTitles(userInterests).subscribe({
+            next: (value: Array<any>) => {
+              value.forEach((obj) => {
+                switch (obj.label) {
+                  case 'Actor': {
+                    this.roleRelatedActors.push(obj);
+                    break;
+                  }
+                  case 'Area': {
+                    this.intresstingAreas.push(obj);
+                    break;
+                  }
+                  case 'Document': {
+                    this.intresstingDocuments.push(obj);
+                    break;
+                  }
+                  case 'Permission': {
+                    break;
+                  }
+                  default: {
+                    console.log(`Ooops found a node without type..`);
+                    console.log(`Node: ${JSON.stringify(obj)}`);
+                    break;
+                  }
+                }
               });
-          }
-          if (user.areasOfInterests && user.areasOfInterests.length > 0) {
-            this.searchService
-              .fetchAreasByTitles(
-                user.areasOfInterests.map((area) => area.areaName)
-              )
-              .subscribe({
-                next: (value: Array<AreaDTO>) => {
-                  this.intresstingAreas = value;
-                },
-                error: (error) => {
-                  console.error(error);
-                },
-              });
-          }
-          if (user.topicsOfInterests && user.topicsOfInterests.length > 0) {
-            this.searchService
-              .fetchDocumentsByTitles(
-                user.topicsOfInterests.map((document) => document.topicName)
-              )
-              .subscribe({
-                next: (value: Array<DocumentDTO>) => {
-                  this.intresstingDocuments = value;
-                  this.showSpinner = false;
-                },
-                error: (error) => {
-                  console.error(error);
-                },
-              });
-          }
+            },
+            error: (err) => console.error(err),
+          });
         },
         error: (error) => {
           this.authService.logout();
@@ -89,4 +73,21 @@ export class SearchComponent implements OnInit {
   updateData(newItem: string) {
     this.routeService.openSearchResult(newItem);
   }
+}
+
+function concatUserData(arg: UserDTO): Array<string> {
+  var result: Array<string> = [];
+  if (!arg.areasOfInterests) {
+    arg.areasOfInterests = [];
+  }
+  if (!arg.roles) {
+    arg.roles = [];
+  }
+  if (!arg.topicsOfInterests) {
+    arg.topicsOfInterests = [];
+  }
+  arg.roles.forEach((actor) => result.push(actor.roleName));
+  arg.areasOfInterests.forEach((area) => result.push(area.areaName));
+  arg.topicsOfInterests.forEach((topic) => result.push(topic.topicName));
+  return result;
 }
