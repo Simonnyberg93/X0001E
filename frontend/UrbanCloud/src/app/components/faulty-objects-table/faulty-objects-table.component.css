@@ -1,8 +1,7 @@
-.full-width-table {
-  width: 100%;
-}
 
-.form {
-  display: flex;
-  margin-right: 5%;
+table {
+  margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
 }

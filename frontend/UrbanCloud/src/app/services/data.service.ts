@@ -15,6 +15,12 @@ export class DataService {
 
   constructor(private httpcli: HttpClient) {}
 
+  updateUrl(id: number, newUrl: string): Observable<string> {
+    return this.httpcli.post(`${this.backendUrl}/update/url/${id}`, newUrl, {
+      responseType: 'text',
+    });
+  }
+
   fetchActorByTitle(actorTitle: string): Observable<ActorDTO> {
     return this.httpcli.get<ActorDTO>(
       `${this.backendUrl}/fetch/actor/bytitle/${actorTitle}`
@@ -76,6 +82,12 @@ export class DataService {
   findRelatedAreas(areaTitle: string): Observable<Array<AreaDTO>> {
     return this.httpcli.get<Array<AreaDTO>>(
       `${this.backendUrl}/fetch/areas/byneighborarea/${areaTitle}`
+    );
+  }
+
+  findNodesWithFaultyUrl(): Observable<Array<any>> {
+    return this.httpcli.get<Array<any>>(
+      `${this.backendUrl}/fetch/all/byinvalidurl`
     );
   }
 

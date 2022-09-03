@@ -16,6 +16,9 @@ import { AreaCardComponent } from './components/cards/area-card/area-card.compon
 import { PermissionCardComponent } from './components/cards/permission-card/permission-card.component';
 import { SearchSectionComponent } from './components/search-results/search-section/search-section.component';
 import { DocumentCardComponent } from './components/cards/document-card/document-card.component';
+import { RelationSideBarComponent } from './components/relation-side-bar/relation-side-bar.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { FaultyObjectsTableComponent } from './components/faulty-objects-table/faulty-objects-table.component';
 
 // Pages
 import { FrontPageComponent } from './pages/front-page/front-page.component';
@@ -31,6 +34,7 @@ import { AdminStartComponent } from './pages/admin-start/admin-start.component';
 import { AreaPageComponent } from './pages/area-page/area-page.component';
 import { ActorPageComponent } from './pages/actor-page/actor-page.component';
 import { SearchResultPageComponent } from './pages/search-result-page/search-result-page.component';
+import { AdminErrorOverviewPageComponent } from './pages/admin-error-overview-page/admin-error-overview-page.component';
 
 //HttpInteceptors
 import { AuthIntercept } from './auth-intercept';
@@ -50,19 +54,15 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 // Utilites
 import { CutTextPipe } from './utils/cut-text.pipe';
 import { DocumentPageComponent } from './pages/document-page/document-page.component';
 import { PermissionPageComponent } from './pages/permission-page/permission-page.component';
 import { AddHttpPipe } from './utils/add-http.pipe';
-import { RelationSideBarComponent } from './components/relation-side-bar/relation-side-bar.component';
-import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
-import { AdminErrorOverviewPageComponent } from './pages/admin-error-overview-page/admin-error-overview-page.component';
-import { FaultyObjectsTableComponent } from './components/faulty-objects-table/faulty-objects-table.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [

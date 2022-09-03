@@ -10,21 +10,20 @@ import { RouteService } from './route.service';
   providedIn: 'root',
 })
 export class AuthenticateService {
+  backendUrl: string = environment.backendUserApiUrl;
+
   constructor(
     private httpcli: HttpClient,
     private routeService: RouteService
   ) {}
 
   registerUser(user: UserDTO): Observable<any> {
-    return this.httpcli.post<UserDTO>(
-      `${environment.backendUserApiUrl}/register`,
-      user
-    );
+    return this.httpcli.post<UserDTO>(`${this.backendUrl}/register`, user);
   }
 
   login(username: string, password: string): Observable<any> {
     return this.httpcli
-      .post<UserProfile>(`${environment.backendUserApiUrl}/login`, {
+      .post<UserProfile>(`${this.backendUrl}/login`, {
         email: username,
         password: password,
       })
@@ -77,8 +76,6 @@ export class AuthenticateService {
 
   // unused for now
   public getUserFromDatabase(email: string): Observable<UserDTO> {
-    return this.httpcli.get<UserDTO>(
-      `${environment.backendUserApiUrl}/getuser/${email}`
-    );
+    return this.httpcli.get<UserDTO>(`${this.backendUrl}/getuser/${email}`);
   }
 }

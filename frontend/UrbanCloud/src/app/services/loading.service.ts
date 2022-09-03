@@ -4,12 +4,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class LoadingService {
-  private loading: boolean = false;
+  private loading: boolean;
 
-  constructor() {}
+  constructor() {
+    this.loading = false;
+  }
 
   setLoading(loading: boolean) {
-    this.loading = loading;
+    // To remove NG0100 error.
+    setTimeout(() => {
+      this.loading = loading;
+    }, 0);
   }
 
   getLoading(): boolean {

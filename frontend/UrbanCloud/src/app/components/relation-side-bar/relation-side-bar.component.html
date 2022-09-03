@@ -1,18 +1,22 @@
 <div class="side-wrapper">
-  <div class="title">
-    <h3>{{ areaSectionTitle }}</h3>
-  </div>
-  <div
-    class="relatedlist"
-    style="margin-bottom: 20px"
-    *ngFor="let obj of relatedAreasObj"
-  >
-    <app-area-card [showSmallCard]="true" [area]="obj"></app-area-card>
+  <div *ngIf="relatedAreasObj.length > 0" class="areaWrapper">
+    <div class="title">
+      <h3>{{ areaSectionTitle }}</h3>
+    </div>
+    <div
+      class="relatedlist"
+      style="margin-bottom: 20px"
+      *ngFor="let obj of relatedAreasObj"
+    >
+      <app-area-card [showSmallCard]="true" [area]="obj"></app-area-card>
+    </div>
   </div>
   <br />
-  <h3>{{ actorSectionTitle }}</h3>
-  <div *ngFor="let actor of relatedActorsObj">
-    <app-actor-card [showSmallCard]="true" [actor]="actor"></app-actor-card>
+  <div *ngIf="relatedActorsObj.length > 0" class="actorsWrapper">
+    <h3>{{ actorSectionTitle }}</h3>
+    <div *ngFor="let actor of relatedActorsObj">
+      <app-actor-card [showSmallCard]="true" [actor]="actor"></app-actor-card>
+    </div>
   </div>
   <br />
   <h3>Andra läste också</h3>

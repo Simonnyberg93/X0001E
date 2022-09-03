@@ -1,38 +1,56 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
+import { Component } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from 'src/app/services/data.service';
-import {
-  FaultyObjectsTableDataSource,
-  FaultyObjectsTableItem,
-} from './faulty-objects-table-datasource';
 
+export interface NodeObject {
+  id: number;
+  title: string;
+  siteUrl: string;
+  label: string;
+}
 @Component({
   selector: 'app-faulty-objects-table',
   templateUrl: './faulty-objects-table.component.html',
   styleUrls: ['./faulty-objects-table.component.css'],
 })
-export class FaultyObjectsTableComponent implements AfterViewInit {
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<FaultyObjectsTableItem>;
-  dataSource: FaultyObjectsTableDataSource;
-
+export class FaultyObjectsTableComponent {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'title', 'url', 'type'];
+  displayedColumns = ['id', 'title', 'siteUrl', 'label', 'save'];
+  data: NodeObject[] = [];
+  dataSource = new MatTableDataSource(this.data);
+  service: DataService;
 
   constructor(private dataService: DataService) {
-    this.dataSource = new FaultyObjectsTableDataSource(this.dataService);
+    this.service = dataService;
+    this.loadData();
   }
 
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+  loadData() {
+    this.service.findNodesWithFaultyUrl().subscribe({
+      next: (value: Array<any>) => {
+        value.forEach((obj) => {
+          this.data.push({
+            id: obj.id,
+            title: obj.title,
+            siteUrl: obj.siteUrl,
+            label: obj.label,
+          });
+        });
+        this.dataSource = new MatTableDataSource(this.data);
+      },
+      error: (err) => console.error(err),
+    });
   }
 
   saveData(id: number, newUrl: string) {
     console.log(`Update item: ${id}, set url to: ${newUrl}`);
+    this.dataService.updateUrl(id, newUrl).subscribe({
+      next: (value: string) => {
+        console.log(`Response: ${value}`);
+        this.data = [];
+        this.loadData();
+      },
+      error: (err) => console.error(err),
+    });
   }
 }

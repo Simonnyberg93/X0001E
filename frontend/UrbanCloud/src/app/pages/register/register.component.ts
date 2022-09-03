@@ -54,6 +54,9 @@ export class RegisterComponent implements OnInit {
   }
 
   registerSubmit() {
+    if (this.registerForm.invalid) {
+      return;
+    }
     this.authenticateService
       .registerUser(
         new UserDTO(
@@ -70,7 +73,12 @@ export class RegisterComponent implements OnInit {
             .login(this.email?.value, this.password?.value)
             .subscribe({
               next: (value) => {
-                this.routeService.openTopics();
+                console.log(`${JSON.stringify(value)}`);
+                if (this.firstname?.value === 'admin') {
+                  this.routeService.openAdminStart();
+                } else {
+                  this.routeService.openTopics();
+                }
               },
               error: (error) => {
                 console.error(error);
