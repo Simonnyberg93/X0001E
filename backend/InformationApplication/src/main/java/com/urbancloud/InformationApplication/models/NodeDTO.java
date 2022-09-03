@@ -13,15 +13,24 @@ public class NodeDTO {
 	Long id;
 	private String title;
 	private String description;
+	private String label;
 
 	public NodeDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
 	public Long getId() {
 		return id;
 	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -41,10 +50,10 @@ public class NodeDTO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "NodeDTO [id=" + id + ", title=" + title + "]";
+		return "NodeDTO [id=" + id + "Label "+ label + ", title=" + title + "]";
 	}
 	
 }

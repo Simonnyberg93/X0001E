@@ -26,6 +26,7 @@ import com.urbancloud.InformationApplication.models.Permission;
 import com.urbancloud.InformationApplication.models.PermissionDTO;
 import com.urbancloud.InformationApplication.models.Document;
 import com.urbancloud.InformationApplication.models.DocumentDTO;
+import com.urbancloud.InformationApplication.models.NodeDTO;
 import com.urbancloud.InformationApplication.services.NodeService;
 
 
@@ -67,7 +68,8 @@ public class NodeController {
 	@GetMapping("/fetch/all/byinvalidurl")
 	public ResponseEntity<?> fetchAllWithInvalidUrl() {
 		try {
-			return null;
+			List<NodeDTO> result = this.nodeService.findNodesWithFaultyUrls();
+			return new ResponseEntity<List<NodeDTO>>(result, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<String>("FAIL", HttpStatus.CONFLICT);
 		}
@@ -175,6 +177,19 @@ public class NodeController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>("Failed to fetch documents!", HttpStatus.CONFLICT);
+		}
+	}
+	
+	@PostMapping("/update/url/{id}")
+	public ResponseEntity<?> updateUrl(@PathVariable(value = "id") Long id, @RequestBody String newUrl){
+		try {
+			boolean result = this.nodeService.updateUrl(id, newUrl);
+			if (!result) {
+				throw new Exception("Failed to update URL for node<"+id+"> ..");
+			}
+			return new ResponseEntity<String>("Successfully updated url", HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
 		}
 	}
 	

@@ -94,7 +94,8 @@ public class SearchServiceImpl implements SearchService {
 
 	@Override
 	public List<NodeDTO> findNodesByTitles(List<String> searchStrings) throws Exception {
-		return this.nodeRepo.findAllByTitle(searchStrings);
+		List<NodeDTO> result = this.nodeRepo.findAllByTitle(searchStrings);
+		return result;
 	}
 
 }

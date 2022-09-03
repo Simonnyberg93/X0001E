@@ -29,6 +29,7 @@ public class ActorDTO implements Serializable {
 	@JsonIgnoreProperties({"licensedByActor", "laws"})
 	private List<Permission> permissions;
 	
+
 	public ActorDTO(Actor actorObj) {
 		this.id = actorObj.getId();
 		this.title = actorObj.getTitle();
@@ -42,13 +43,11 @@ public class ActorDTO implements Serializable {
 		this.validUrl = actorObj.isValidUrl();
 		actorObj.getRelatedActorsInc()
 			.forEach(rel -> {
-				System.out.println("Relation: " + rel.tooString(actorObj.getTitle()));
 				this.relatedActors.add(rel.getActor());
 			});
 		actorObj.getRelatedActorsOut()
 			.forEach(rel -> {
 				this.relatedActors.add(rel.getActor());
-				System.out.println("Relation: " + rel.tooString(actorObj.getTitle()));
 			});
 		actorObj.getRelatedAreas().forEach(rel -> this.relatedAreas.add(rel.getArea()));
 	}

@@ -1,6 +1,8 @@
 package com.urbancloud.InformationApplication.repository;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.data.neo4j.repository.query.Query;
 import org.springframework.data.repository.query.Param;
@@ -32,6 +34,12 @@ public interface NodeRepo extends Neo4jRepository<NodeDTO, Long> {
 
 	@Query("MATCH (node) WHERE node.title IN $searchStrings RETURN node;")
 	List<NodeDTO> findAllByTitle(@Param("searchStrings") List<String> searchStrings);
+
+	@Query("MATCH (node) WHERE node.validUrl=false RETURN node;")
+	List<NodeDTO> findByFaultyUrls();
+
+	@Query("MATCH (node) WHERE id(node)=$id SET node.siteUrl=$newUrl RETURN node;")
+	Optional<NodeDTO> updateUrl(Long id, String newUrl);
 
 	
 }

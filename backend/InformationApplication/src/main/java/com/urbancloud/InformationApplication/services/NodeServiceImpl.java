@@ -14,10 +14,12 @@ import com.urbancloud.InformationApplication.models.Actor;
 import com.urbancloud.InformationApplication.models.Area;
 import com.urbancloud.InformationApplication.models.Permission;
 import com.urbancloud.InformationApplication.models.Document;
+import com.urbancloud.InformationApplication.models.NodeDTO;
 import com.urbancloud.InformationApplication.repository.ActorRepository;
 import com.urbancloud.InformationApplication.repository.AreaRepository;
 import com.urbancloud.InformationApplication.repository.PermissionRepository;
 import com.urbancloud.InformationApplication.repository.DocumentRepository;
+import com.urbancloud.InformationApplication.repository.NodeRepo;
 
 @Service
 public class NodeServiceImpl implements NodeService {
@@ -33,6 +35,9 @@ public class NodeServiceImpl implements NodeService {
 	
 	@Autowired
 	DocumentRepository documentRepo;
+	
+	@Autowired
+	NodeRepo nodeRepo;
 
 	@Override
 	public List<Actor> fetchAllActors() throws Exception {
@@ -291,6 +296,22 @@ public class NodeServiceImpl implements NodeService {
 		if (obj.isEmpty()) {
 			return false;
 		}
+		return true;
+	}
+
+	@Override
+	public List<NodeDTO> findNodesWithFaultyUrls() {
+		// TODO Auto-generated method stub
+		return this.nodeRepo.findByFaultyUrls();
+	}
+
+	@Override
+	public boolean updateUrl(Long id, String newUrl) throws Exception {
+		Optional<NodeDTO> result = this.nodeRepo.updateUrl(id, newUrl);
+		if (result.isEmpty()) {
+			return false;
+		}
+		this.updateValidUrl(id, true);
 		return true;
 	}
 

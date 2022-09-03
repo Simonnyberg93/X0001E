@@ -11,8 +11,6 @@ import com.urbancloud.InformationApplication.Relationships.Includes;
 @Node
 public class Document extends NodeDTO {
 	
-	private final String label = "Document";
-
 	private String source;
 	private String siteUrl;
 	private boolean validUrl;
@@ -26,14 +24,12 @@ public class Document extends NodeDTO {
 	private List<Permission> relatedPermissions;
 	
 
-	public Document() {}
+	public Document() {
+		super();
+	}
 
 	public List<Includes> getAreas() {
 		return areas;
-	}
-	
-	public String getLabel() {
-		return label;
 	}
 
 	public void setAreas(List<Includes> areas) {

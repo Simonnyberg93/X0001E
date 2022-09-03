@@ -11,9 +11,7 @@ import com.urbancloud.InformationApplication.Relationships.LicensedBy;
 
 @Node
 public class Permission extends NodeDTO {
-	
-	private final String label = "Permission";
-					  
+		  
 	@Relationship(type="LICENSED_BY", direction = Relationship.Direction.INCOMING)
 	@JsonIgnoreProperties("id")
 	private LicensedBy licensedByActor;
@@ -22,10 +20,8 @@ public class Permission extends NodeDTO {
 	@JsonIgnoreProperties("id")
 	private List<DerivesFrom> laws;
 	
-	public Permission() { }
-
-	public String getLabel() {
-		return label;
+	public Permission() {
+		super();
 	}
 
 	public LicensedBy getLicensedByActor() {

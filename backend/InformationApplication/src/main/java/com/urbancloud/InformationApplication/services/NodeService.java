@@ -10,6 +10,7 @@ import com.urbancloud.InformationApplication.models.Actor;
 import com.urbancloud.InformationApplication.models.Area;
 import com.urbancloud.InformationApplication.models.Permission;
 import com.urbancloud.InformationApplication.models.Document;
+import com.urbancloud.InformationApplication.models.NodeDTO;
 
 public interface NodeService {
 	
@@ -72,6 +73,10 @@ public interface NodeService {
 	public List<Actor> fetchActorsByShortestPathToPermission(Long permissionId) throws Exception;
 
 	public boolean updateValidUrl(Long id, boolean validUrl);
+
+	public List<NodeDTO> findNodesWithFaultyUrls();
+
+	public boolean updateUrl(Long id, String newUrl) throws Exception;
 
 
 }

@@ -12,7 +12,7 @@ import com.urbancloud.InformationApplication.Relationships.RelatedTo;
 @Node
 public class Actor extends NodeDTO  {
 
-	private final String label = "Actor";
+	//private String label = "Actor";
 	private String imageUrl;
 	private String siteUrl;
 	private boolean validUrl = true;
@@ -33,8 +33,10 @@ public class Actor extends NodeDTO  {
 	@JsonIgnoreProperties({"licensedByActor", "laws"})
 	private List<Permission> permissions;
 
-	public Actor() { }
-
+	public Actor() {
+		super();
+	}
+	
 	public List<RelatedTo> getRelatedActorsInc() {
 		return relatedActorsInc;
 	}
@@ -94,9 +96,6 @@ public class Actor extends NodeDTO  {
 		this.validUrl = validUrl;
 	}
 	
-	public String getLabel() {
-		return label;
-	}
 
 	@Override
 	public String toString() {

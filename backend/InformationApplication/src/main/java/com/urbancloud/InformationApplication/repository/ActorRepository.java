@@ -14,7 +14,7 @@ import com.urbancloud.InformationApplication.models.Actor;
 public interface ActorRepository extends Neo4jRepository<Actor, Long> {
 	
 	Actor getActorByTitle(String title);
-
+	
 	@Query("MATCH (a:Area) WHERE id(a)=$areaId MATCH (a)-[:ACTIVE_IN]-(b) RETURN b LIMIT 5;")
 	List<Actor> fetchByActiveInRelation(@Param("areaId") Long areaId);
 	

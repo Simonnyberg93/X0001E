@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Node
 public class Area extends NodeDTO {
 
-	private final String label = "Area";
 	private String siteUrl;
 	private boolean validUrl;
 	
@@ -22,10 +21,8 @@ public class Area extends NodeDTO {
 	@JsonIgnoreProperties({"areas", "relatedPermissions"})
 	private List<Document> includes;
 	
-	public Area()  { }
-	
-	public String getLabel() {
-		return label;
+	public Area()  {
+		super();
 	}
 
 	public String getSiteUrl() {
