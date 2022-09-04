@@ -1,4 +1,4 @@
-version: "3.7"
+version: "2.1"
 services:
   frontend-app:
     container_name: urban-cloud-fe-container
