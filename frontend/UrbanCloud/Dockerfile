@@ -4,6 +4,7 @@ RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
 
 RUN npm install -g @angular/cli@14.0.5
+RUN npm install --save-dev @angular-devkit/build-angular
 
 COPY . /usr/src/app
 
