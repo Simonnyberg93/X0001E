@@ -1,17 +1,21 @@
 version: "2.1"
 services:
-  frontend-app:
-    container_name: urban-cloud-fe-container
-    build: ../frontend/UrbanCloud
-    volumes:
-      - '../frontend/UrbanCloud/:/usr/src/app'
-    ports:
-      - '4200:4200'
-    depends_on:
-      - urbancloud-information-api # Wait for information API to be ready
-      - urbancloud-account-api # Wait for useraccount API to be ready 
-    networks:
-      - mynetwork
+  # frontend-app:
+  #   container_name: urban-cloud-fe-container
+  #   #build: ../frontend/UrbanCloud
+  #   image: simon321123/urbancloud_fe
+  #   volumes:
+  #     - '../frontend/UrbanCloud/:/usr/src/app'
+  #     - '../frontend/UrbanCloud/:/home/boilerplate'
+  #   ports:
+  #     - '4200:4200'
+  #   environment:
+  #     - NODE_ENV=dev
+  #   depends_on:
+  #     - urbancloud-information-api # Wait for information API to be ready
+  #     - urbancloud-account-api # Wait for useraccount API to be ready 
+  #   networks:
+  #     - mynetwork
 
   #MYSQL USER ACCOUNT DATABASE
   mysqldb:
