@@ -1,12 +1,8 @@
-FROM node:16.11.0
+FROM node:16.11.0 as node
+WORKDIR /app
+COPY . .
+RUN npm install
+RUN npm run build --prod
 
-RUN mkdir /usr/src/app
-WORKDIR /usr/src/app
-
-RUN npm install 
-#--save-dev @angular-devkit/build-angular
-#RUN npm install -g @angular/cli@14.0.5
-
-COPY . /usr/src/app
-
-CMD ng serve --host 0.0.0.0 --port 4200
+FROM nginx:alpine
+COPY --from=node /app/dist/urban-cloud /usr/share/nginx/html
