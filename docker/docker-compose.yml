@@ -1,4 +1,4 @@
-version: "2.1"
+version: "3.7"
 services:
   frontend-app:
     container_name: urban-cloud-fe-container
@@ -7,6 +7,8 @@ services:
       - '../frontend/UrbanCloud/:/usr/src/app'
     ports:
       - '4200:4200'
+    environment:
+      - NODE_ENV=dev
     depends_on:
       - urbancloud-information-api # Wait for information API to be ready
       - urbancloud-account-api # Wait for useraccount API to be ready 
