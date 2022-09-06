@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../environment/environment';
+import { environment } from '../../environments/environment';
 import { ActorDTO } from '../models/ActorDTO';
 import { AreaDTO } from '../models/AreaDTO';
 import { DocumentDTO } from '../models/DocumentDTO';

@@ -40,24 +40,19 @@ export class TopicsOfInterestComponent implements OnInit {
     this.authService.getUserFromDatabase(this.userProfile.email).subscribe({
       next: (user: any) => {
         this.user = <UserDTO>user;
-        console.log(JSON.stringify(user));
         if (this.user) {
-          console.log('Areas' + this.user.areasOfInterests);
           if (this.user.areasOfInterests != undefined) {
-            console.log('Areas');
             this.selectedAreas = this.user.areasOfInterests.map(
               (area) => area.areaName
             );
             this.selectedAreas.forEach((area) => console.log(`Area: ${area}`));
           }
           if (this.user.topicsOfInterests) {
-            console.log('Topics');
             this.selectedInfo = this.user.topicsOfInterests.map(
               (topic) => topic.topicName
             );
           }
           if (this.user.roles) {
-            console.log('Roles');
             this.selectedRoles = this.user.roles.map((role) => role.roleName);
             this.selectedRoles.forEach((role) => console.log(`Role: ${role}`));
           }
@@ -102,9 +97,7 @@ export class TopicsOfInterestComponent implements OnInit {
     this.userService
       .updateUserRoles(this.user.email, this.selectedRoles)
       .subscribe({
-        next: (value) => {
-          console.log(`Updated roles. ${value}`);
-        },
+        next: (value) => {},
         error: (error) => {
           console.error(error);
         },
@@ -112,9 +105,7 @@ export class TopicsOfInterestComponent implements OnInit {
     this.userService
       .updateUserAreasOfImportance(this.user.email, this.selectedAreas)
       .subscribe({
-        next: (value) => {
-          console.log(`Updated areas of importance. ${value}`);
-        },
+        next: (value) => {},
         error: (error) => {
           console.error(error);
         },
@@ -123,14 +114,13 @@ export class TopicsOfInterestComponent implements OnInit {
       .updateUserImportantInfo(this.user.email, this.selectedInfo)
       .subscribe({
         next: (value) => {
-          console.log(`Updated intresting topics. ${value}`);
+          this.routeService.openDashboard();
         },
         error: (error) => {
           console.error(error);
         },
       });
     // navigate to dashboard
-    this.routeService.openDashboard();
   }
 
   addNewRole() {

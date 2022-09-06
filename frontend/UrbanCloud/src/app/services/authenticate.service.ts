@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { environment } from '../environment/environment';
+import { environment } from '../../environments/environment';
 import { UserDTO } from '../models/UserDTO';
 import { UserProfile } from '../models/UserProfile';
 import { RouteService } from './route.service';

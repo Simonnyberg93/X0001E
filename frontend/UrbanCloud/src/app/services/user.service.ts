@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../environment/environment';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -16,30 +16,39 @@ export class UserService {
     );
   }
 
-  updateUserRoles(email: string, selectedRoles: string[]): Observable<any> {
+  updateUserRoles(email: string, selectedRoles: string[]): Observable<string> {
     return this.httpcli.post(
       `${environment.backendUserApiUrl}/role/addrole/${email}`,
-      selectedRoles
+      selectedRoles,
+      {
+        responseType: 'text',
+      }
     );
   }
 
   updateUserImportantInfo(
     email: string,
     selectedInfo: string[]
-  ): Observable<any> {
+  ): Observable<string> {
     return this.httpcli.post(
       `${environment.backendUserApiUrl}/topic/addtopic/${email}`,
-      selectedInfo
+      selectedInfo,
+      {
+        responseType: 'text',
+      }
     );
   }
 
   updateUserAreasOfImportance(
     email: string,
     selectedAreas: string[]
-  ): Observable<any> {
+  ): Observable<string> {
     return this.httpcli.post(
       `${environment.backendUserApiUrl}/area/addarea/${email}`,
-      selectedAreas
+      selectedAreas,
+      {
+        responseType: 'text',
+      }
     );
   }
 }
