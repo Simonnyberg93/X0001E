@@ -28,7 +28,7 @@ Requirements:
 
 1. Go to [NodeJS - Download](https://nodejs.org/en/dowload/), download and install recommended verison.
 
-2. Go to [Docker - Get Started](https://www.docker.com/get-started/), follow the guide to install docker desktop.
+2. Go to [Docker - Get Started](https://www.docker.com/get-started/), install docker desktop.
 
 3. If docker not working correctly or you get an error mentioning hyper-v. Open powershell, enter command:
 
