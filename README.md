@@ -24,23 +24,35 @@ You have two options when running the application locally, either by using docke
 Requirements:
 
 - Docker: [Docker - Get Started](https://www.docker.com/get-started/)
+- nodejs: [NodeJS - Download](https://nodejs.org/en/dowload/)
 
-1. clone the repo
+1. Go to [NodeJS - Download](https://nodejs.org/en/dowload/), download and install recommended verison, guide to install [Install NodeJS and NPM](https://nodejs.org/en/download/)
+
+2. Go to [Docker - Get Started](https://www.docker.com/get-started/), follow the guide to install docker desktop.
+
+3. If docker not working correctly or you get an error mentioning hyper-v. Open powershell, enter command:
+
+```
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+```
+4. Reboot pc.
+
+5. clone the repo
 
 ```
 git clone https://github.com/Simonnyberg93/X0001E.git
 ```
 
-2. Start the docker images: move to `docker` folder, and open terminal.
+6. Start the docker images: move to `docker` folder, and open terminal.
    Enter:
 
 ```
 docker-compose up
 ```
 
-3. Wait a few minutes to let all services start and for the database to be loaded.
+7. Wait a few minutes to let all services start and for the database to be loaded.
 
-4. Install search indexes for database: In your browser go to `http://localhost:7474/browser`. Run the commmands:
+8. Install search indexes for database: In your browser go to `http://localhost:7474/browser`. Run the commmands:
 
 ```cypher
 CREATE FULLTEXT INDEX titlesAndDescriptions IF NOT EXISTS FOR (n:Actor|Area|Document|Permission) ON EACH [n.title, n.description];
@@ -50,7 +62,7 @@ CREATE FULLTEXT INDEX documentSearch IF NOT EXISTS FOR (n:Document) ON EACH [n.t
 CREATE FULLTEXT INDEX permissionSearch IF NOT EXISTS FOR (n:Permission) ON EACH [n.title, n.description];
 ```
 
-5. The frontend application should now be up and running on `http://localhost:4200`. You can view the neo4j database from `http://localhost:4200`.
+5. The frontend application should now be up and running on `http://localhost:4200`. You can view the neo4j database from `http://localhost:7474/browser`.
 
 ## Option 2 - No docker TODO: this guide is not complete
 
