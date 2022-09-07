@@ -61,8 +61,15 @@ CREATE FULLTEXT INDEX areaSearch IF NOT EXISTS FOR (n:Area) ON EACH [n.title, n.
 CREATE FULLTEXT INDEX documentSearch IF NOT EXISTS FOR (n:Document) ON EACH [n.title, n.description];
 CREATE FULLTEXT INDEX permissionSearch IF NOT EXISTS FOR (n:Permission) ON EACH [n.title, n.description];
 ```
-
-5. The frontend application should now be up and running on `http://localhost:4200`. You can view the neo4j database from `http://localhost:7474/browser`.
+9. Go to /frontend/UrbanCloud and open any terminal. Enter command:
+```
+npm install
+```
+10. After `npm install` is finished enter:
+```
+npm run start
+```
+11. The frontend application should now be up and running on `http://localhost:4200`. You can view the neo4j database from `http://localhost:7474/browser`.
 
 ## Option 2 - No docker TODO: this guide is not complete
 
