@@ -30,12 +30,12 @@ Requirements:
 
 2. Go to [Docker - Get Started](https://www.docker.com/get-started/), install docker desktop.
 
-3. If docker not working correctly or you get an error mentioning hyper-v. Open powershell, enter command:
+If docker not working correctly or you get an error mentioning hyper-v. Open powershell, enter command:
 
 ```
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 ```
-4. Reboot pc.
+Reboot pc.
 
 5. clone the repo
 
