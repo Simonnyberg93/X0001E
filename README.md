@@ -26,7 +26,7 @@ Requirements:
 - Docker: [Docker - Get Started](https://www.docker.com/get-started/)
 - nodejs: [NodeJS - Download](https://nodejs.org/en/dowload/)
 
-1. Go to [NodeJS - Download](https://nodejs.org/en/dowload/), download and install recommended verison, guide to install [Install NodeJS and NPM](https://nodejs.org/en/download/)
+1. Go to [NodeJS - Download](https://nodejs.org/en/dowload/), download and install recommended verison.
 
 2. Go to [Docker - Get Started](https://www.docker.com/get-started/), follow the guide to install docker desktop.
 
