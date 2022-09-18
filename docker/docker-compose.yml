@@ -84,6 +84,7 @@ services:
       - "7474:7474" #HTTP
       - "7687:7687" #BOLT
     environment:
+      NEO4JLABS_PLUGINS: '["apoc"]'
       NEO4J_AUTH: 'neo4j/password'
       dbms_connector_bolt_listen__address: 'neo4j-db:7687'
       dbms_connector_bolt_advertised__address: 'neo4j-db:7687'
@@ -95,7 +96,6 @@ services:
       apoc.initializer.cypher.1: 'CALL apoc.import.json("file:///jsonDb.json");'
       NEO4J_dbms_shell_enabled: 'true'
       NEO4J_apoc_import_file_use__neo4j__config: 'true'
-      NEO4JLABS_PLUGINS: '["apoc"]'
     networks:
       - mynetwork
     healthcheck:
